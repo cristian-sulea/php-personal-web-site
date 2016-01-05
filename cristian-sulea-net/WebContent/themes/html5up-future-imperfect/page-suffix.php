@@ -49,5 +49,7 @@
 	<!--[if lte IE 8]><script src="<?php echo THEME;?>/js/ie/respond.min.js"></script><![endif]-->
 	<script src="<?php echo THEME;?>/js/main.js"></script>
 
+<script>hljs.initHighlightingOnLoad();</script>
+
 </body>
 </html>

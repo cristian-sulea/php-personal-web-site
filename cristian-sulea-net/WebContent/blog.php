@@ -68,10 +68,32 @@ function printPostImage() {
 	echo "blog/posts/" . $postId . "/images/". $postConfig["image"];
 }
 
-function printPostContent() {
+function printPostContent($imgParentClass = 'null') {
 	global $postContent;
+	$printPostContent = $postContent;
+
+	if ($imgParentClass == 'null') {
+		$printPostContent = str_replace(array(' class="img-parent-class"'), '', $printPostContent);
+	} else {
+		$printPostContent = str_replace(array('class="img-parent-class"'), array('class="' . $imgParentClass . '"'), $printPostContent);
+	}
+
+	$printPostContent = str_replace('="images-folder/', '="blog/posts/2015-11-20-how-to-set-chrome-as-default-pdf-viewer/images/', $printPostContent);
+
+	$printPostContent = str_replace(
+								array('<pre><code>' . "\r\n",
+									  '<pre><code>' . "\r",
+									  '<pre><code>' . "\n",
+									  '<pre><code>' . "\n\r",
+									  '<pre><code class="java">' . "\r\n",
+									  '<pre><code class="java">' . "\r",
+									  '<pre><code class="java">' . "\n",
+									  '<pre><code class="java">' . "\n\r"),
+								'<pre><code>',
+								$printPostContent);
+
 	echo PHP_EOL;
-	echo $postContent;
+	echo $printPostContent;
 }
 
 function hasPostResources() {
