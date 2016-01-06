@@ -1,9 +1,13 @@
 <?php
 
 //
-// settings & suffix
+// default include
 
-include('settings.php');
+include('_include.php');
+
+//
+// suffix
+
 include(THEME . '/page-prefix.php');
 
 //
@@ -47,6 +51,41 @@ function printPostDateForTimeTag() {
 	echo date("Y-m-d", strtotime($postDate));
 }
 
+function printPostAuthor() {
+	global $postConfig;
+	if (isset($postConfig["author"])) {
+		echo $postConfig["author"];
+	} else {
+		printBlogAuthor();
+	}
+}
+
+function printPostAuthorImg() {
+	global $postConfig;
+	if (isset($postConfig["author-email"])) {
+		echo getGravatarImg($postConfig["author-email"]);
+	} else {
+		if (isset($postConfig["author"])) {
+			echo getGravatarImg("");
+		} else {
+			printBlogAuthorImg();
+		}
+	}
+}
+
+function printPostAuthorWebsite() {
+	global $postConfig;
+	if (isset($postConfig["author-website"])) {
+		echo $postConfig["author-website"];
+	} else {
+		if (isset($postConfig["author"])) {
+			echo "";
+		} else {
+			printBlogAuthorWebsite();
+		}
+	}
+}
+
 function hasPostDescription() {
 	global $postConfig;
 	return isset($postConfig["description"]);
@@ -70,6 +109,8 @@ function printPostImage() {
 
 function printPostContent($imgParentClass = 'null') {
 	global $postContent;
+	global $postId;
+
 	$printPostContent = $postContent;
 
 	if ($imgParentClass == 'null') {
@@ -78,19 +119,19 @@ function printPostContent($imgParentClass = 'null') {
 		$printPostContent = str_replace(array('class="img-parent-class"'), array('class="' . $imgParentClass . '"'), $printPostContent);
 	}
 
-	$printPostContent = str_replace('="images-folder/', '="blog/posts/2015-11-20-how-to-set-chrome-as-default-pdf-viewer/images/', $printPostContent);
+	$printPostContent = str_replace('="images-folder/', '="blog/posts/' . $postId . '/images/', $printPostContent);
 
 	$printPostContent = str_replace(
-								array('<pre><code>' . "\r\n",
-									  '<pre><code>' . "\r",
-									  '<pre><code>' . "\n",
-									  '<pre><code>' . "\n\r",
-									  '<pre><code class="java">' . "\r\n",
-									  '<pre><code class="java">' . "\r",
-									  '<pre><code class="java">' . "\n",
-									  '<pre><code class="java">' . "\n\r"),
-								'<pre><code>',
+								array('<pre>' . "\r\n",
+									  '<pre>' . "\r",
+									  '<pre>' . "\n",
+									  '<pre>' . "\n\r"),
+								'<pre>',
 								$printPostContent);
+
+	if (function_exists('themeUpdatePostContent')) {
+		$printPostContent = themeUpdatePostContent($printPostContent);
+	}
 
 	echo PHP_EOL;
 	echo $printPostContent;

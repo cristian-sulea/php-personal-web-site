@@ -9,8 +9,8 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="<?php echo THEME;?>/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="<?php echo THEME;?>/css/ie8.css" /><![endif]-->
 		
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
+<!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css"> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script> -->
 		
 	</head>
 <body>
@@ -19,7 +19,7 @@
 
 		<header id="header">
 			<h1>
-				<a href="#">Future Imperfect</a>
+				<a href="#"><?php printBlogTitle(); ?></a>
 			</h1>
 			<nav class="links">
 				<ul>

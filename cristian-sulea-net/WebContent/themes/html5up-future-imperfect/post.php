@@ -11,7 +11,10 @@
 
 		<div class="meta">
 			<time class="published" datetime="<?php printPostDateForTimeTag(); ?>"><?php printPostDate(); ?></time>
-			<a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
+			<a href="<?php printPostAuthorWebsite(); ?>" title="<?php printPostAuthor(); ?>" class="author">
+				<span class="name"><?php printPostAuthor(); ?></span>
+				<img src="<?php printPostAuthorImg(); ?>" alt="<?php printPostAuthor(); ?>" title="<?php printPostAuthor(); ?>" />
+			</a>
 		</div>
 
 	</header>
@@ -28,3 +31,20 @@
 	<?php } ?>
 
 </article>
+
+<?php
+
+//
+// functions
+
+function themeUpdatePostContent($postContent) {
+
+	$postContent = str_replace(
+							array('<pre>', '</pre>'),
+							array('<pre><code>', '</code></pre>'),
+							$postContent);
+
+	return $postContent;
+}
+
+?>
