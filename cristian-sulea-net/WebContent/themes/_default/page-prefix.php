@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 
 <meta charset="utf-8" />
@@ -13,14 +13,12 @@
 <body>
 
 	<header>
-		<h1>
-			<?php printTitle(); ?>
-		</h1>
+		<h1><?php printTitle(); ?></h1>
 		<nav>
 			<ul>
-				<li><a href="index.php">Home</a></li>
-				<li><a href="blog.php">Blog</a></li>
-				<li><a href="photos.php">Photos</a></li>
+				<?php foreach ($MENU as $menu) { ?>
+					<li><a href="<?php echo $menu[1]; ?>"><?php echo $menu[0]; ?></a></li>
+				<?php } ?>
 			</ul>
 		</nav>
 		<nav>
