@@ -1,8 +1,5 @@
 <?php
 
-//
-// default include
-
 include('_include.php');
 
 //
@@ -18,14 +15,25 @@ if (count($params) > 0) {
 	$postId = $params[0];
 }
 
-if (isset($postId)) {
+if (isset($postId) && file_exists("blog/posts/" . $postId)) {
 
 	$postConfig  = json_decode(file_get_contents("blog/posts/" . $postId . "/config.json"), TRUE);
-
-	$postTitle = $postConfig["title"];
-	$postDate = $postConfig["date"];
 	$postContent = file_get_contents("blog/posts/" . $postId . "/content.html");
-	include(THEME . '/post.php');
+
+	include(THEME . '/blog-post-full.php');
+}
+
+else {
+
+	foreach (array_diff(scandir("blog/posts/", 1), array(".", "..")) as $file) {
+
+		$postId = basename($file);
+
+		$postConfig  = json_decode(file_get_contents("blog/posts/" . $postId . "/config.json"), TRUE);
+		$postContent = file_get_contents("blog/posts/" . $postId . "/excerpt.html");
+
+		include(THEME . '/blog-post-excerpt.php');
+	}
 }
 
 //
@@ -36,19 +44,24 @@ include(THEME . '/page-suffix.php');
 //
 // functions
 
+function printPostId() {
+	global $postId;
+	echo $postId;
+}
+
 function printPostTitle() {
-	global $postTitle;
-	echo $postTitle;
+	global $postConfig;
+	echo $postConfig["title"];
 }
 
 function printPostDate() {
-	global $postDate;
-	echo date(POST_DATE_FORMAT, strtotime($postDate));
+	global $postConfig;
+	echo date(POST_DATE_FORMAT, strtotime($postConfig["date"]));
 }
 
 function printPostDateForTimeTag() {
-	global $postDate;
-	echo date("Y-m-d", strtotime($postDate));
+	global $postConfig;
+	echo date("Y-m-d", strtotime($postConfig["date"]));
 }
 
 function printPostAuthor() {

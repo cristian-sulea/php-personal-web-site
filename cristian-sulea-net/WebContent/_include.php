@@ -3,20 +3,36 @@
 //
 // settings
 
-define("THEME", "themes/html5up-future-imperfect");
+//define("THEME", "themes/html5up-future-imperfect");
+define("THEME", "themes/_default");
 
-define("BLOG_TITLE", "Blog Title: Future Imperfect");
+define("TITLE", "Knowlegde Base");
+define("DESCRIPTION", "");
+define("KEYWORDS", "");
+
 define("BLOG_AUTHOR", "Cristian Sulea");
 define("BLOG_AUTHOR_EMAIL", "cristian.sulea.79@gmail.com");
 define("BLOG_AUTHOR_WEBSITE", "http://cristian.sulea.net");
 
 define("POST_DATE_FORMAT", "F j, Y");
 
+if (file_exists(THEME . "/_include.php")) {
+	include(THEME . "/_include.php");
+}
+
 //
 // print funtions
 
-function printBlogTitle() {
-	echo BLOG_TITLE;
+function printTitle() {
+	echo TITLE;
+}
+
+function printDescription() {
+	echo DESCRIPTION;
+}
+
+function printKeywords() {
+	echo KEYWORDS;
 }
 
 function printBlogAuthor() {

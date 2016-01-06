@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Future Imperfect by HTML5 UP</title>
+		<title><?php printTitle(); ?></title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="<?php echo THEME;?>/js/ie/html5shiv.js"></script><![endif]-->
@@ -19,7 +19,7 @@
 
 		<header id="header">
 			<h1>
-				<a href="#"><?php printBlogTitle(); ?></a>
+				<a href="#"><?php printTitle(); ?></a>
 			</h1>
 			<nav class="links">
 				<ul>
