@@ -1,5 +1,5 @@
 
-<article class="post">
+<article>
 
 	<header>
 		<h2><?php printPostTitle(); ?></h2>

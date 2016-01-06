@@ -7,7 +7,7 @@
 		<a href="<?php printPostAuthorWebsite(); ?>" title="<?php printPostAuthor(); ?>"><?php printPostAuthor(); ?></a>
 	</header>
 
-	<?php printPostContent('image'); ?>
+	<?php printPostContent(); ?>
 
 	<footer>
 		<a href="?<?php printPostId(); ?>">Continue Reading</a>
