@@ -1,11 +1,25 @@
 <?php
 
-$THEME = 'themes/html5up-future-imperfect';
+include('_include.php');
 
-$post = file_get_contents('posts/post.html');
+//
+// prefix
+
+include(THEME . '/page-prefix.php');
+
+//
+// content index
+
+include(THEME . '/index-article.php');
+
+//
+// suffix
+
+include(THEME . '/page-suffix.php');
+
+//
+// functions
+
+
 
 ?>
-
-<?php include($THEME . '/page-prefix.php');?>
-<?php include($THEME . '/post.php');?>
-<?php include($THEME . '/page-suffix.php');?>

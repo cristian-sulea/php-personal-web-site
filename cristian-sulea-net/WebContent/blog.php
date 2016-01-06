@@ -3,12 +3,12 @@
 include('_include.php');
 
 //
-// suffix
+// prefix
 
 include(THEME . '/page-prefix.php');
 
 //
-// blog
+// content blog
 
 $params = array_keys($_GET);
 if (count($params) > 0) {
@@ -43,6 +43,18 @@ include(THEME . '/page-suffix.php');
 
 //
 // functions
+
+function printBlogAuthor() {
+	echo BLOG_AUTHOR;
+}
+
+function printBlogAuthorImg() {
+	echo getGravatarImg(BLOG_AUTHOR_EMAIL);
+}
+
+function printBlogAuthorWebsite() {
+	echo BLOG_AUTHOR_WEBSITE;
+}
 
 function printPostId() {
 	global $postId;

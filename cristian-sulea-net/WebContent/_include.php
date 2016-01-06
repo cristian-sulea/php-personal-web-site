@@ -21,18 +21,6 @@ function printKeywords() {
 	echo KEYWORDS;
 }
 
-function printBlogAuthor() {
-	echo BLOG_AUTHOR;
-}
-
-function printBlogAuthorImg() {
-	echo getGravatarImg(BLOG_AUTHOR_EMAIL);
-}
-
-function printBlogAuthorWebsite() {
-	echo BLOG_AUTHOR_WEBSITE;
-}
-
 //
 // utility funtions
 

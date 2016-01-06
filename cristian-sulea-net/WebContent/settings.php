@@ -1,7 +1,7 @@
 <?php
 
-//define("THEME", "themes/html5up-future-imperfect");
-define("THEME", "themes/_default");
+define("THEME", "themes/html5up-future-imperfect");
+//define("THEME", "themes/_default");
 
 define("TITLE", "Knowlegde Base");
 define("DESCRIPTION", "");
