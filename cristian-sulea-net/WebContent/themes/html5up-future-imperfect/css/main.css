@@ -3130,7 +3130,7 @@
 		@media screen and (max-width: 980px) {
 
 			#header .links {
-				display: none;
+				xdisplay: none;
 			}
 
 		}

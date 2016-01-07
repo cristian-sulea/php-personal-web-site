@@ -11,7 +11,7 @@
 					<li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
 				</ul>
 				<p class="copyright">
-					&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.
+					&copy; <a href="http://cristian.sulea.net">Cristian Sulea</a>. Design: <a href="http://html5up.net">HTML5 UP</a>.
 				</p>
 			</section>
 
