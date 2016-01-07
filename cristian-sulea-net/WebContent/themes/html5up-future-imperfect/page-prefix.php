@@ -47,7 +47,7 @@
 				<a href="#" class="logo"><img src="images/logo.jpg" alt="" /></a>
 				<header>
 					<?php if (isBlog()) { ?>
-						<h2><?php printBlogTitle(); ?></h2>
+						<h2><a href="blog.php"><?php printBlogTitle(); ?></a></h2>
 						<p><?php printBlogDescription(); ?></p>
 					<?php } else { ?>
 						<h2><?php printTitle(); ?></h2>
