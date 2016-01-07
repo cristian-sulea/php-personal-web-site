@@ -5,17 +5,15 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title><?php printTitle(); ?></title>
-<meta name="description" content="<?php printDescription(); ?>">
-<meta name="keywords" content="<?php printKeywords(); ?>">
+<title><?php printHtmlHeadTitle(); ?></title>
 
-<!--[if lte IE 8]><script src="<?php echo THEME;?>/js/ie/html5shiv.js"></script><![endif]-->
-<link rel="stylesheet" href="<?php echo THEME;?>/css/main.css" />
-<!--[if lte IE 9]><link rel="stylesheet" href="<?php echo THEME;?>/css/ie9.css" /><![endif]-->
-<!--[if lte IE 8]><link rel="stylesheet" href="<?php echo THEME;?>/css/ie8.css" /><![endif]-->
+<meta name="description" content="<?php printHtmlHeadMetaDescription(); ?>">
+<meta name="keywords"    content="<?php printHtmlHeadMetaKeywords(); ?>">
 
-<!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css"> -->
-<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script> -->
+<!--[if lte IE 8]><script src="<?php printThemeFile("js/ie/html5shiv.js"); ?>"></script><![endif]-->
+<link rel="stylesheet" href="<?php printThemeFile("css/main.css"); ?>" />
+<!--[if lte IE 9]><link rel="stylesheet" href="<?php printThemeFile("css/ie9.css"); ?>" /><![endif]-->
+<!--[if lte IE 8]><link rel="stylesheet" href="<?php printThemeFile("css/ie8.css"); ?>" /><![endif]-->
 
 </head>
 <body>
@@ -26,7 +24,7 @@
 			<h1><a href="index.php"><?php printTitle(); ?></a></h1>
 			<nav class="links">
 				<ul>
-					<?php foreach ($MENU as $menu) { ?>
+					<?php foreach (getMenu() as $menu) { ?>
 						<li><a href="<?php echo $menu[1]; ?>"><?php echo $menu[0]; ?></a></li>
 					<?php } ?>
 				</ul>
@@ -48,7 +46,12 @@
 			<section id="intro">
 				<a href="#" class="logo"><img src="images/logo.jpg" alt="" /></a>
 				<header>
-					<h2><?php printTitle(); ?></h2>
-					<p>Another fine responsive site template by <a href="http://html5up.net">HTML5 UP</a></p>
+					<?php if (isBlog()) { ?>
+						<h2><?php printBlogTitle(); ?></h2>
+						<p><?php printBlogDescription(); ?></p>
+					<?php } else { ?>
+						<h2><?php printTitle(); ?></h2>
+						<p><?php printDescription(); ?></p>
+					<?php } ?>
 				</header>
 			</section>

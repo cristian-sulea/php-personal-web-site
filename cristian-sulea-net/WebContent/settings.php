@@ -1,22 +1,26 @@
 <?php
 
-define("THEME", "themes/html5up-future-imperfect");
-//define("THEME", "themes/_default");
+$THEME = "html5up-future-imperfect";
 
-define("TITLE", "Knowlegde Base");
-define("DESCRIPTION", "");
-define("KEYWORDS", "");
+$TITLE       = "Cristian Sulea";
+$DESCRIPTION = "Software Developer";
+$KEYWORDS    = "";
+
+$META_SEPARATOR = ", ";
 
 $MENU = [
-    ["Home", "index.php"],
+	["Home", "index.php"],
 	["Blog", "blog.php"],
 	["Photos", "photos.php"],
 ];
 
-define("BLOG_AUTHOR", "Cristian Sulea");
-define("BLOG_AUTHOR_EMAIL", "cristian.sulea.79@gmail.com");
-define("BLOG_AUTHOR_WEBSITE", "http://cristian.sulea.net");
+$BLOG_TITLE       = "Knowlegde Base";
+$BLOG_DESCRIPTION = "An archive of my personal knowledge base.";
 
-define("POST_DATE_FORMAT", "F j, Y");
+$BLOG_AUTHOR         = "Cristian Sulea";
+$BLOG_AUTHOR_EMAIL   = "cristian.sulea.79@gmail.com";
+$BLOG_AUTHOR_WEBSITE = "http://cristian.sulea.net";
+
+//$POST_DATE_FORMAT = "F j, Y";
 
 ?>

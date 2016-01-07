@@ -1,11 +1,16 @@
 <?php
 
+$BLOG_TITLE       = "Blog Title";
+$BLOG_DESCRIPTION = "Blog Description";
+
+$BLOG_AUTHOR         = "Cristian Sulea";
+$BLOG_AUTHOR_EMAIL   = "cristian@sulea.net";
+$BLOG_AUTHOR_WEBSITE = "http://cristian.sulea.net";
+
+$POST_DATE_FORMAT = "F j, Y";
+
 include('_include.php');
-
-//
-// prefix
-
-include(THEME . '/page-prefix.php');
+$isBlog = true;
 
 //
 // content blog
@@ -17,13 +22,19 @@ if (count($params) > 0) {
 
 if (isset($postId) && file_exists("blog/posts/" . $postId)) {
 
+	$isBlogPost = true;
+
 	$postConfig  = json_decode(file_get_contents("blog/posts/" . $postId . "/config.json"), TRUE);
 	$postContent = file_get_contents("blog/posts/" . $postId . "/content.html");
 
-	include(THEME . '/blog-post-full.php');
-}
+	include(getThemeFile("page-prefix.php"));
+	include(getThemeFile("blog-post-full.php"));
 
-else {
+} else {
+
+	$isBlogPost = false;
+
+	include(getThemeFile("page-prefix.php"));
 
 	foreach (array_diff(scandir("blog/posts/", 1), array(".", "..")) as $file) {
 
@@ -32,29 +43,42 @@ else {
 		$postConfig  = json_decode(file_get_contents("blog/posts/" . $postId . "/config.json"), TRUE);
 		$postContent = file_get_contents("blog/posts/" . $postId . "/excerpt.html");
 
-		include(THEME . '/blog-post-excerpt.php');
+		include(getThemeFile("blog-post-excerpt.php"));
 	}
 }
 
-//
-// suffix
-
-include(THEME . '/page-suffix.php');
+include(getThemeFile("page-suffix.php"));
 
 //
-// functions
+// functions blog
+
+function printBlogTitle() {
+	global $BLOG_TITLE;
+	echo $BLOG_TITLE;
+}
+
+function printBlogDescription() {
+	global $BLOG_DESCRIPTION;
+	echo $BLOG_DESCRIPTION;
+}
 
 function printBlogAuthor() {
-	echo BLOG_AUTHOR;
+	global $BLOG_AUTHOR;
+	echo $BLOG_AUTHOR;
 }
 
 function printBlogAuthorImg() {
-	echo getGravatarImg(BLOG_AUTHOR_EMAIL);
+	global $BLOG_AUTHOR_EMAIL;
+	echo getGravatarImg($BLOG_AUTHOR_EMAIL);
 }
 
 function printBlogAuthorWebsite() {
-	echo BLOG_AUTHOR_WEBSITE;
+	global $BLOG_AUTHOR_WEBSITE;
+	echo $BLOG_AUTHOR_WEBSITE;
 }
+
+//
+// functions blog post
 
 function printPostId() {
 	global $postId;
@@ -68,7 +92,8 @@ function printPostTitle() {
 
 function printPostDate() {
 	global $postConfig;
-	echo date(POST_DATE_FORMAT, strtotime($postConfig["date"]));
+	global $POST_DATE_FORMAT;
+	echo date($POST_DATE_FORMAT, strtotime($postConfig["date"]));
 }
 
 function printPostDateForTimeTag() {
