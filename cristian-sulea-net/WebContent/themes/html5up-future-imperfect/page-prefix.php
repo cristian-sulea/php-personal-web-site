@@ -11,6 +11,8 @@
 <meta name="keywords"    content="<?php printHtmlHeadMetaKeywords(); ?>">
 <meta name="author"      content="<?php printHtmlHeadMetaAuthor(); ?>">
 
+<link rel="icon" href="<?php printHtmlHeadRelIcon(); ?>">
+
 <!--[if lte IE 8]><script src="<?php printThemeFile("js/ie/html5shiv.js"); ?>"></script><![endif]-->
 <link rel="stylesheet" href="<?php printThemeFile("css/main.css"); ?>" />
 <!--[if lte IE 9]><link rel="stylesheet" href="<?php printThemeFile("css/ie9.css"); ?>" /><![endif]-->

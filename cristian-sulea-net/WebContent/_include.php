@@ -157,6 +157,17 @@ function printHtmlHeadMetaAuthor() {
 	}
 }
 
+function printHtmlHeadRelIcon() {
+
+	if (isBlog()) {
+		echo "config/blog-icon.png";
+	}
+
+	else {
+		echo "config/icon.png";
+	}
+}
+
 //
 // utility funtions
 
