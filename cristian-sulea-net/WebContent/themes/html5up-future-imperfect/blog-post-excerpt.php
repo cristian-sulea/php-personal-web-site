@@ -19,7 +19,7 @@
 
 	</header>
 
-	<?php printPostContent('image'); ?>
+	<?php echo printPostContent('image'); ?>
 
 	<footer>
 		<ul class="actions">

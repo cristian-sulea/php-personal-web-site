@@ -19,11 +19,5 @@
 
 	</div>
 
-<!-- 	<script src="<?php printThemeFile("js/jquery.min.js"); ?>"></script> -->
-<!-- 	<script src="<?php printThemeFile("js/skel.min.js"); ?>"></script> -->
-<!-- 	<script src="<?php printThemeFile("js/util.js"); ?>"></script> -->
-	<!--[if lte IE 8]><script src="<?php printThemeFile("js/ie/respond.min.js"); ?>"></script><![endif]-->
-<!-- 	<script src="<?php printThemeFile("js/main.js"); ?>"></script> -->
-
 </body>
 </html>

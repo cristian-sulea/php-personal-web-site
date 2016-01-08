@@ -1,14 +1,5 @@
 <?php
 
-$BLOG_TITLE       = "Blog Title";
-$BLOG_DESCRIPTION = "Blog Description";
-
-$BLOG_AUTHOR         = "Cristian Sulea";
-$BLOG_AUTHOR_EMAIL   = "cristian@sulea.net";
-$BLOG_AUTHOR_WEBSITE = "http://cristian.sulea.net";
-
-$POST_DATE_FORMAT = "F j, Y";
-
 include('_include.php');
 $isBlog = true;
 
@@ -20,12 +11,12 @@ if (count($params) > 0) {
 	$postId = $params[0];
 }
 
-if (isset($postId) && file_exists("blog/posts/" . $postId)) {
+if (isset($postId) && file_exists("content/blog/" . $postId)) {
 
 	$isBlogPost = true;
 
-	$postConfig  = json_decode(file_get_contents("blog/posts/" . $postId . "/config.json"), TRUE);
-	$postContent = file_get_contents("blog/posts/" . $postId . "/content.html");
+	$postConfig  = json_decode(file_get_contents("content/blog/" . $postId . "/config.json"), TRUE);
+	$postContent = file_get_contents("content/blog/" . $postId . "/content.html");
 
 	include(getThemeFile("page-prefix.php"));
 	include(getThemeFile("blog-post-full.php"));
@@ -36,12 +27,12 @@ if (isset($postId) && file_exists("blog/posts/" . $postId)) {
 
 	include(getThemeFile("page-prefix.php"));
 
-	foreach (array_diff(scandir("blog/posts/", 1), array(".", "..")) as $file) {
+	foreach (array_diff(scandir("content/blog/", 1), array(".", "..")) as $file) {
 
 		$postId = basename($file);
 
-		$postConfig  = json_decode(file_get_contents("blog/posts/" . $postId . "/config.json"), TRUE);
-		$postContent = file_get_contents("blog/posts/" . $postId . "/excerpt.html");
+		$postConfig  = json_decode(file_get_contents("content/blog/" . $postId . "/config.json"), TRUE);
+		$postContent = file_get_contents("content/blog/" . $postId . "/excerpt.html");
 
 		include(getThemeFile("blog-post-excerpt.php"));
 	}
@@ -62,19 +53,20 @@ function printBlogDescription() {
 	echo $BLOG_DESCRIPTION;
 }
 
+function printBlogLogo() {
+	echo "config/blog-logo.jpg";
+}
+
 function printBlogAuthor() {
-	global $BLOG_AUTHOR;
-	echo $BLOG_AUTHOR;
+	printAuthor();
 }
 
 function printBlogAuthorImg() {
-	global $BLOG_AUTHOR_EMAIL;
-	echo getGravatarImg($BLOG_AUTHOR_EMAIL);
+	echo "config/blog-author.jpg";
 }
 
 function printBlogAuthorWebsite() {
-	global $BLOG_AUTHOR_WEBSITE;
-	echo $BLOG_AUTHOR_WEBSITE;
+	echo $_SERVER['HTTP_HOST'];
 }
 
 //
@@ -154,7 +146,7 @@ function hasPostImage() {
 function printPostImage() {
 	global $postId;
 	global $postConfig;
-	echo "blog/posts/" . $postId . "/images/". $postConfig["image"];
+	echo "content/blog/" . $postId . "/images/". $postConfig["image"];
 }
 
 function printPostContent($imgParentClass = 'null') {
@@ -169,7 +161,7 @@ function printPostContent($imgParentClass = 'null') {
 		$printPostContent = str_replace(array('class="img-parent-class"'), array('class="' . $imgParentClass . '"'), $printPostContent);
 	}
 
-	$printPostContent = str_replace('="images-folder/', '="blog/posts/' . $postId . '/images/', $printPostContent);
+	$printPostContent = str_replace('="images-folder/', '="content/blog/' . $postId . '/images/', $printPostContent);
 
 	$printPostContent = str_replace(
 								array('<pre>' . "\r\n",

@@ -1,24 +1,42 @@
 <?php
 
+//
+// default settings
+
 $THEME = "_default";
 
-$TITLE       = "Title";
-$DESCRIPTION = "Description";
+$TITLE       = "";
+$DESCRIPTION = "";
 $KEYWORDS    = "";
+$AUTHOR      = "";
 
 $META_SEPARATOR = ", ";
 
 $MENU = [
-    ["Home", "index.php"],
+	["Home", "index.php"],
 	["Blog", "blog.php"],
 	["Photos", "photos.php"],
 ];
 
-include("settings.php");
+$BLOG_TITLE       = "";
+$BLOG_DESCRIPTION = "";
 
-if (file_exists(getThemeFile("/_include.php"))) {
-	include(getThemeFile("/_include.php"));
+$POST_DATE_FORMAT = "F j, Y";
+
+//
+// settings
+
+include("config/settings.php");
+
+//
+// theme include
+
+if (file_exists(getThemeFile("_include.php"))) {
+	include(getThemeFile("_include.php"));
 }
+
+//
+// page type
 
 $isIndex     = false;
 $isBlog      = false;
@@ -69,6 +87,15 @@ function printKeywords() {
 	echo $KEYWORDS;
 }
 
+function printAuthor() {
+	global $AUTHOR;
+	echo $AUTHOR;
+}
+
+function printLogo() {
+	echo "config/logo.jpg";
+}
+
 function printMetaSeparator() {
 	global $META_SEPARATOR;
 	echo $META_SEPARATOR;
@@ -109,7 +136,25 @@ function printHtmlHeadMetaDescription() {
 }
 
 function printHtmlHeadMetaKeywords() {
+	printKeywords();
+}
 
+function printHtmlHeadMetaAuthor() {
+
+	if (isBlog()) {
+
+		if (isBlogPost()) {
+			printPostTitle();
+		}
+
+		else {
+			printBlogDescription();
+		}
+	}
+
+	else {
+		printDescription();
+	}
 }
 
 //

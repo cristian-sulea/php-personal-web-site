@@ -9,6 +9,7 @@
 
 <meta name="description" content="<?php printHtmlHeadMetaDescription(); ?>">
 <meta name="keywords"    content="<?php printHtmlHeadMetaKeywords(); ?>">
+<meta name="author"      content="<?php printHtmlHeadMetaAuthor(); ?>">
 
 <!--[if lte IE 8]><script src="<?php printThemeFile("js/ie/html5shiv.js"); ?>"></script><![endif]-->
 <link rel="stylesheet" href="<?php printThemeFile("css/main.css"); ?>" />
@@ -44,14 +45,17 @@
 		<div id="main">
 
 			<section id="intro">
-				<a href="#" class="logo"><img src="images/logo.jpg" alt="" /></a>
-				<header>
-					<?php if (isBlog()) { ?>
+				<?php if (isBlog()) { ?>
+					<a href="#" class="logo"><img src="<?php printBlogLogo(); ?>" alt="" /></a>
+					<header>
 						<h2><a href="blog.php"><?php printBlogTitle(); ?></a></h2>
 						<p><?php printBlogDescription(); ?></p>
-					<?php } else { ?>
+					</header>
+				<?php } else { ?>
+					<a href="#" class="logo"><img src="<?php printLogo(); ?>" alt="" /></a>
+					<header>
 						<h2><?php printTitle(); ?></h2>
 						<p><?php printDescription(); ?></p>
-					<?php } ?>
-				</header>
+					</header>
+				<?php } ?>
 			</section>
