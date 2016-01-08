@@ -1,8 +1,7 @@
 		</div>
 
-		<section id="sidebar">
-
-			<section id="footer">
+		<footer id="sidebar">
+			<div id="footer">
 				<ul class="icons">
 					<li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
 					<li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
@@ -13,9 +12,8 @@
 				<p class="copyright">
 					&copy; <a href="http://cristian.sulea.net">Cristian Sulea</a>. Design: <a href="http://html5up.net">HTML5 UP</a>.
 				</p>
-			</section>
-
-		</section>
+			</div>
+		</footer>
 
 	</div>
 
