@@ -66,7 +66,7 @@ function printBlogAuthorImg() {
 }
 
 function printBlogAuthorWebsite() {
-	echo $_SERVER['HTTP_HOST'];
+	echo "http://" . $_SERVER['HTTP_HOST'];
 }
 
 //

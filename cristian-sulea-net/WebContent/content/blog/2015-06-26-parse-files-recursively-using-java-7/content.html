@@ -38,15 +38,13 @@ public class RecursiveListing {
     Files.walkFileTree(directory, new SimpleFileVisitor&lt;Path&gt;() {
 
       @Override
-      public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)
-      		throws IOException {
+      public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
         System.out.println(dir);
         return FileVisitResult.CONTINUE;
       }
 
       @Override
-      public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
-      		throws IOException {
+      public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         System.out.println(file);
         return FileVisitResult.CONTINUE;
       }

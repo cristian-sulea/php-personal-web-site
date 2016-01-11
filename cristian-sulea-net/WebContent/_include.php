@@ -12,11 +12,10 @@ $AUTHOR      = "";
 
 $META_SEPARATOR = ", ";
 
-$MENU = [
-	["Home", "index.php"],
-	["Blog", "blog.php"],
-	["Photos", "photos.php"],
-];
+$MENU = array(
+	array("Blog", "blog.php"),
+	array("Photos", "photos.php"),
+);
 
 $BLOG_TITLE       = "";
 $BLOG_DESCRIPTION = "";

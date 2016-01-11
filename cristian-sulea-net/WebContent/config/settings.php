@@ -3,7 +3,7 @@
 $THEME = "html5up-future-imperfect";
 
 $TITLE       = "Cristian Sulea";
-$DESCRIPTION = "Software Developer";
+$DESCRIPTION = "Software Architect &amp; Developer";
 $KEYWORDS    = "cristian sulea, sulea cristian, cristian, sulea";
 $AUTHOR      = "Cristian Sulea";
 
