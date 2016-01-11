@@ -14,7 +14,7 @@ $META_SEPARATOR = ", ";
 
 $MENU = array(
 	array("Blog", "blog.php"),
-	array("Photos", "photos.php"),
+// 	array("Photos", "photos.php"),
 );
 
 $BLOG_TITLE       = "";
