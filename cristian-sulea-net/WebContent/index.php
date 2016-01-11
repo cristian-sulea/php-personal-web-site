@@ -24,7 +24,12 @@ foreach($experience->getElementsByTagName('position') as $position) {
 	$experiencePositionCompany = $position->getElementsByTagName("company")[0]->textContent;
 	$experiencePositionPeriod = $position->getElementsByTagName("period")[0]->textContent;
 	$experiencePositionLocation = $position->getElementsByTagName("location")[0]->textContent;
-	$experiencePositionDescription = $position->getElementsByTagName("description")[0]->textContent;
+
+	if (isset($position->getElementsByTagName("description")[0])) {
+		$experiencePositionDescription = $position->getElementsByTagName("description")[0]->textContent;
+	} else {
+		$experiencePositionDescription = "";
+	}
 
 	include(getThemeFile("index-experience-position.php"));
 }
@@ -50,6 +55,26 @@ foreach($skills->getElementsByTagName('group') as $group) {
 }
 
 include(getThemeFile("index-skills-suffix.php"));
+
+//
+// content index languages
+
+$languages = new DOMDocument();
+$languages->loadXML(file_get_contents("content/index/languages.xml"));
+
+$languagesTitle = $languages->getElementsByTagName("title")[0]->textContent;
+
+include(getThemeFile("index-languages-prefix.php"));
+
+foreach($languages->getElementsByTagName('language') as $language) {
+
+	$languagesLanguageTitle = $language->getElementsByTagName("title")[0]->textContent;
+	$languagesLanguageLevel = $language->getElementsByTagName("level")[0]->textContent;
+
+	include(getThemeFile("index-languages-language.php"));
+}
+
+include(getThemeFile("index-languages-suffix.php"));
 
 //
 // content index suffix
@@ -95,6 +120,19 @@ function printSkillsGroupTitle() {
 function printSkillsGroupDescription() {
 	global $skillsGroupDescription;
 	echo $skillsGroupDescription;
+}
+
+function printLanguagesTitle() {
+	global $languagesTitle;
+	echo $languagesTitle;
+}
+function printLanguagesLanguageTitle() {
+	global $languagesLanguageTitle;
+	echo $languagesLanguageTitle;
+}
+function printLanguagesLanguageLevel() {
+	global $languagesLanguageLevel;
+	echo $languagesLanguageLevel;
 }
 
 ?>
