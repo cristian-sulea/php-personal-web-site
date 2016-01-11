@@ -1,6 +1,6 @@
 <?php
 
-$THEME = "html5up-future-imperfect";
+//$THEME = "html5up-future-imperfect";
 
 $TITLE       = "Cristian Sulea";
 $DESCRIPTION = "Software Architect &amp; Developer";
