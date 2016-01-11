@@ -6,133 +6,91 @@ $isIndex = true;
 //
 // content index
 
-include(getThemeFile("page-prefix.php"));
-
-//
-// content index experience
+$personal = new DOMDocument();
+$personal->loadXML(file_get_contents("content/index/personal.xml"));
 
 $experience = new DOMDocument();
 $experience->loadXML(file_get_contents("content/index/experience.xml"));
 
-$experienceTitle = $experience->getElementsByTagName("title")[0]->textContent;
-
-include(getThemeFile("index-experience-prefix.php"));
-
-foreach($experience->getElementsByTagName('position') as $position) {
-
-	$experiencePositionTitle = $position->getElementsByTagName("title")[0]->textContent;
-	$experiencePositionCompany = $position->getElementsByTagName("company")[0]->textContent;
-	$experiencePositionPeriod = $position->getElementsByTagName("period")[0]->textContent;
-	$experiencePositionLocation = $position->getElementsByTagName("location")[0]->textContent;
-
-	if (isset($position->getElementsByTagName("description")[0])) {
-		$experiencePositionDescription = $position->getElementsByTagName("description")[0]->textContent;
-	} else {
-		$experiencePositionDescription = "";
-	}
-
-	include(getThemeFile("index-experience-position.php"));
-}
-
-include(getThemeFile("index-experience-suffix.php"));
-
-//
-// content index skills
-
 $skills = new DOMDocument();
 $skills->loadXML(file_get_contents("content/index/skills.xml"));
-
-$skillsTitle = $skills->getElementsByTagName("title")[0]->textContent;
-
-include(getThemeFile("index-skills-prefix.php"));
-
-foreach($skills->getElementsByTagName('group') as $group) {
-
-	$skillsGroupTitle = $group->getElementsByTagName("title")[0]->textContent;
-	$skillsGroupDescription = $group->getElementsByTagName("description")[0]->textContent;
-
-	include(getThemeFile("index-skills-group.php"));
-}
-
-include(getThemeFile("index-skills-suffix.php"));
-
-//
-// content index languages
 
 $languages = new DOMDocument();
 $languages->loadXML(file_get_contents("content/index/languages.xml"));
 
-$languagesTitle = $languages->getElementsByTagName("title")[0]->textContent;
-
-include(getThemeFile("index-languages-prefix.php"));
-
-foreach($languages->getElementsByTagName('language') as $language) {
-
-	$languagesLanguageTitle = $language->getElementsByTagName("title")[0]->textContent;
-	$languagesLanguageLevel = $language->getElementsByTagName("level")[0]->textContent;
-
-	include(getThemeFile("index-languages-language.php"));
-}
-
-include(getThemeFile("index-languages-suffix.php"));
-
-//
-// content index suffix
-
+include(getThemeFile("page-prefix.php"));
+include(getThemeFile("index-experience.php"));
+include(getThemeFile("index-skills.php"));
+include(getThemeFile("index-languages.php"));
 include(getThemeFile("page-suffix.php"));
 
 //
 // functions
 
+function printProfiles() {
+	global $personal;
+
+	foreach($personal->getElementsByTagName('profile') as $profile) {
+		printProfile($profile->getAttribute("title"), $profile->getAttribute("link"));
+	}
+}
+
 function printExperienceTitle() {
-	global $experienceTitle;
-	echo $experienceTitle;
+	global $experience;
+	echo $experience->documentElement->getAttribute("title");
 }
-function printExperiencePositionTitle() {
-	global $experiencePositionTitle;
-	echo $experiencePositionTitle;
-}
-function printExperiencePositionCompany() {
-	global $experiencePositionCompany;
-	echo $experiencePositionCompany;
-}
-function printExperiencePositionPeriod() {
-	global $experiencePositionPeriod;
-	echo $experiencePositionPeriod;
-}
-function printExperiencePositionLocation() {
-	global $experiencePositionLocation;
-	echo $experiencePositionLocation;
-}
-function printExperiencePositionDescription() {
-	global $experiencePositionDescription;
-	echo $experiencePositionDescription;
+function printExperience() {
+	global $experience;
+
+	foreach($experience->getElementsByTagName('position') as $position) {
+
+		$title = $position->getElementsByTagName("title")->item(0)->textContent;
+		$company = $position->getElementsByTagName("company")->item(0)->textContent;
+		$period = $position->getElementsByTagName("period")->item(0)->textContent;
+		$location = $position->getElementsByTagName("location")->item(0)->textContent;
+
+		$description = $position->getElementsByTagName("description");
+		if ($description->length > 0) {
+			$description = $description->item(0)->textContent;
+		} else {
+			$description = "";
+		}
+
+		printExperiencePosition($title, $company, $period, $location, $description);
+	}
 }
 
 function printSkillsTitle() {
-	global $skillsTitle;
-	echo $skillsTitle;
+	global $skills;
+	echo $skills->documentElement->getAttribute("title");
 }
-function printSkillsGroupTitle() {
-	global $skillsGroupTitle;
-	echo $skillsGroupTitle;
-}
-function printSkillsGroupDescription() {
-	global $skillsGroupDescription;
-	echo $skillsGroupDescription;
+function printSkills() {
+	global $skills;
+
+	foreach($skills->getElementsByTagName('group') as $group) {
+
+		$title = $group->getElementsByTagName("title")->item(0)->textContent;
+		$description = $group->getElementsByTagName("description")->item(0)->textContent;
+
+		printSkillsGroup($title, $description);
+	}
 }
 
 function printLanguagesTitle() {
-	global $languagesTitle;
-	echo $languagesTitle;
+	global $languages;
+	echo $languages->documentElement->getAttribute("title");
 }
-function printLanguagesLanguageTitle() {
-	global $languagesLanguageTitle;
-	echo $languagesLanguageTitle;
-}
-function printLanguagesLanguageLevel() {
-	global $languagesLanguageLevel;
-	echo $languagesLanguageLevel;
+
+function printLanguages() {
+	global $languages;
+
+	foreach($languages->getElementsByTagName('language') as $language) {
+
+		$name = $language->getElementsByTagName("name")->item(0)->textContent;
+		$level = $language->getElementsByTagName("level")->item(0)->textContent;
+
+		printLanguagesLanguage($name, $level);
+	}
 }
 
 ?>

@@ -33,7 +33,11 @@
 		<?php } else { ?>
 			<h2><?php printTitle(); ?></h2>
 			<p><?php printDescription(); ?></p>
+			<ul>
+				<?php function printProfile($title, $link) { ?>
+	    			<li><a href="<?php echo $title; ?>"><?php echo $link; ?></a></li>
+				<?php }; ?>
+				<?php printProfiles(); ?>
+			</ul>
 		<?php } ?>
 	</header>
-
-	<section>

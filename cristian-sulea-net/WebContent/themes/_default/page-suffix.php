@@ -1,6 +1,4 @@
 
-	</section>
-
 	<footer></footer>
 
 </body>

@@ -1,14 +1,12 @@
-<languages>
-
-  <title>Languages</title>
+<languages title="Languages">
 
   <language>
-    <title>English</title>
+    <name>English</name>
     <level>Professional working proficiency</level>
   </language>
 
   <language>
-    <title>Italian</title>
+    <name>Italian</name>
     <level>Limited working proficiency</level>
   </language>
 
