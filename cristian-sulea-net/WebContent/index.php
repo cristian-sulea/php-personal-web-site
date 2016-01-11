@@ -8,6 +8,9 @@ $isIndex = true;
 
 include(getThemeFile("page-prefix.php"));
 
+//
+// content index experience
+
 $experience = new DOMDocument();
 $experience->loadXML(file_get_contents("content/index/experience.xml"));
 
@@ -28,6 +31,29 @@ foreach($experience->getElementsByTagName('position') as $position) {
 
 include(getThemeFile("index-experience-suffix.php"));
 
+//
+// content index skills
+
+$skills = new DOMDocument();
+$skills->loadXML(file_get_contents("content/index/skills.xml"));
+
+$skillsTitle = $skills->getElementsByTagName("title")[0]->textContent;
+
+include(getThemeFile("index-skills-prefix.php"));
+
+foreach($skills->getElementsByTagName('group') as $group) {
+
+	$skillsGroupTitle = $group->getElementsByTagName("title")[0]->textContent;
+	$skillsGroupDescription = $group->getElementsByTagName("description")[0]->textContent;
+
+	include(getThemeFile("index-skills-group.php"));
+}
+
+include(getThemeFile("index-skills-suffix.php"));
+
+//
+// content index suffix
+
 include(getThemeFile("page-suffix.php"));
 
 //
@@ -37,7 +63,6 @@ function printExperienceTitle() {
 	global $experienceTitle;
 	echo $experienceTitle;
 }
-
 function printExperiencePositionTitle() {
 	global $experiencePositionTitle;
 	echo $experiencePositionTitle;
@@ -57,6 +82,19 @@ function printExperiencePositionLocation() {
 function printExperiencePositionDescription() {
 	global $experiencePositionDescription;
 	echo $experiencePositionDescription;
+}
+
+function printSkillsTitle() {
+	global $skillsTitle;
+	echo $skillsTitle;
+}
+function printSkillsGroupTitle() {
+	global $skillsGroupTitle;
+	echo $skillsGroupTitle;
+}
+function printSkillsGroupDescription() {
+	global $skillsGroupDescription;
+	echo $skillsGroupDescription;
 }
 
 ?>
