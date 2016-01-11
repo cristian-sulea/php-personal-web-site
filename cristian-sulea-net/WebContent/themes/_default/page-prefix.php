@@ -14,7 +14,7 @@
 <body>
 
 	<header>
-		<h1><?php printTitle(); ?></h1>
+		<h1><a href="index.php"><?php printTitle(); ?></a></h1>
 		<nav>
 			<ul>
 				<?php foreach (getMenu() as $menu) { ?>
