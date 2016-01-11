@@ -35,3 +35,5 @@
 			<p><?php printDescription(); ?></p>
 		<?php } ?>
 	</header>
+
+	<section>
