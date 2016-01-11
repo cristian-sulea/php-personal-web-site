@@ -35,7 +35,7 @@
 			<p><?php printDescription(); ?></p>
 			<ul>
 				<?php function printProfile($title, $link) { ?>
-	    			<li><a href="<?php echo $title; ?>"><?php echo $link; ?></a></li>
+	    			<li><a href="<?php echo $link; ?>"><?php echo $title; ?></a></li>
 				<?php }; ?>
 				<?php printProfiles(); ?>
 			</ul>
