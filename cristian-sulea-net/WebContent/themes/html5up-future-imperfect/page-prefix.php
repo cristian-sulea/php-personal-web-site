@@ -21,7 +21,7 @@
 </head>
 <body>
 
-	<div id="wrapper">
+	<?php echo '<div id="wrapper">'; ?>
 
 		<header id="header">
 			<h1><a href="index.php"><?php printTitle(); ?></a></h1>
@@ -44,20 +44,26 @@
 			</nav>
 		</header>
 
-		<div id="main">
+		<?php echo '<div id="main">'; ?>
 
 			<section id="intro">
 				<?php if (isBlog()) { ?>
-					<a href="#" class="logo"><img src="<?php printBlogLogo(); ?>" alt="" /></a>
+					<a class="logo"><img src="<?php printBlogLogo(); ?>" alt="" /></a>
 					<header>
 						<h2><a href="blog.php"><?php printBlogTitle(); ?></a></h2>
 						<p><?php printBlogDescription(); ?></p>
 					</header>
 				<?php } else { ?>
-					<a href="#" class="logo"><img src="<?php printLogo(); ?>" alt="" /></a>
+					<a class="logo"><img src="<?php printLogo(); ?>" alt="" /></a>
 					<header>
 						<h2><?php printTitle(); ?></h2>
 						<p><?php printDescription(); ?></p>
+						<ul class="icons">
+							<?php function printProfile($title, $link) { ?>
+				    			<li><a href="<?php echo $link; ?>" class="<?php printProfileIconClass($title); ?>">&nbsp;<?php echo $title; ?></a></li>
+							<?php }; ?>
+							<?php printProfiles(); ?>
+						</ul>
 					</header>
 				<?php } ?>
 			</section>
