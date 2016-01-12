@@ -15,8 +15,8 @@ if (isset($postId) && existsContentFile("blog/" . $postId)) {
 
 	$isBlogPost = true;
 
-	$postConfig  = json_decode(file_get_contents("content/blog/" . $postId . "/config.json"), TRUE);
-	$postContent = file_get_contents("content/blog/" . $postId . "/content.html");
+	$postConfig  = json_decode(readContentFile("blog/" . $postId . "/config.json"), TRUE);
+	$postContent = readContentFile("blog/" . $postId . "/content.html");
 
 	includeThemeFile("page-prefix.php");
 	includeThemeFile("blog-post-full.php");
@@ -31,8 +31,8 @@ if (isset($postId) && existsContentFile("blog/" . $postId)) {
 
 		$postId = basename($file);
 
-		$postConfig  = json_decode(file_get_contents("content/blog/" . $postId . "/config.json"), TRUE);
-		$postContent = file_get_contents("content/blog/" . $postId . "/excerpt.html");
+		$postConfig  = json_decode(readContentFile("blog/" . $postId . "/config.json"), TRUE);
+		$postContent = readContentFile("blog/" . $postId . "/excerpt.html");
 
 		includeThemeFile("blog-post-excerpt.php");
 	}
