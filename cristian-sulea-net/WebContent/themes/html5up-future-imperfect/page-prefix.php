@@ -24,7 +24,7 @@
 	<?php echo '<div id="wrapper">'; ?>
 
 		<header id="header">
-			<h1><a href="index.php"><?php printIndexTitle(); ?></a></h1>
+			<h1><a href="index.php"><?php echo getAuthorName(); ?></a></h1>
 			<nav class="links">
 				<ul>
 					<?php foreach (getMenu() as $menu) { ?>
@@ -65,7 +65,5 @@
 						<h2><a href="blog.php"><?php printBlogTitle(); ?></a></h2>
 						<p><?php printBlogDescription(); ?></p>
 					</header>
-				<?php } else { ?>
-
-				<?php } ?>
+				<?php } else { errorUnknownPageType(); } ?>
 			</section>
