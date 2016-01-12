@@ -127,12 +127,12 @@ function readContentFile($file) {
 function printHtmlHeadTitle() {
 	
 	if (isIndex()) {
-		printIndexTitle();
+		echo getAuthorName();
 	}
 	
 	else if (isBlog()) {
 		
-		printTitle();
+		echo getAuthorName();
 		echo ", ";
 		printBlogTitle();
 		
@@ -176,7 +176,7 @@ function printHtmlHeadMetaKeywords() {
 function printHtmlHeadMetaAuthor() {
 	
 	if (isIndex()) {
-		printIndexTitle();
+		echo getAuthorName();
 	}
 	
 	else if (isBlog()) {
