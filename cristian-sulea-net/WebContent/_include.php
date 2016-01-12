@@ -86,6 +86,9 @@ function readContentFile($file) {
 	return file_get_contents(_getContentFile($file));
 }
 
+//
+// menu
+
 function getMenu() {
 	global $MENU;
 	return $MENU;

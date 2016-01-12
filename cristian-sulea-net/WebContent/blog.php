@@ -161,7 +161,7 @@ function printPostContent($imgParentClass = 'null') {
 		$printPostContent = str_replace(array('class="img-parent-class"'), array('class="' . $imgParentClass . '"'), $printPostContent);
 	}
 
-	$printPostContent = str_replace('="images-folder/', '="content/blog/' . $postId . '/images/', $printPostContent);
+	$printPostContent = str_replace('="images/', '="content/blog/' . $postId . '/images/', $printPostContent);
 
 	$printPostContent = str_replace(
 								array('<pre>' . "\r\n",
