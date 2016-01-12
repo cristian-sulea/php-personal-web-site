@@ -20,7 +20,8 @@ $MENU = array(
 		// 	array("Photos", "photos.php"),
 );
 
-$MINIFY = true;
+// will fuckup <pre> and <code>
+$MINIFY = false;
 
 function getTheme() {
 	global $THEME;
