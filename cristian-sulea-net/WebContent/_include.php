@@ -102,10 +102,9 @@ function printMetaSeparator() {
 
 function printHtmlHeadTitle() {
 
-	printTitle();
-
 	if (isBlog()) {
 
+		printTitle();
 		printMetaSeparator();
 		printBlogTitle();
 
@@ -113,6 +112,10 @@ function printHtmlHeadTitle() {
 			printMetaSeparator();
 			printPostTitle();
 		}
+	}
+
+	else {
+		printTitle();
 	}
 }
 
@@ -143,16 +146,16 @@ function printHtmlHeadMetaAuthor() {
 	if (isBlog()) {
 
 		if (isBlogPost()) {
-			printPostTitle();
+			printPostAuthor();
 		}
 
 		else {
-			printBlogDescription();
+			printBlogAuthor();
 		}
 	}
 
 	else {
-		printDescription();
+		printAuthor();
 	}
 }
 
