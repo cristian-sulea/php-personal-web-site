@@ -27,9 +27,10 @@
 			<h1><a href="index.php"><?php echo getAuthorName(); ?></a></h1>
 			<nav class="links">
 				<ul>
-					<?php foreach (getMenu() as $menu) { ?>
-						<li><a href="<?php echo $menu[1]; ?>"><?php echo $menu[0]; ?></a></li>
-					<?php } ?>
+					<?php function printMenuItem($title, $link) { ?>
+		    			<li><a href="<?php echo $link; ?>"><?php echo $title; ?></a></li>
+					<?php }; ?>
+					<?php printMenuItems(); ?>
 				</ul>
 			</nav>
 			<nav class="main">

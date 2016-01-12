@@ -206,6 +206,12 @@ function printHtmlHeadRelIcon() {
 	}
 }
 
+function printMenuItems() {
+	foreach (getMenu() as $menu) {
+		printMenuItem($menu[0], $menu[1]);
+	}
+}
+
 //
 // utility funtions
 
