@@ -1,26 +1,62 @@
 <?php
 
 //
-// default settings
+// settings
 
 $THEME = "_default";
 
-$TITLE       = "";
-$DESCRIPTION = "";
-$KEYWORDS    = "";
-$AUTHOR      = "";
+$AUTHOR_NAME        = "Cristian Sulea";
+$AUTHOR_DESCRIPTION = "Software Architect &amp; Developer";
 
-$META_SEPARATOR = ", ";
+$KEYWORDS    = "cristian sulea, sulea cristian, cristian, sulea";
+
+$BLOG_TITLE       = "Knowlegde Base";
+$BLOG_DESCRIPTION = "An archive of my personal knowledge base.";
+
+$BLOG_POST_DATE_FORMAT = "F j, Y";
 
 $MENU = array(
-	array("Blog", "blog.php"),
-// 	array("Photos", "photos.php"),
+		array("Blog", "blog.php"),
+		// 	array("Photos", "photos.php"),
 );
 
-$BLOG_TITLE       = "";
-$BLOG_DESCRIPTION = "";
+function getTheme() {
+	global $THEME;
+	return $THEME;
+}
 
-$POST_DATE_FORMAT = "F j, Y";
+function getAuthorName() {
+	global $AUTHOR_NAME;
+	return $AUTHOR_NAME;
+}
+function getAuthorDescription() {
+	global $AUTHOR_DESCRIPTION;
+	return $AUTHOR_DESCRIPTION;
+}
+
+function getKeywords() {
+	global $KEYWORDS;
+	return $KEYWORDS;
+}
+
+function getBlogTitle() {
+	global $BLOG_TITLE;
+	return $BLOG_TITLE;
+}
+function getBlogDescription() {
+	global $BLOG_DESCRIPTION;
+	return $BLOG_DESCRIPTION;
+}
+
+function getBlogPostDateFormat() {
+	global $BLOG_POST_DATE_FORMAT;
+	return $BLOG_POST_DATE_FORMAT;
+}
+
+function getMenu() {
+	global $MENU;
+	return $MENU;
+}
 
 //
 // settings
@@ -60,8 +96,7 @@ function isBlogPost() {
 // theme
 
 function _getThemeFile($file) {
-	global $THEME;
-	return "themes/" . $THEME . "/" . $file;
+	return "themes/" . getTheme() . "/" . $file;
 }
 function includeThemeFile($file) {
 	include _getThemeFile($file);
@@ -87,101 +122,76 @@ function readContentFile($file) {
 }
 
 //
-// menu
-
-function getMenu() {
-	global $MENU;
-	return $MENU;
-}
-
-//
 // print funtions
 
-function printTitle() {
-	global $TITLE;
-	echo $TITLE;
-}
-
-function printDescription() {
-	global $DESCRIPTION;
-	echo $DESCRIPTION;
-}
-
-function printKeywords() {
-	global $KEYWORDS;
-	echo $KEYWORDS;
-}
-
-function printAuthor() {
-	global $AUTHOR;
-	echo $AUTHOR;
-}
-
-function printLogo() {
-	echo "config/logo.jpg";
-}
-
-function printMetaSeparator() {
-	global $META_SEPARATOR;
-	echo $META_SEPARATOR;
-}
-
 function printHtmlHeadTitle() {
-
-	if (isBlog()) {
-
+	
+	if (isIndex()) {
+		printIndexTitle();
+	}
+	
+	else if (isBlog()) {
+		
 		printTitle();
-		printMetaSeparator();
+		echo ", ";
 		printBlogTitle();
-
+		
 		if (isBlogPost()) {
-			printMetaSeparator();
+			echo ", ";
 			printPostTitle();
 		}
 	}
-
+	
 	else {
-		printTitle();
+		errorUnknownPageType();
 	}
 }
 
 function printHtmlHeadMetaDescription() {
-
-	if (isBlog()) {
-
+	
+	if (isIndex()) {
+		printIndexDescription();
+	}
+	
+	else if (isBlog()) {
+		
 		if (isBlogPost()) {
 			printPostTitle();
 		}
-
+		
 		else {
 			printBlogDescription();
 		}
 	}
-
+	
 	else {
-		printDescription();
+		errorUnknownPageType();
 	}
 }
 
 function printHtmlHeadMetaKeywords() {
-	printKeywords();
+	echo getKeywords();
 }
 
 function printHtmlHeadMetaAuthor() {
-
-	if (isBlog()) {
-
+	
+	if (isIndex()) {
+		printIndexTitle();
+	}
+	
+	else if (isBlog()) {
+		
 		if (isBlogPost()) {
 			printPostAuthor();
 		}
-
+		
 		else {
 			printBlogAuthor();
 		}
 	}
-
+	
 	else {
-		printAuthor();
+		errorUnknownPageType();
 	}
 }
 
@@ -198,6 +208,10 @@ function printHtmlHeadRelIcon() {
 
 //
 // utility funtions
+
+function errorUnknownPageType() {
+	trigger_error("unknown page type", E_USER_ERROR);
+}
 
 function getGravatarImg( $email ) {
 	$url = 'http://www.gravatar.com/avatar/';

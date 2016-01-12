@@ -44,13 +44,11 @@ includeThemeFile("page-suffix.php");
 // functions blog
 
 function printBlogTitle() {
-	global $BLOG_TITLE;
-	echo $BLOG_TITLE;
+	echo getBlogTitle();
 }
 
 function printBlogDescription() {
-	global $BLOG_DESCRIPTION;
-	echo $BLOG_DESCRIPTION;
+	echo getBlogDescription();
 }
 
 function printBlogLogo() {
@@ -58,7 +56,7 @@ function printBlogLogo() {
 }
 
 function printBlogAuthor() {
-	printAuthor();
+	getAuthorName();
 }
 
 function printBlogAuthorImg() {

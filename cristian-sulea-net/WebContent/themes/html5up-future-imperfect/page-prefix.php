@@ -24,7 +24,7 @@
 	<?php echo '<div id="wrapper">'; ?>
 
 		<header id="header">
-			<h1><a href="index.php"><?php printTitle(); ?></a></h1>
+			<h1><a href="index.php"><?php printIndexTitle(); ?></a></h1>
 			<nav class="links">
 				<ul>
 					<?php foreach (getMenu() as $menu) { ?>
@@ -47,17 +47,11 @@
 		<?php echo '<div id="main">'; ?>
 
 			<section id="intro">
-				<?php if (isBlog()) { ?>
-					<a class="logo"><img src="<?php printBlogLogo(); ?>" alt="" /></a>
+				<?php if (isIndex()) { ?>
+					<a class="logo"><img src="<?php printIndexLogo(); ?>" alt="" /></a>
 					<header>
-						<h2><a href="blog.php"><?php printBlogTitle(); ?></a></h2>
-						<p><?php printBlogDescription(); ?></p>
-					</header>
-				<?php } else { ?>
-					<a class="logo"><img src="<?php printLogo(); ?>" alt="" /></a>
-					<header>
-						<h2><?php printTitle(); ?></h2>
-						<p><?php printDescription(); ?></p>
+						<h2><?php printIndexTitle(); ?></h2>
+						<p><?php printIndexDescription(); ?></p>
 						<ul class="icons">
 							<?php function printProfile($title, $link) { ?>
 				    			<li><a href="<?php echo $link; ?>" class="<?php printProfileIconClass($title); ?>">&nbsp;<?php echo $title; ?></a></li>
@@ -65,5 +59,13 @@
 							<?php printProfiles(); ?>
 						</ul>
 					</header>
+				<?php } else if (isBlog()) { ?>
+					<a class="logo"><img src="<?php printBlogLogo(); ?>" alt="" /></a>
+					<header>
+						<h2><a href="blog.php"><?php printBlogTitle(); ?></a></h2>
+						<p><?php printBlogDescription(); ?></p>
+					</header>
+				<?php } else { ?>
+
 				<?php } ?>
 			</section>

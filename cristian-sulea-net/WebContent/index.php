@@ -25,7 +25,23 @@ includeThemeFile("index-languages.php");
 includeThemeFile("page-suffix.php");
 
 //
-// functions
+// functions index
+
+function printIndexTitle() {
+	echo getAuthorName();
+}
+
+function printIndexDescription() {
+	echo getAuthorDescription();
+}
+
+function printIndexLogo() {
+	echo "config/index-logo.jpg";
+}
+
+function printIndexAuthor() {
+	getAuthorName();
+}
 
 function printProfiles() {
 	global $personal;
