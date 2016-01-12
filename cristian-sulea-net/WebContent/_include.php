@@ -25,13 +25,13 @@ $POST_DATE_FORMAT = "F j, Y";
 //
 // settings
 
-include("config/settings.php");
+include "config/settings.php";
 
 //
 // theme include
 
-if (file_exists(getThemeFile("_include.php"))) {
-	include(getThemeFile("_include.php"));
+if (existsThemeFile("_include.php")) {
+	includeThemeFile("_include.php");
 }
 
 //
@@ -41,17 +41,9 @@ $isIndex     = false;
 $isBlog      = false;
 $isBlogPost  = false;
 
-//
-// getters
-
-function getThemeFile($file) {
-	global $THEME;
-	return "themes/" . $THEME . "/" . $file;
-}
-
-function getMenu() {
-	global $MENU;
-	return $MENU;
+function isIndex() {
+	global $isIndex;
+	return $isIndex;
 }
 
 function isBlog() {
@@ -65,11 +57,38 @@ function isBlogPost() {
 }
 
 //
+// getters
+
+function _getThemeFile($file) {
+	global $THEME;
+	return "themes/" . $THEME . "/" . $file;
+}
+function includeThemeFile($file) {
+	include _getThemeFile($file);
+}
+function existsThemeFile($file) {
+	return file_exists(_getThemeFile($file));
+}
+function printThemeFile($file) {
+	echo _getThemeFile($file);
+}
+
+function _getContentFile($file) {
+	return "content/" . $file;
+}
+function readContentFile($file) {
+	return file_get_contents(_getContentFile($file));
+}
+
+function getMenu() {
+	global $MENU;
+	return $MENU;
+}
+
+//
 // print funtions
 
-function printThemeFile($file) {
-	echo getThemeFile($file);
-}
+
 
 function printTitle() {
 	global $TITLE;

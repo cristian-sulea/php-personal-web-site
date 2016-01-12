@@ -1,6 +1,6 @@
 <?php
 
-include('_include.php');
+include "_include.php";
 $isBlog = true;
 
 //
@@ -18,14 +18,14 @@ if (isset($postId) && file_exists("content/blog/" . $postId)) {
 	$postConfig  = json_decode(file_get_contents("content/blog/" . $postId . "/config.json"), TRUE);
 	$postContent = file_get_contents("content/blog/" . $postId . "/content.html");
 
-	include(getThemeFile("page-prefix.php"));
-	include(getThemeFile("blog-post-full.php"));
+	includeThemeFile("page-prefix.php");
+	includeThemeFile("blog-post-full.php");
 
 } else {
 
 	$isBlogPost = false;
 
-	include(getThemeFile("page-prefix.php"));
+	includeThemeFile("page-prefix.php");
 
 	foreach (array_diff(scandir("content/blog/", 1), array(".", "..")) as $file) {
 
@@ -34,11 +34,11 @@ if (isset($postId) && file_exists("content/blog/" . $postId)) {
 		$postConfig  = json_decode(file_get_contents("content/blog/" . $postId . "/config.json"), TRUE);
 		$postContent = file_get_contents("content/blog/" . $postId . "/excerpt.html");
 
-		include(getThemeFile("blog-post-excerpt.php"));
+		includeThemeFile("blog-post-excerpt.php");
 	}
 }
 
-include(getThemeFile("page-suffix.php"));
+includeThemeFile("page-suffix.php");
 
 //
 // functions blog

@@ -1,36 +1,36 @@
 <?php
 
-include('_include.php');
+include "_include.php";
 $isIndex = true;
 
 //
 // content index
 
 $personal = new DOMDocument();
-$personal->loadXML(file_get_contents("content/index/personal.xml"));
+$personal->loadXML(readContentFile("index/personal.xml"));
 
 $experience = new DOMDocument();
-$experience->loadXML(file_get_contents("content/index/experience.xml"));
+$experience->loadXML(readContentFile("index/experience.xml"));
 
 $skills = new DOMDocument();
-$skills->loadXML(file_get_contents("content/index/skills.xml"));
+$skills->loadXML(readContentFile("index/skills.xml"));
 
 $languages = new DOMDocument();
-$languages->loadXML(file_get_contents("content/index/languages.xml"));
+$languages->loadXML(readContentFile("index/languages.xml"));
 
-include(getThemeFile("page-prefix.php"));
-include(getThemeFile("index-experience.php"));
-include(getThemeFile("index-skills.php"));
-include(getThemeFile("index-languages.php"));
-include(getThemeFile("page-suffix.php"));
+includeThemeFile("page-prefix.php");
+includeThemeFile("index-experience.php");
+includeThemeFile("index-skills.php");
+includeThemeFile("index-languages.php");
+includeThemeFile("page-suffix.php");
 
 //
 // functions
 
 function printProfiles() {
 	global $personal;
-
-	foreach($personal->getElementsByTagName('profile') as $profile) {
+	
+	foreach($personal->getElementsByTagName("profile") as $profile) {
 		printProfile($profile->getAttribute("title"), $profile->getAttribute("link"));
 	}
 }
