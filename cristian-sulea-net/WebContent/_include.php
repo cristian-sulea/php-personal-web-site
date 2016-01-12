@@ -57,7 +57,7 @@ function isBlogPost() {
 }
 
 //
-// getters
+// theme
 
 function _getThemeFile($file) {
 	global $THEME;
@@ -73,8 +73,14 @@ function printThemeFile($file) {
 	echo _getThemeFile($file);
 }
 
+//
+// content
+
 function _getContentFile($file) {
 	return "content/" . $file;
+}
+function existsContentFile($file) {
+	return file_exists(_getContentFile($file));
 }
 function readContentFile($file) {
 	return file_get_contents(_getContentFile($file));
@@ -87,8 +93,6 @@ function getMenu() {
 
 //
 // print funtions
-
-
 
 function printTitle() {
 	global $TITLE;

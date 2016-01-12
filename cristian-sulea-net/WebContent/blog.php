@@ -11,7 +11,7 @@ if (count($params) > 0) {
 	$postId = $params[0];
 }
 
-if (isset($postId) && file_exists("content/blog/" . $postId)) {
+if (isset($postId) && existsContentFile("blog/" . $postId)) {
 
 	$isBlogPost = true;
 
