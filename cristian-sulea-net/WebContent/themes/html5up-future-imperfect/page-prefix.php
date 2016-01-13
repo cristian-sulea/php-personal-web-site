@@ -24,12 +24,9 @@
 	<?php echo '<div id="wrapper">'; ?>
 
 		<header id="header">
-			<h1><a href="index.php"><?php echo getAuthorName(); ?></a></h1>
+			<h1><a href="index.php"><?php printAuthorName(); ?></a></h1>
 			<nav class="links">
 				<ul>
-					<?php function printMenuItem($title, $link) { ?>
-		    			<li><a href="<?php echo $link; ?>"><?php echo $title; ?></a></li>
-					<?php }; ?>
 					<?php printMenuItems(); ?>
 				</ul>
 			</nav>
@@ -51,13 +48,10 @@
 				<?php if (isIndex()) { ?>
 					<a class="logo"><img src="<?php printIndexLogo(); ?>" alt="" /></a>
 					<header>
-						<h2><?php printIndexTitle(); ?></h2>
-						<p><?php printIndexDescription(); ?></p>
+						<h2><a href="index.php"><?php printAuthorName(); ?></a></h2>
+						<p><?php printAuthorDescription(); ?></p>
 						<ul class="icons">
-							<?php function printProfile($title, $link) { ?>
-				    			<li><a href="<?php echo $link; ?>" class="<?php printProfileIconClass($title); ?>">&nbsp;<?php echo $title; ?></a></li>
-							<?php }; ?>
-							<?php printProfiles(); ?>
+							<?php printAuthorProfiles(); ?>
 						</ul>
 					</header>
 				<?php } else if (isBlog()) { ?>

@@ -19,7 +19,7 @@
 
 	</header>
 
-	<?php printPostContent(); ?>
+	<?php printBlogPostContent(); ?>
 
 	<footer>
 		<ul class="actions">

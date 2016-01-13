@@ -7,46 +7,39 @@ $THEME = "_default";
 
 $AUTHOR_NAME        = "Cristian Sulea";
 $AUTHOR_DESCRIPTION = "Software Architect &amp; Developer";
+$AUTHOR_BIRTHDAY    = "December 21, 1979";
+$AUTHOR_ADDRESS     = "Bucharest, Romania";
 
-$KEYWORDS    = "cristian sulea, sulea cristian, cristian, sulea";
+$AUTHOR_PROFILES = array (
+		array (
+				"LinkedIn",
+				"https://www.linkedin.com/profile/view?id=173404791" 
+		),
+		array (
+				"Google+",
+				"https://plus.google.com/+CristianSulea79/about" 
+		),
+		array (
+				"GitHub",
+				"https://github.com/cristian-sulea" 
+		),
+		array (
+				"SourceForge",
+				"http://sourceforge.net/u/cristian-sulea/profile/" 
+		) 
+);
 
 $BLOG_TITLE       = "Knowlegde Base";
 $BLOG_DESCRIPTION = "An archive of my personal knowledge base.";
 
 $BLOG_POST_DATE_FORMAT = "F j, Y";
 
+$KEYWORDS = "cristian sulea, sulea cristian, cristian, sulea";
+
 $MENU = array(
 		array("Blog", "blog.php"),
-		// 	array("Photos", "photos.php"),
+		// 	array("Photos", "photos.php")
 );
-
-function getTheme() {
-	global $THEME;
-	return $THEME;
-}
-
-function getAuthorName() {
-	global $AUTHOR_NAME;
-	return $AUTHOR_NAME;
-}
-function getAuthorDescription() {
-	global $AUTHOR_DESCRIPTION;
-	return $AUTHOR_DESCRIPTION;
-}
-
-function getKeywords() {
-	global $KEYWORDS;
-	return $KEYWORDS;
-}
-
-function getBlogTitle() {
-	global $BLOG_TITLE;
-	return $BLOG_TITLE;
-}
-function getBlogDescription() {
-	global $BLOG_DESCRIPTION;
-	return $BLOG_DESCRIPTION;
-}
 
 function getBlogPostDateFormat() {
 	global $BLOG_POST_DATE_FORMAT;
@@ -66,8 +59,8 @@ include "config/settings.php";
 //
 // theme include
 
-if (existsThemeFile("_include.php")) {
-	includeThemeFile("_include.php");
+if (existsThemeFile("_include-theme.php")) {
+	include _getThemeFile("_include-theme.php");
 }
 
 //
@@ -96,7 +89,8 @@ function isBlogPost() {
 // theme
 
 function _getThemeFile($file) {
-	return "themes/" . getTheme() . "/" . $file;
+	global $THEME;
+	return "themes/" . $THEME . "/" . $file;
 }
 function includeThemeFile($file) {
 	include _getThemeFile($file);
@@ -124,22 +118,66 @@ function readContentFile($file) {
 //
 // print funtions
 
+function printAuthorName() {
+	global $AUTHOR_NAME;
+	echo $AUTHOR_NAME;
+}
+function printAuthorDescription() {
+	global $AUTHOR_DESCRIPTION;
+	echo $AUTHOR_DESCRIPTION;
+}
+function printAuthorBirthday() {
+	global $AUTHOR_BIRTHDAY;
+	echo $AUTHOR_BIRTHDAY;
+}
+function printAuthorAddress() {
+	global $AUTHOR_ADDRESS;
+	echo $AUTHOR_ADDRESS;
+}
+
+function printAuthorProfiles() {
+	global $AUTHOR_PROFILES;
+	foreach ($AUTHOR_PROFILES as $authorProfile) {
+		theme_printAuthorProfile($authorProfile[0], $authorProfile[1]);
+	}
+}
+
+function printBlogTitle() {
+	global $BLOG_TITLE;
+	echo $BLOG_TITLE;
+}
+function printBlogDescription() {
+	global $BLOG_DESCRIPTION;
+	echo $BLOG_DESCRIPTION;
+}
+
+function printKeywords() {
+	global $KEYWORDS;
+	echo $KEYWORDS;
+}
+
+function printMenuItems() {
+	foreach (getMenu() as $menu) {
+		theme_printMenuItem($menu[0], $menu[1]);
+	}
+}
+
 function printHtmlHeadTitle() {
 	
 	if (isIndex()) {
-		echo getAuthorName();
+		printAuthorName();
 	}
 	
 	else if (isBlog()) {
 		
-		echo getAuthorName();
-		echo ", ";
-		printBlogTitle();
-		
 		if (isBlogPost()) {
-			echo ", ";
 			printPostTitle();
+			echo ", ";
 		}
+		
+		printBlogTitle();
+		echo ", ";
+		printAuthorName();
 	}
 	
 	else {
@@ -150,7 +188,7 @@ function printHtmlHeadTitle() {
 function printHtmlHeadMetaDescription() {
 	
 	if (isIndex()) {
-		printIndexDescription();
+		printAuthorDescription();
 	}
 	
 	else if (isBlog()) {
@@ -170,13 +208,13 @@ function printHtmlHeadMetaDescription() {
 }
 
 function printHtmlHeadMetaKeywords() {
-	echo getKeywords();
+	printKeywords();
 }
 
 function printHtmlHeadMetaAuthor() {
 	
 	if (isIndex()) {
-		echo getAuthorName();
+		printAuthorName();
 	}
 	
 	else if (isBlog()) {
@@ -186,7 +224,7 @@ function printHtmlHeadMetaAuthor() {
 		}
 		
 		else {
-			printBlogAuthor();
+			printAuthorName();
 		}
 	}
 	
@@ -196,19 +234,17 @@ function printHtmlHeadMetaAuthor() {
 }
 
 function printHtmlHeadRelIcon() {
-
-	if (isBlog()) {
+	
+	if (isIndex()) {
+		echo "config/index-icon.png";
+	}
+	
+	else if (isBlog()) {
 		echo "config/blog-icon.png";
 	}
-
+	
 	else {
-		echo "config/icon.png";
-	}
-}
-
-function printMenuItems() {
-	foreach (getMenu() as $menu) {
-		printMenuItem($menu[0], $menu[1]);
+		errorUnknownPageType();
 	}
 }
 

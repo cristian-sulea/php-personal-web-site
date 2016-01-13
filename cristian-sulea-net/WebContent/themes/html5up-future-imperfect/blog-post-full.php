@@ -19,7 +19,7 @@
 
 	</header>
 
-	<?php printPostContent(); ?>
+	<?php printBlogPostContent(); ?>
 
 	<?php if (hasPostResources()) { ?>
 		<?php echo '<hr />'; ?>
