@@ -10,9 +10,6 @@ function printIndexLogo() {
 //
 // content
 
-$personal = new DOMDocument();
-$personal->loadXML(readContentFile("index/personal.xml"));
-
 $experience = new DOMDocument();
 $experience->loadXML(readContentFile("index/experience.xml"));
 
