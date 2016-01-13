@@ -5,36 +5,19 @@
 
 $THEME = "_default";
 
-$AUTHOR_NAME        = "Cristian Sulea";
-$AUTHOR_DESCRIPTION = "Software Architect &amp; Developer";
-$AUTHOR_BIRTHDAY    = "December 21, 1979";
-$AUTHOR_ADDRESS     = "Bucharest, Romania";
+$AUTHOR_NAME        = "";
+$AUTHOR_DESCRIPTION = "";
+$AUTHOR_BIRTHDAY    = "";
+$AUTHOR_ADDRESS     = "";
 
-$AUTHOR_PROFILES = array (
-		array (
-				"LinkedIn",
-				"https://www.linkedin.com/profile/view?id=173404791" 
-		),
-		array (
-				"Google+",
-				"https://plus.google.com/+CristianSulea79/about" 
-		),
-		array (
-				"GitHub",
-				"https://github.com/cristian-sulea" 
-		),
-		array (
-				"SourceForge",
-				"http://sourceforge.net/u/cristian-sulea/profile/" 
-		) 
-);
+$AUTHOR_PROFILES = array ();
 
-$BLOG_TITLE       = "Knowlegde Base";
-$BLOG_DESCRIPTION = "An archive of my personal knowledge base.";
+$BLOG_TITLE       = "";
+$BLOG_DESCRIPTION = "";
 
 $BLOG_POST_DATE_FORMAT = "F j, Y";
 
-$KEYWORDS = "cristian sulea, sulea cristian, cristian, sulea";
+$KEYWORDS = "";
 
 $MENU = array(
 		array("Blog", "blog.php"),
