@@ -43,7 +43,7 @@ if (isset($postId) && $postId == "feed" && $_GET[$postId] == "rss") {
 		echo "</title>" . PHP_EOL;
 		
 		echo "	<description><![CDATA[";
-		//printBlogPostContent();
+		printBlogPostContent();
 		echo "]]></description>" . PHP_EOL;
 		
 		$postLink = "http://" . $_SERVER["HTTP_HOST"] . $_SERVER["PHP_SELF"] . "?" . $postId;
