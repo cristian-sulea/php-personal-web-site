@@ -1,4 +1,9 @@
 {
-	"title": "Options vs Settings vs Preferences vs Configurations",
-	"date":  "January 13 2016"
+	"title": "Options, Settings, Preferences, Configuration",
+	"date":  "January 13 2016",
+	"resources" : [
+		["Ubuntu Forums", "http://ubuntuforums.org/showthread.php?t=695848"],
+		["SketchUcation Forums", "http://sketchucation.com/forums/viewtopic.php?f=180&t=27737"],
+		["Stack Overflow", "http://stackoverflow.com/questions/2074384/options-settings-properties-configuration-preferences-when-and-why"]
+	]
 }
