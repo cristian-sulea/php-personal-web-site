@@ -51,18 +51,21 @@ if (existsThemeFile("_include-theme.php")) {
 
 $isIndex     = false;
 $isBlog      = false;
+$isBlogFeed  = false;
 $isBlogPost  = false;
 
 function isIndex() {
 	global $isIndex;
 	return $isIndex;
 }
-
 function isBlog() {
 	global $isBlog;
 	return $isBlog;
 }
-
+function isBlogFeed() {
+	global $isBlogFeed;
+	return $isBlogFeed;
+}
 function isBlogPost() {
 	global $isBlogPost;
 	return $isBlogPost;
