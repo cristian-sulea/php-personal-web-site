@@ -1,4 +1,5 @@
 <?php
+
 include '__include.php';
 
 $isBlogFeed = true;
