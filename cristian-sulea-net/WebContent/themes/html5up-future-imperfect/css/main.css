@@ -3115,6 +3115,10 @@
 			overflow: hidden;
 			padding: 0;
 			white-space: nowrap;
+			
+				max-width: 13em;
+				opacity: 1;
+				padding: 0 0.5em 0 0.5em;
 		}
 
 			#header #search input {

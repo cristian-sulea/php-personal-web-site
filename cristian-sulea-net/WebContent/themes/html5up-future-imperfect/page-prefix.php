@@ -40,9 +40,8 @@
 			<nav class="main">
 				<ul>
 					<li class="search">
-						<a class="fa-search" href="#search">Search</a>
 						<form id="search" method="get" action="search.php">
-							<input type="text" name="query" placeholder="Search" />
+							<input type="text" name="q" placeholder="Search" />
 						</form>
 					</li>
 				</ul>
