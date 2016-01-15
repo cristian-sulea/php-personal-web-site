@@ -1,0 +1,17 @@
+
+.gsc-above-wrapper-area, .gsc-resultsHeader {
+	display: none !important;
+}
+
+.gsc-table-result, .gsc-webResult, .gsc-result {
+	margin: 0 !important;
+}
+
+.gsc-table-result>tbody>tr {
+	background-color: transparent !important;
+	border: none;
+}
+
+.gsc-control-cse {
+	background-color: transparent !important;
+}
