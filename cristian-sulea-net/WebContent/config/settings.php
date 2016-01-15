@@ -6,6 +6,7 @@ $AUTHOR_NAME        = "Cristian Sulea";
 $AUTHOR_DESCRIPTION = "Software Architect &amp; Developer";
 $AUTHOR_BIRTHDAY    = "December 21, 1979";
 $AUTHOR_ADDRESS     = "Bucharest, Romania";
+$AUTHOR_KEYWORDS    = "cristian sulea, sulea cristian";
 
 $AUTHOR_PROFILES = array (
 		array (
@@ -28,7 +29,6 @@ $AUTHOR_PROFILES = array (
 
 $BLOG_TITLE       = "Knowlegde Base";
 $BLOG_DESCRIPTION = "An archive of my personal knowledge base.";
-
-$KEYWORDS = "cristian sulea, sulea cristian, cristian, sulea";
+$BLOG_KEYWORDS    = "blog";
 
 ?>

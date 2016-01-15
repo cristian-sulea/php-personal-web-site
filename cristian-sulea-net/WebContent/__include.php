@@ -9,15 +9,14 @@ $AUTHOR_NAME        = "";
 $AUTHOR_DESCRIPTION = "";
 $AUTHOR_BIRTHDAY    = "";
 $AUTHOR_ADDRESS     = "";
-
+$AUTHOR_KEYWORDS    = "";
 $AUTHOR_PROFILES = array ();
 
 $BLOG_TITLE       = "";
 $BLOG_DESCRIPTION = "";
+$BLOG_KEYWORDS    = "";
 
 $BLOG_POST_DATE_FORMAT = "F j, Y";
-
-$KEYWORDS = "";
 
 $MENU = array(
 		array("Blog", "blog.php"),
@@ -120,6 +119,10 @@ function printAuthorAddress() {
 	global $AUTHOR_ADDRESS;
 	echo $AUTHOR_ADDRESS;
 }
+function printAuthorKeywords($prefix = '', $sufix = '') {
+	global $AUTHOR_KEYWORDS;
+	echo $prefix . $AUTHOR_KEYWORDS . $sufix;
+}
 
 function printAuthorProfiles() {
 	global $AUTHOR_PROFILES;
@@ -136,10 +139,9 @@ function printBlogDescription() {
 	global $BLOG_DESCRIPTION;
 	echo $BLOG_DESCRIPTION;
 }
-
-function printKeywords() {
-	global $KEYWORDS;
-	echo $KEYWORDS;
+function printBlogKeywords($prefix = '', $sufix = '') {
+	global $BLOG_KEYWORDS;
+	echo $prefix . $BLOG_KEYWORDS . $sufix;
 }
 
 function printMenuItems() {
@@ -194,7 +196,27 @@ function printHtmlHeadMetaDescription() {
 }
 
 function printHtmlHeadMetaKeywords() {
-	printKeywords();
+	
+	if (isIndex()) {
+		printAuthorKeywords();
+	}
+	
+	else if (isBlog()) {
+	
+		if (isBlogPost()) {
+			printBlogPostKeywords('', ', ');
+			printAuthorKeywords();
+		}
+	
+		else {
+			printAuthorKeywords();
+			printBlogKeywords(', ', '');
+		}
+	}
+	
+	else {
+		errorUnknownPageType();
+	}
 }
 
 function printHtmlHeadMetaAuthor() {

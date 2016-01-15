@@ -31,6 +31,16 @@ function printPostDateForTimeTag() {
 	echo date("Y-m-d", strtotime($postConfig["date"]));
 }
 
+function printBlogPostKeywords($prefix = '', $sufix = '') {
+	global $postConfig;
+	
+	if (isset($postConfig["keywords"])) {
+		foreach ($postConfig["keywords"] as $keyword) {
+			echo $prefix . $keyword . $sufix;
+		}
+	}
+}
+
 function printPostAuthor() {
 	global $postConfig;
 	if (isset($postConfig["author"])) {
