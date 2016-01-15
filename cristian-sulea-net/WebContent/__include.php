@@ -216,7 +216,7 @@ function printHtmlHeadMetaAuthor() {
 	}
 }
 
-function printHtmlHeadRelIcon() {
+function printHtmlHeadLinkIcon() {
 	
 	if (isIndex()) {
 		echo "config/index-icon.png";
@@ -229,6 +229,13 @@ function printHtmlHeadRelIcon() {
 	else {
 		errorUnknownPageType();
 	}
+}
+
+function printHtmlHeadLinkCanonical() {
+	echo 'http://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+}
+function printHtmlHeadLinkShortlink() {
+	echo 'http://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
 }
 
 //

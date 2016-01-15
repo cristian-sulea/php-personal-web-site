@@ -11,7 +11,10 @@
 <meta name="keywords"    content="<?php printHtmlHeadMetaKeywords(); ?>">
 <meta name="author"      content="<?php printHtmlHeadMetaAuthor(); ?>">
 
-<link rel="icon" href="<?php printHtmlHeadRelIcon(); ?>">
+<link rel="icon" href="<?php printHtmlHeadLinkIcon(); ?>">
+
+<link rel="canonical" href="<?php printHtmlHeadLinkCanonical(); ?>">
+<link rel="shortlink" href="<?php printHtmlHeadLinkShortlink(); ?>">
 
 <!--[if lte IE 8]><script src="<?php printThemeFile("js/ie/html5shiv.js"); ?>"></script><![endif]-->
 <link rel="stylesheet" href="<?php printThemeFile("css/main.css"); ?>" />
