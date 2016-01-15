@@ -101,9 +101,7 @@ function printBlogPostContent() {
 			'<pre>',
 			$blogPostContent);
 	
-	echo PHP_EOL;
-	
-	if (function_exists('theme_printBlogPostContent')) {
+	if (!isBlogFeed() && function_exists('theme_printBlogPostContent')) {
 		theme_printBlogPostContent($blogPostContent);
 	}
 	
