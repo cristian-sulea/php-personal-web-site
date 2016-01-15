@@ -13,7 +13,7 @@
 		<div class="meta">
 			<time datetime="<?php printPostDateForTimeTag(); ?>" class="published"><?php printPostDate(); ?></time>
 			<a href="<?php printPostAuthorWebsite(); ?>" title="<?php printPostAuthor(); ?>" class="author">
-				<span class="name"><?php printPostAuthor(); ?></span><img src="<?php printPostAuthorImg(); ?>" alt="<?php printPostAuthor(); ?>" title="<?php printPostAuthor(); ?>" />
+				<span class="name"><?php printPostAuthor(); ?></span><img src="<?php printPostAuthorImg(); ?>" alt="" />
 			</a>
 		</div>
 
