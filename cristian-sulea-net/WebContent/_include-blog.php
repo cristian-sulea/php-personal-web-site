@@ -22,8 +22,7 @@ function printPostTitle() {
 
 function printPostDate() {
 	global $postConfig;
-	global $POST_DATE_FORMAT;
-	echo date($POST_DATE_FORMAT, strtotime($postConfig["date"]));
+	echo date(getBlogPostDateFormat(), strtotime($postConfig["date"]));
 }
 
 function printPostDateForTimeTag() {
