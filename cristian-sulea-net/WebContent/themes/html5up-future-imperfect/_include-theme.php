@@ -61,4 +61,35 @@ function theme_printBlogPostContent($blogPostContent) {
 	echo $blogPostContent;
 }
 
+function theme_printSearchResults($searchResults) {
+	
+	$searchResultsSuffix = <<<EOT
+
+<script type="text/javascript">
+<!--
+
+// to defer the loading of stylesheets
+// just add it right before the </body> tag
+// and before any javaScript file inclusion (for performance)  
+function loadStyleSheet(src){
+    if (document.createStyleSheet) document.createStyleSheet(src);
+    else {
+        var stylesheet = document.createElement('link');
+        stylesheet.href = src;
+        stylesheet.rel = 'stylesheet';
+        stylesheet.type = 'text/css';
+        document.getElementsByTagName('head')[0].appendChild(stylesheet);
+    }
+}
+
+loadStyleSheet("themes/html5up-future-imperfect/css/search.css");
+
+//-->
+</script>
+
+EOT;
+	
+	echo $searchResults . $searchResultsSuffix;
+}
+
 ?>
