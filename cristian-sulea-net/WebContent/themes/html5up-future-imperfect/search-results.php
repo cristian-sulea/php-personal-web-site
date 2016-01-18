@@ -9,6 +9,7 @@
 
 	</header>
 
+	<div id="search-results-loading">Searching...</div>
 	<?php printSearchResults(); ?>
 
 </article>

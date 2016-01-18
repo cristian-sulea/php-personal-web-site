@@ -13,6 +13,15 @@ $searchResults = <<<EOT
 
 <script>
   (function() {
+
+	window.__gcse = {
+      callback: myCallback
+    }
+	function myCallback() {
+		var loading = document.getElementById("search-results-loading");
+		loading.parentNode.removeChild(loading);
+	}
+
     var cx = '008197242257401797086:73803bll01y';
     var gcse = document.createElement('script');
     gcse.type = 'text/javascript';
@@ -28,6 +37,6 @@ $searchResults = <<<EOT
 EOT;
 
 includeThemeFile("page-prefix.php");
-includeThemeFile("search.php");
+includeThemeFile("search-results.php");
 includeThemeFile("page-suffix.php");
 ?>
