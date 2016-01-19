@@ -1,5 +1,10 @@
 <?php
 
+if (!isset($_GET['q']) || empty($_GET['q'])) {
+	header('Location: blog.php');
+	exit();
+}
+
 include '__include.php';
 
 $isBlog = true;
