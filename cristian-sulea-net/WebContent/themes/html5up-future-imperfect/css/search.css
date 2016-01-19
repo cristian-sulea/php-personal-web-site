@@ -13,6 +13,10 @@
 	line-height: 1.75 !important;
 }
 
+.gsc-control-cse b {
+	font-weight: bolder !important;
+}
+
 .gs-result {
 	margin-bottom: 1em !important;
 }
