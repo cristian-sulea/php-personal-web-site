@@ -44,6 +44,7 @@
 							<input type="text" name="q" placeholder="Search" />
 						</form>
 					</li>
+					<li class="menu"><a class="fa-bars" href="menu.php">Menu</a></li>
 				</ul>
 			</nav>
 		</header>
