@@ -3298,6 +3298,7 @@
 	#intro header h2 {
 		font-size: 2em;
 		font-weight: 900;
+		margin: 0;
 	}
 
 	#intro header p {
