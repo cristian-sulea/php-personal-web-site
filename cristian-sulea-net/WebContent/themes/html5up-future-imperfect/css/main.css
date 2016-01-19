@@ -3133,9 +3133,9 @@
 
 		@media screen and (max-width: 980px) {
 
-			#header .links {
+/* 			#header .links { */
 /* 				display: none; */
-			}
+/* 			} */
 
 		}
 
@@ -3153,6 +3153,10 @@
 				#header .main .search {
 					display: none;
 				}
+				
+			#header .links {
+				display: none;
+			}
 
 		}
 
