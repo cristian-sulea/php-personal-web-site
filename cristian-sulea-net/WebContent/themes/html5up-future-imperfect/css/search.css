@@ -29,3 +29,33 @@
 .gsc-above-wrapper-area, .gsc-resultsHeader, .gcsc-branding {
 	display: none !important;
 }
+
+@media screen and (max-width: 1680px) {
+	.gsc-control-cse, .gsc-control-cse * {
+		font-size: 14pt !important;
+	}
+}
+
+@media screen and (max-width: 1280px) {
+	.gsc-control-cse, .gsc-control-cse * {
+		font-size: 12pt !important;
+	}
+}
+
+@media screen and (max-width: 980px) {
+	.gsc-control-cse, .gsc-control-cse * {
+		font-size: 12pt !important;
+	}
+}
+
+@media screen and (max-width: 736px) {
+	.gsc-control-cse, .gsc-control-cse * {
+		font-size: 12pt !important;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.gsc-control-cse, .gsc-control-cse * {
+		font-size: 12pt !important;
+	}
+}
