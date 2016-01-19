@@ -26,7 +26,7 @@
 	margin-right: 0.5em !important;
 }
 
-.gsc-above-wrapper-area, .gsc-resultsHeader, .gcsc-branding {
+.gsc-above-wrapper-area, .gsc-resultsHeader, .gcsc-branding, .gsc-adBlockNoHeight {
 	display: none !important;
 }
 
