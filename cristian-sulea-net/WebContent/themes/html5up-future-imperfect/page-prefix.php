@@ -44,10 +44,28 @@
 							<input type="text" name="q" placeholder="Search" />
 						</form>
 					</li>
-					<li class="menu"><a class="fa-bars" href="menu.php">Menu</a></li>
+					<li class="menu"><a href="" class="fa-bars" onclick="document.getElementsByTagName('body')[0].className = 'is-menu-visible'; return false;">Menu</a></li>
 				</ul>
 			</nav>
 		</header>
+
+		<div id="menu">
+			<div>
+				<form class="search" method="get" action="search.php">
+					<input type="text" name="q" placeholder="Search" />
+				</form>
+			</div>
+			<div>
+				<ul class="links">
+					<?php printMenuItems(); ?>
+				</ul>
+			</div>
+			<div>
+				<ul class="actions vertical">
+					<li><a href="" class="button icon fa-close fit" onclick="document.getElementsByTagName('body')[0].className = ''; return false;">Close Menu</a></li>
+				</ul>
+			</div>
+		</div>
 
 		<?php echo '<div id="main">'; ?>
 
