@@ -31,4 +31,21 @@ $BLOG_TITLE       = "Knowlegde Base";
 $BLOG_DESCRIPTION = "An archive of my personal knowledge base.";
 $BLOG_KEYWORDS    = "blog";
 
+// $MENU = array();
+
+$GOOGLE_ANALYTICS_TRACKING_CODE_ = <<<EOT
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56392483-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+EOT;
+
 ?>
