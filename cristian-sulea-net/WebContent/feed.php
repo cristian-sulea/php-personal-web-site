@@ -38,7 +38,7 @@ foreach (array_diff(scandir('content/blog/', 1), array('.', '..')) as $file) {
 	printBlogPostContent();
 	echo ']]></description>' . PHP_EOL;
 	
-	$postLink = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . '?' . $postId;
+	$postLink = 'http://' . $_SERVER['HTTP_HOST'] . '/blog.php?' . $postId;
 	echo '	<link>';
 	echo $postLink;
 	echo '</link>' . PHP_EOL;
