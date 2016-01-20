@@ -2621,6 +2621,7 @@
 				.post > header .title h2 {
 					font-weight: 900;
 					font-size: 1.5em;
+					text-transform: none;
 				}
 
 				.post > header .title > :last-child {
