@@ -758,3 +758,4 @@ body.is-menu-visible #wrapper{}
 body.is-menu-visible #menu{-moz-transform:translateX(0);-webkit-transform:translateX(0);-ms-transform:translateX(0);transform:translateX(0);visibility:visible;}
 @media screen and (max-width:736px){#menu > *{padding:1.5em;}
 }
+#blog-post-resources{white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}

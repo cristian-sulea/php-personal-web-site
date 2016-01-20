@@ -128,7 +128,7 @@ function printPostResources() {
 	global $postConfig;
 	echo  PHP_EOL;
 	echo '<b>Resources</b>' . PHP_EOL;
-	echo '<ul>' . PHP_EOL;
+	echo '<ul id="blog-post-resources">' . PHP_EOL;
 	foreach ($postConfig["resources"] as $resource) {
 		echo '<li><a href="' . $resource[1] . '">' . $resource[0] . '</a></li>' . PHP_EOL;
 	}
