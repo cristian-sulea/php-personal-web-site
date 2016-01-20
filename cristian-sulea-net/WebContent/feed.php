@@ -1,12 +1,11 @@
 <?php
+header('Content-Type: application/rss+xml; charset=UTF-8');
 
 include '__include.php';
 
 $isBlogFeed = true;
 
 include '_include-blog.php';
-
-header('Content-Type: application/rss+xml; charset=UTF-8');
 
 echo '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
 echo '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">' . PHP_EOL;
