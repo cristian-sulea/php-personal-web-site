@@ -20,12 +20,12 @@
 <link rel="canonical" href="<?php printHtmlHeadLinkCanonical(); ?>">
 <link rel="shortlink" href="<?php printHtmlHeadLinkShortlink(); ?>">
 
-<!--[if lte IE 8]><script src="<?php printThemeFile("js/ie/html5shiv.js"); ?>"></script><![endif]-->
-<link rel="stylesheet" href="<?php printThemeFile("css/font-awesome.min.css"); ?>" />
-<link rel="stylesheet" href="<?php printThemeFile("css/google-fonts.min.css"); ?>" />
-<link rel="stylesheet" href="<?php printThemeFile("css/main.min.css"); ?>" />
-<!--[if lte IE 9]><link rel="stylesheet" href="<?php printThemeFile("css/ie9.css"); ?>" /><![endif]-->
-<!--[if lte IE 8]><link rel="stylesheet" href="<?php printThemeFile("css/ie8.css"); ?>" /><![endif]-->
+<!--[if lte IE 8]><script src="<?php printThemeFile('js/ie/html5shiv.js'); ?>"></script><![endif]-->
+<link rel="stylesheet" href="<?php printThemeFile('css/font-awesome.min.css'); ?>" />
+<link rel="stylesheet" href="<?php printThemeFile('css/google-fonts.min.css'); ?>" />
+<link rel="stylesheet" href="<?php printThemeFile('css/main.min.css'); ?>" />
+<!--[if lte IE 9]><link rel="stylesheet" href="<?php printThemeFile('css/ie9.css'); ?>" /><![endif]-->
+<!--[if lte IE 8]><link rel="stylesheet" href="<?php printThemeFile('css/ie8.css'); ?>" /><![endif]-->
 
 <?php printGoogleAnalyticsTrackingCode(); ?>
 
