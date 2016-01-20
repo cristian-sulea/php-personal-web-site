@@ -23,6 +23,9 @@ $MENU = array(
 		// 	array("Photos", "photos.php")
 );
 
+$GOOGLE_ANALYTICS_TRACKING_CODE = <<<EOT
+EOT;
+
 function getBlogPostDateFormat() {
 	global $BLOG_POST_DATE_FORMAT;
 	return $BLOG_POST_DATE_FORMAT;
@@ -265,6 +268,11 @@ function printHtmlHeadLinkShortlink() {
 
 //
 // utility funtions
+
+function printGoogleAnalyticsTrackingCode() {
+	global $GOOGLE_ANALYTICS_TRACKING_CODE;
+	echo $GOOGLE_ANALYTICS_TRACKING_CODE;
+}
 
 function errorUnknownPageType() {
 	trigger_error("unknown page type", E_USER_ERROR);
