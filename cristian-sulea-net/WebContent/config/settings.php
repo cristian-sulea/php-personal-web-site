@@ -33,7 +33,7 @@ $BLOG_KEYWORDS    = "blog";
 
 // $MENU = array();
 
-$GOOGLE_ANALYTICS_TRACKING_CODE_ = <<<EOT
+$GOOGLE_ANALYTICS_TRACKING_CODE = <<<EOT
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
