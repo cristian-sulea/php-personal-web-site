@@ -21,9 +21,13 @@
 <link rel="shortlink" href="<?php printHtmlHeadLinkShortlink(); ?>">
 
 <!--[if lte IE 8]><script src="<?php printThemeFile("js/ie/html5shiv.js"); ?>"></script><![endif]-->
+<link rel="stylesheet" href="<?php printThemeFile("css/font-awesome.min.css"); ?>" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Raleway:400,800,900" />
 <link rel="stylesheet" href="<?php printThemeFile("css/main.css"); ?>" />
 <!--[if lte IE 9]><link rel="stylesheet" href="<?php printThemeFile("css/ie9.css"); ?>" /><![endif]-->
 <!--[if lte IE 8]><link rel="stylesheet" href="<?php printThemeFile("css/ie8.css"); ?>" /><![endif]-->
+
+<?php printGoogleAnalyticsTrackingCode(); ?>
 
 </head>
 <body>
