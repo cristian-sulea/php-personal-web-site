@@ -1,0 +1,5 @@
+{
+	"title": "HibernateException - A collection with cascade=\"all-delete-orphan\" was no longer referenced by the owning entity instance",
+	"date":  "Jun 28 2014",
+	"keywords": ["hibernate", "java"]
+}

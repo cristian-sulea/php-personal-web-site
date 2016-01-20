@@ -1,0 +1,4 @@
+<p>
+	What is happening is that <a href="http://hibernate.org">Hibernate</a> requires complete ownership of the children collection in the Parent object.
+	If you set it to a new object, Hibernate is unable to track changes to that collection and thus has no idea how to apply the cascading persistence to your objects.
+</p>
