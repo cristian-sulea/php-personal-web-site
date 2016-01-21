@@ -2616,6 +2616,12 @@
 				flex-grow: 1;
 				-ms-flex: 1;
 				padding: 3.75em 3em 3.3em 3em;
+				
+	white-space: pre-wrap; /* css-3 */
+	white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+	white-space: -pre-wrap; /* Opera 4-6 */
+	white-space: -o-pre-wrap; /* Opera 7 */
+	word-wrap: break-word; /* Internet Explorer 5.5+ */
 			}
 
 				.post > header .title h2 {
