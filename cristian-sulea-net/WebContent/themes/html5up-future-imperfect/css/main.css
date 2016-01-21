@@ -1591,12 +1591,6 @@
 		font-family: "Courier New", monospace;
 /* 		font-size: 0.9em; */
 		margin: 0 0 2em 0;
-
-		/* white-space: pre-wrap;       /* CSS 3 */
-		/* white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-		/* white-space: -pre-wrap;      /* Opera 4-6 */
-		/* white-space: -o-pre-wrap;    /* Opera 7 */
-		/* word-wrap: break-word;       /* Internet Explorer 5.5+ */
 	}
 
 		pre code {
@@ -2616,12 +2610,7 @@
 				flex-grow: 1;
 				-ms-flex: 1;
 				padding: 3.75em 3em 3.3em 3em;
-				
-	white-space: pre-wrap; /* css-3 */
-	white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
-	white-space: -pre-wrap; /* Opera 4-6 */
-	white-space: -o-pre-wrap; /* Opera 7 */
-	word-wrap: break-word; /* Internet Explorer 5.5+ */
+				word-wrap: break-word;
 			}
 
 				.post > header .title h2 {
@@ -2631,6 +2620,9 @@
 				
 				.post h2, h3, h4, h5, h5 {
 					text-transform: none;
+				}
+				.post blockquote {
+					word-wrap: break-word;
 				}
 
 				.post > header .title > :last-child {
@@ -3486,9 +3478,5 @@
 		}
 
 #blog-post-resources {
-	white-space: pre-wrap; /* css-3 */
-	white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
-	white-space: -pre-wrap; /* Opera 4-6 */
-	white-space: -o-pre-wrap; /* Opera 7 */
-	word-wrap: break-word; /* Internet Explorer 5.5+ */
+	word-wrap: break-word;
 }
