@@ -1,0 +1,68 @@
+<p>
+	The <code>UnsatisfiedLinkError</code> is thrown if the Java Virtual Machine cannot find an appropriate native-language definition of a method declared native.
+</p>
+
+<p>
+	In order for <code>System.loadLibrary()</code> to work, the library (on Windows, a DLL) must be in a directory
+	somewhere on your <code>PATH</code> or on a path listed in the <code>java.library.path</code> system property,
+	so you can launch Java like:
+</p>
+
+<pre>
+java -Djava.library.path=/path/to/dir
+</pre>
+
+<p>
+	Additionally, for <code>loadLibrary()</code>, you specify the base name of the library, without the <code>.dll</code> at the end. So,
+	for <code>/path/to/dir/foo.dll</code>, you would just use:
+<p>
+
+<pre>
+System.loadLibrary(&quot;foo&quot;)
+</pre>
+
+<p>
+	You also need to look at the exact UnsatisfiedLinkError that you are getting. If it says something like:
+<p>
+
+<blockquote>
+Exception in thread &quot;main&quot; java.lang.UnsatisfiedLinkError: no foo in java.library.path
+</blockquote>
+
+<p>
+	then it can't find the foo library (<code>foo.dll</code>) in your <code>PATH</code> or <code>java.library.path</code> specified at launch time.
+</p>
+
+<p>
+	If it says something like:
+</p>
+
+<blockquote>
+Exception in thread &quot;main&quot; java.lang.UnsatisfiedLinkError: com.example.program.ClassName.foo()V
+</blockquote>
+
+<p>
+	then something is wrong with the library itself in the sense that Java is not able to map a native Java function in your application to its actual native counterpart.
+</p>
+
+<p>
+	To start with, I would put some logging around your <code>System.loadLibrary()</code> call to see if that executes properly.
+	If it throws an exception or is not in a code path that is actually executed, then you will always get the latter type of <code>UnsatisfiedLinkError</code> explained above.
+</p>
+
+<p>
+	As a side note, most people put their <code>loadLibrary()</code> calls into a static initializer block in the class with the native methods,
+	to ensure that it is always executed exactly once:
+<p>
+
+<pre>
+public class Foo {
+
+    static {
+        System.loadLibrary(&quot;foo&quot;);
+    }
+
+    public Foo() {}
+
+}
+</pre>
