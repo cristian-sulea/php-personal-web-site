@@ -7,8 +7,12 @@ $isBlogFeed = true;
 
 include '_include-blog.php';
 
-echo '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
-echo '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">' . PHP_EOL;
+echo '<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"' . PHP_EOL;
+echo '	xmlns:atom="http://www.w3.org/2005/Atom"' . PHP_EOL;
+echo '	xmlns:dc="http://purl.org/dc/elements/1.1/">' . PHP_EOL;
+
+echo PHP_EOL;
+
 echo '<channel>' . PHP_EOL;
 
 echo PHP_EOL;
@@ -27,6 +31,7 @@ foreach (array_diff(scandir('content/blog/', 1), array('.', '..')) as $file) {
 	
 	$postConfig  = json_decode(readContentFile('blog/' . $postId . '/config.json'), TRUE);
 	$blogPostContent = readContentFile('blog/' . $postId . '/excerpt.html');
+	$postLink = 'http://' . $_SERVER['HTTP_HOST'] . str_replace('feed.php', 'blog.php', $_SERVER['PHP_SELF']) . '?' . $postId;
 	
 	echo '<item>' . PHP_EOL;
 	
@@ -34,11 +39,6 @@ foreach (array_diff(scandir('content/blog/', 1), array('.', '..')) as $file) {
 	printPostTitle();
 	echo '</title>' . PHP_EOL;
 	
-	echo '	<description><![CDATA[';
-	printBlogPostContent();
-	echo ']]></description>' . PHP_EOL;
-	
-	$postLink = 'http://' . $_SERVER['HTTP_HOST'] . str_replace('feed.php', 'blog.php', $_SERVER['PHP_SELF']) . '?' . $postId;
 	echo '	<link>';
 	echo $postLink;
 	echo '</link>' . PHP_EOL;
@@ -49,6 +49,18 @@ foreach (array_diff(scandir('content/blog/', 1), array('.', '..')) as $file) {
 	echo '	<pubDate>';
 	echo date('D, d M Y H:i:s O', strtotime($postConfig['date']));
 	echo '</pubDate>' . PHP_EOL;
+	
+	echo '	<dc:creator><![CDATA[';
+	printPostAuthor();
+	echo ']]></dc:creator>' . PHP_EOL;
+	
+	echo '	<description><![CDATA[';
+	printBlogPostContent();
+	echo '<br>';
+	echo '<a href="';
+	echo $postLink;
+	echo '">Continue Reading</a>';
+	echo ']]></description>' . PHP_EOL;
 	
 	echo '</item>' . PHP_EOL;
 }
