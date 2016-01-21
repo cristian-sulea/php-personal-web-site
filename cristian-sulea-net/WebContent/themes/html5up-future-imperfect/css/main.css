@@ -2621,6 +2621,9 @@
 				.post > header .title h2 {
 					font-weight: 900;
 					font-size: 1.5em;
+				}
+				
+				.post h2, h3, h4, h5, h5 {
 					text-transform: none;
 				}
 
