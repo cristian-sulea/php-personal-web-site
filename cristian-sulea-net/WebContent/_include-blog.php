@@ -10,19 +10,19 @@ function printBlogLogo() {
 //
 // print
 
-function printPostId() {
-	global $postId;
-	echo $postId;
-}
-
 function printPostTitle() {
 	global $postConfig;
 	echo $postConfig["title"];
 }
 
-function printPostDate() {
+function printPostDate($format = null) {
 	global $postConfig;
-	echo date(getBlogPostDateFormat(), strtotime($postConfig["date"]));
+	
+	if (isset($format)) {
+		echo date($format, strtotime($postConfig["date"])); 
+	} else {
+		echo date(getBlogPostDateFormat(), strtotime($postConfig["date"]));
+	}
 }
 
 function printPostDateForTimeTag() {
