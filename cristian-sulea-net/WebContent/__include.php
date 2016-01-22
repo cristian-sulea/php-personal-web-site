@@ -16,6 +16,7 @@ $BLOG_TITLE       = "";
 $BLOG_DESCRIPTION = "";
 $BLOG_KEYWORDS    = "";
 
+$BLOG_POST_ID_PARAM = 'p';
 $BLOG_POST_DATE_FORMAT = "F j, Y";
 
 $MENU = array(
@@ -25,6 +26,18 @@ $MENU = array(
 
 $GOOGLE_ANALYTICS_TRACKING_CODE = <<<EOT
 EOT;
+
+//
+// getters & printers
+
+function getBlogPostLink($postId) {
+	global $BLOG_POST_ID_PARAM;
+	return 'blog.php?' . $BLOG_POST_ID_PARAM . '=' . $postId;
+}
+function printBlogPostLink() {
+	global $postId;
+	echo getBlogPostLink($postId);
+}
 
 function getBlogPostDateFormat() {
 	global $BLOG_POST_DATE_FORMAT;
@@ -101,6 +114,18 @@ function existsContentFile($file) {
 }
 function readContentFile($file) {
 	return file_get_contents(_getContentFile($file));
+}
+function existsBlogPost($postId) {
+	return file_exists(_getContentFile('blog/' . $postId));
+}
+function readBlogPost($postId) {
+	return file_get_contents('content/blog/' . $postId . '/content.html');
+}
+function readBlogPostConfig($postId) {
+	return json_decode(file_get_contents('content/blog/' . $postId . '/config.json'), TRUE);
+}
+function readBlogPostExcerpt($postId) {
+	return file_get_contents('content/blog/' . $postId . '/excerpt.html');
 }
 
 //
@@ -272,6 +297,15 @@ function printHtmlHeadLinkShortlink() {
 function printGoogleAnalyticsTrackingCode() {
 	global $GOOGLE_ANALYTICS_TRACKING_CODE;
 	echo $GOOGLE_ANALYTICS_TRACKING_CODE;
+}
+
+function getAbsoluteLink($page='') {
+
+	$linkPrefix = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
+	$linkPrefix .= $_SERVER ['HTTP_HOST'];
+	$linkPrefix .= $_SERVER ['REQUEST_URI'];
+
+	return dirname($linkPrefix) . '/' . $page;
 }
 
 function errorUnknownPageType() {

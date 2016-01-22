@@ -19,9 +19,8 @@ echo PHP_EOL;
 
 echo '<title>' . $BLOG_TITLE . '</title>' . PHP_EOL;
 echo '<description>' . $BLOG_DESCRIPTION . '</description>' . PHP_EOL;
-
-echo '<link>' . 'http://' . $_SERVER['HTTP_HOST'] . str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['PHP_SELF']) . '</link>' . PHP_EOL;
-echo '<atom:link href="' . 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . '" rel="self" type="application/rss+xml" />' . PHP_EOL;
+echo '<link>' . getAbsoluteLink() . '</link>' . PHP_EOL;
+echo '<atom:link href="' . getAbsoluteLink('feed.php') . '" rel="self" type="application/rss+xml" />' . PHP_EOL;
 
 echo PHP_EOL;
 
@@ -29,9 +28,10 @@ foreach (array_diff(scandir('content/blog/', 1), array('.', '..')) as $file) {
 	
 	$postId = basename($file);
 	
-	$postConfig  = json_decode(readContentFile('blog/' . $postId . '/config.json'), TRUE);
-	$blogPostContent = readContentFile('blog/' . $postId . '/excerpt.html');
-	$postLink = 'http://' . $_SERVER['HTTP_HOST'] . str_replace('feed.php', 'blog.php', $_SERVER['PHP_SELF']) . '?' . $postId;
+	$postConfig = readBlogPostConfig($postId);
+	$blogPostContent = readBlogPostExcerpt($postId);
+	
+	$postLink = getAbsoluteLink(getBlogPostLink($postId));
 	
 	echo '<item>' . PHP_EOL;
 	
@@ -39,15 +39,11 @@ foreach (array_diff(scandir('content/blog/', 1), array('.', '..')) as $file) {
 	printPostTitle();
 	echo '</title>' . PHP_EOL;
 	
-	echo '	<link>';
-	echo $postLink;
-	echo '</link>' . PHP_EOL;
-	echo '	<guid>';
-	echo $postLink;
-	echo '</guid>' . PHP_EOL;
+	echo '	<link>' . $postLink . '</link>' . PHP_EOL;
+	echo '	<guid>' . $postLink . '</guid>' . PHP_EOL;
 	
 	echo '	<pubDate>';
-	echo date('D, d M Y H:i:s O', strtotime($postConfig['date']));
+	printPostDate('D, d M Y H:i:s O');
 	echo '</pubDate>' . PHP_EOL;
 	
 	echo '	<dc:creator><![CDATA[';
@@ -56,11 +52,7 @@ foreach (array_diff(scandir('content/blog/', 1), array('.', '..')) as $file) {
 	
 	echo '	<description><![CDATA[';
 	printBlogPostContent();
-	echo '<br>';
-	echo '<a href="';
-	echo $postLink;
-	echo '">Continue Reading</a>';
-	echo ']]></description>' . PHP_EOL;
+	echo '<br><a href="' . $postLink . '">Continue Reading</a>]]></description>' . PHP_EOL;
 	
 	echo '</item>' . PHP_EOL;
 }
