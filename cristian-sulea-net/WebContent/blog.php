@@ -7,21 +7,21 @@ $isBlog = true;
 
 include "_include-blog.php";
 
-if (isset($_GET[$BLOG_POST_ID_PARAM]) && !empty($_GET[$BLOG_POST_ID_PARAM])) {
+if (isset($_GET[$BLOG_POST_ID_PARAM])) {
 	$postId = $_GET[$BLOG_POST_ID_PARAM];
 }
 
 if (isset($postId)) {
 	
-	if (!existsBlogPost($postId)) {
+	if (!existsBlogPost($postId) || empty($postId)) {
 		header('Location: blog.php');
 		exit();
 	}
 	
 	$isBlogPost = true;
 	
-	$postConfig  = json_decode(readContentFile("blog/" . $postId . "/config.json"), TRUE);
-	$blogPostContent = readContentFile("blog/" . $postId . "/content.html");
+	$postConfig = readBlogPostConfig($postId);
+	$blogPostContent = readBlogPostContent($postId);
 	
 	includeThemeFile("page-prefix.php");
 	includeThemeFile("blog-post-full.php");
@@ -38,8 +38,8 @@ else {
 		
 		$postId = basename($file);
 		
-		$postConfig  = json_decode(readContentFile("blog/" . $postId . "/config.json"), TRUE);
-		$blogPostContent = readContentFile("blog/" . $postId . "/excerpt.html");
+		$postConfig = readBlogPostConfig($postId);
+		$blogPostContent = readBlogPostExcerpt($postId);
 		
 		includeThemeFile("blog-post-excerpt.php");
 	}

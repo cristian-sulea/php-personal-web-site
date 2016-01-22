@@ -118,7 +118,7 @@ function readContentFile($file) {
 function existsBlogPost($postId) {
 	return file_exists(_getContentFile('blog/' . $postId));
 }
-function readBlogPost($postId) {
+function readBlogPostContent($postId) {
 	return file_get_contents('content/blog/' . $postId . '/content.html');
 }
 function readBlogPostConfig($postId) {
