@@ -7,12 +7,16 @@ $isBlog = true;
 
 include "_include-blog.php";
 
-$params = array_keys($_GET);
-if (count($params) > 0) {
-	$postId = $params[0];
+if (isset($_GET[$BLOG_POST_ID_PARAM]) && !empty($_GET[$BLOG_POST_ID_PARAM])) {
+	$postId = $_GET[$BLOG_POST_ID_PARAM];
 }
 
-if (isset($postId) && existsContentFile("blog/" . $postId)) {
+if (isset($postId)) {
+	
+	if (!existsBlogPost($postId)) {
+		header('Location: blog.php');
+		exit();
+	}
 	
 	$isBlogPost = true;
 	
