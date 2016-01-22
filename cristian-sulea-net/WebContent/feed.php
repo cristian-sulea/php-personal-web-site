@@ -24,9 +24,9 @@ echo '<atom:link href="' . getAbsoluteLink('feed.php') . '" rel="self" type="app
 
 echo PHP_EOL;
 
-foreach (array_diff(scandir('content/blog/', 1), array('.', '..')) as $file) {
+foreach (getBlogPostFolders() as $blogPostFolder) {
 	
-	$postId = basename($file);
+	$postId = basename($blogPostFolder);
 	
 	$postConfig = readBlogPostConfig($postId);
 	$blogPostContent = readBlogPostExcerpt($postId);

@@ -115,6 +115,9 @@ function existsContentFile($file) {
 function readContentFile($file) {
 	return file_get_contents(_getContentFile($file));
 }
+function getBlogPostFolders() {
+	return array_diff(scandir('content/blog/', 1), array(".", ".."));
+}
 function existsBlogPost($postId) {
 	return file_exists(_getContentFile('blog/' . $postId));
 }

@@ -34,9 +34,9 @@ else {
 	
 	includeThemeFile("page-prefix.php");
 	
-	foreach (array_diff(scandir("content/blog/", 1), array(".", "..")) as $file) {
+	foreach (getBlogPostFolders() as $blogPostFolder) {
 		
-		$postId = basename($file);
+		$postId = basename($blogPostFolder);
 		
 		$postConfig = readBlogPostConfig($postId);
 		$blogPostContent = readBlogPostExcerpt($postId);
