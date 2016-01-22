@@ -4,7 +4,7 @@
 	<header>
 
 		<div class="title">
-			<h2><a href="?<?php printPostId(); ?>"><?php printPostTitle(); ?></a></h2>
+			<h2><a href="<?php printBlogPostLink(); ?>"><?php printPostTitle(); ?></a></h2>
 			<?php if (hasPostDescription()) { ?>
 				<p><?php printPostDescription(); ?></p>
 			<?php } ?>
@@ -23,7 +23,7 @@
 
 	<footer>
 		<ul class="actions">
-			<li><a href="?<?php printPostId(); ?>" class="button big">Continue Reading</a></li>
+			<li><a href="<?php printBlogPostLink(); ?>" class="button big">Continue Reading</a></li>
 		</ul>
 	</footer>
 
