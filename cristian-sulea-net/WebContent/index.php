@@ -1,16 +1,15 @@
 <?php
-header('Content-Type: text/html; charset=UTF-8');
+include '__include.php';
 
-include "__include.php";
+setContentTypeHTML();
+setIsIndex();
 
-$isIndex = true;
+include '_include-index.php';
 
-include "_include-index.php";
-
-includeThemeFile("page-prefix.php");
-includeThemeFile("index-experience.php");
-includeThemeFile("index-skills.php");
-includeThemeFile("index-languages.php");
-includeThemeFile("page-suffix.php");
+includeThemeFile('page-prefix.php');
+includeThemeFile('index-experience.php');
+includeThemeFile('index-skills.php');
+includeThemeFile('index-languages.php');
+includeThemeFile('page-suffix.php');
 
 ?>
