@@ -27,17 +27,72 @@ $MENU = array(
 $GOOGLE_ANALYTICS_TRACKING_CODE = <<<EOT
 EOT;
 
-//
-// getters & printers
+include "config/settings.php";
 
-function getBlogPostLink($postId) {
+function getBlogPostIdParam() {
 	global $BLOG_POST_ID_PARAM;
-	return 'blog.php?' . $BLOG_POST_ID_PARAM . '=' . $postId;
+	return $BLOG_POST_ID_PARAM;
+}
+
+//
+// the new sh!t
+
+global $blogPostId;
+function setBlogPostId($blogPostIdNew) {
+	global $blogPostId;
+	$blogPostId = $blogPostIdNew;
+}
+function getBlogPostId() {
+	global $blogPostId;
+	return $blogPostId;
+}
+function getBlogPostLink() {
+	return 'blog.php?' . getBlogPostIdParam() . '=' . getBlogPostId();
 }
 function printBlogPostLink() {
-	global $postId;
-	echo getBlogPostLink($postId);
+	echo getBlogPostLink();
 }
+
+global $postConfig;
+function setBlogPostConfig($blogPostConfigNew) {
+	global $postConfig;
+	$postConfig = $blogPostConfigNew;
+}
+function getBlogPostConfig($key=null) {
+	global $postConfig;
+	if (isset($key)) {
+		return $postConfig[$key];
+	} else {
+		return $postConfig;
+	}
+}
+function getBlogPostDate($format = null) {
+	if (isset($format)) {
+		return date($format, strtotime(getBlogPostConfig('date')));
+	} else {
+		return date(getBlogPostDateFormat(), strtotime(getBlogPostConfig('date')));
+	}
+}
+function printBlogPostDate($format = null) {
+	if (isset($format)) {
+		echo date($format, strtotime(getBlogPostConfig('date')));
+	} else {
+		echo date(getBlogPostDateFormat(), strtotime(getBlogPostConfig('date')));
+	}
+}
+
+global $blogPostContent;
+function setBlogPostContent($blogPostContentNew) {
+	global $blogPostContent;
+	$blogPostContent = $blogPostContentNew;
+}
+function getBlogPostContent() {
+	global $blogPostContent;
+	return $blogPostContent;
+}
+
+//
+// getters & printers
 
 function getBlogPostDateFormat() {
 	global $BLOG_POST_DATE_FORMAT;
@@ -48,11 +103,6 @@ function getMenu() {
 	global $MENU;
 	return $MENU;
 }
-
-//
-// settings
-
-include "config/settings.php";
 
 //
 // theme include
@@ -73,17 +123,49 @@ function isIndex() {
 	global $isIndex;
 	return $isIndex;
 }
+function setIsIndex() {
+	global $isIndex;
+	$isIndex = true;
+}
 function isBlog() {
 	global $isBlog;
 	return $isBlog;
+}
+function setIsBlog() {
+	global $isBlog;
+	$isBlog = true;
 }
 function isBlogFeed() {
 	global $isBlogFeed;
 	return $isBlogFeed;
 }
+function setIsBlogFeed() {
+	global $isBlogFeed;
+	$isBlogFeed = true;
+}
 function isBlogPost() {
 	global $isBlogPost;
 	return $isBlogPost;
+}
+function setIsBlogPost() {
+	global $isBlogPost;
+	$isBlogPost = true;
+}
+
+//
+// page content type
+
+function setContentType($contentType) {
+	header('Content-Type: ' . $contentType . '; charset=UTF-8');
+}
+function setContentTypeHTML() {
+	setContentType('text/html');
+}
+function setContentTypeRSS() {
+	setContentType('application/rss+xml');
+}
+function setContentTypeXML() {
+	setContentType('application/rss+xml');
 }
 
 //
@@ -115,20 +197,23 @@ function existsContentFile($file) {
 function readContentFile($file) {
 	return file_get_contents(_getContentFile($file));
 }
+
 function getBlogPostFolders() {
 	return array_diff(scandir('content/blog/', 1), array(".", ".."));
 }
-function existsBlogPost($postId) {
-	return file_exists(_getContentFile('blog/' . $postId));
+
+function existsBlogPost() {
+	return getBlogPostId() && file_exists('content/blog/' . getBlogPostId());
 }
-function readBlogPostContent($postId) {
-	return file_get_contents('content/blog/' . $postId . '/content.html');
+function readBlogPostConfig() {
+	setBlogPostConfig(json_decode(file_get_contents('content/blog/' . getBlogPostId() . '/config.json'), TRUE));
 }
-function readBlogPostConfig($postId) {
-	return json_decode(file_get_contents('content/blog/' . $postId . '/config.json'), TRUE);
-}
-function readBlogPostExcerpt($postId) {
-	return file_get_contents('content/blog/' . $postId . '/excerpt.html');
+function readBlogPostContent($useExcerpt = false) {
+	if ($useExcerpt) {
+		setBlogPostContent(file_get_contents('content/blog/' . getBlogPostId() . '/excerpt.html'));
+	} else {
+		setBlogPostContent(file_get_contents('content/blog/' . getBlogPostId() . '/content.html'));
+	}
 }
 
 //
@@ -288,10 +373,10 @@ function printHtmlHeadLinkIcon() {
 }
 
 function printHtmlHeadLinkCanonical() {
-	echo 'http://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+	echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 }
 function printHtmlHeadLinkShortlink() {
-	echo 'http://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+	echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 }
 
 //
