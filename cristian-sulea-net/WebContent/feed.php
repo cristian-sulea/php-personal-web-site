@@ -1,9 +1,8 @@
 <?php
-header('Content-Type: application/rss+xml; charset=UTF-8');
-
 include '__include.php';
 
-$isBlogFeed = true;
+setContentTypeRSS();
+setIsBlogFeed();
 
 include '_include-blog.php';
 
@@ -26,12 +25,12 @@ echo PHP_EOL;
 
 foreach (getBlogPostFolders() as $blogPostFolder) {
 	
-	$postId = basename($blogPostFolder);
+	setBlogPostId(basename($blogPostFolder));
 	
-	$postConfig = readBlogPostConfig($postId);
-	$blogPostContent = readBlogPostExcerpt($postId);
+	readBlogPostConfig();
+	readBlogPostContent(true);
 	
-	$postLink = getAbsoluteLink(getBlogPostLink($postId));
+	$postLink = getAbsoluteLink(getBlogPostLink());
 	
 	echo '<item>' . PHP_EOL;
 	
