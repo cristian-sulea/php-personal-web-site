@@ -25,7 +25,7 @@
 <!--[if lte IE 9]><link rel="stylesheet" href="<?php printThemeFile('css/ie9.css'); ?>" /><![endif]-->
 <!--[if lte IE 8]><link rel="stylesheet" href="<?php printThemeFile('css/ie8.css'); ?>" /><![endif]-->
 
-<?php printGoogleAnalyticsTrackingCode(); ?>
+<?php printHtmlHeadGoogleAnalyticsTrackingCode(); ?>
 
 </head>
 <body>

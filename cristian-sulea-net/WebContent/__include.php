@@ -41,6 +41,10 @@ function getMenu() {
 	global $MENU;
 	return $MENU;
 }
+function getGoogleAnalyticsTrackingCode() {
+	global $GOOGLE_ANALYTICS_TRACKING_CODE;
+	echo $GOOGLE_ANALYTICS_TRACKING_CODE;
+}
 
 //
 // the new sh!t
@@ -378,13 +382,12 @@ function printHtmlHeadLinkShortlink() {
 	echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 }
 
+function printHtmlHeadGoogleAnalyticsTrackingCode() {
+	echo getGoogleAnalyticsTrackingCode();
+}
+
 //
 // utility funtions
-
-function printGoogleAnalyticsTrackingCode() {
-	global $GOOGLE_ANALYTICS_TRACKING_CODE;
-	echo $GOOGLE_ANALYTICS_TRACKING_CODE;
-}
 
 function getAbsoluteLink($page='') {
 
