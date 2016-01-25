@@ -10,11 +10,6 @@ function printBlogLogo() {
 //
 // print
 
-function printPostTitle() {
-	global $postConfig;
-	echo $postConfig["title"];
-}
-
 function printPostDate($format = null) {
 	global $postConfig;
 	

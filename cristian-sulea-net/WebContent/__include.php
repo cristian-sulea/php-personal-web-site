@@ -33,6 +33,14 @@ function getBlogPostIdParam() {
 	global $BLOG_POST_ID_PARAM;
 	return $BLOG_POST_ID_PARAM;
 }
+function getBlogPostDateFormat() {
+	global $BLOG_POST_DATE_FORMAT;
+	return $BLOG_POST_DATE_FORMAT;
+}
+function getMenu() {
+	global $MENU;
+	return $MENU;
+}
 
 //
 // the new sh!t
@@ -44,6 +52,7 @@ function setBlogPostId($blogPostIdNew) {
 }
 function getBlogPostId() {
 	global $blogPostId;
+	checkIfIsSet($blogPostId);
 	return $blogPostId;
 }
 function getBlogPostLink() {
@@ -60,11 +69,18 @@ function setBlogPostConfig($blogPostConfigNew) {
 }
 function getBlogPostConfig($key=null) {
 	global $postConfig;
+	checkIfIsSet($postConfig);
 	if (isset($key)) {
 		return $postConfig[$key];
 	} else {
 		return $postConfig;
 	}
+}
+function getPostTitle() {
+	return getBlogPostConfig('title');
+}
+function printPostTitle() {
+	echo getPostTitle();
 }
 function getBlogPostDate($format = null) {
 	if (isset($format)) {
@@ -74,11 +90,7 @@ function getBlogPostDate($format = null) {
 	}
 }
 function printBlogPostDate($format = null) {
-	if (isset($format)) {
-		echo date($format, strtotime(getBlogPostConfig('date')));
-	} else {
-		echo date(getBlogPostDateFormat(), strtotime(getBlogPostConfig('date')));
-	}
+	echo getBlogPostDate($format);
 }
 
 global $blogPostContent;
@@ -89,19 +101,6 @@ function setBlogPostContent($blogPostContentNew) {
 function getBlogPostContent() {
 	global $blogPostContent;
 	return $blogPostContent;
-}
-
-//
-// getters & printers
-
-function getBlogPostDateFormat() {
-	global $BLOG_POST_DATE_FORMAT;
-	return $BLOG_POST_DATE_FORMAT;
-}
-
-function getMenu() {
-	global $MENU;
-	return $MENU;
 }
 
 //
@@ -398,6 +397,21 @@ function getAbsoluteLink($page='') {
 
 function errorUnknownPageType() {
 	trigger_error("unknown page type", E_USER_ERROR);
+}
+
+function checkIfIsSet($param) {
+	if (!isset($param)) {
+		trigger_error('parameter <b>' . get_var_name($param) . '</b> not set', E_USER_ERROR);
+	}
+}
+
+function get_var_name($var) {
+	foreach($GLOBALS as $var_name => $value) {
+		if ($value === $var) {
+			return $var_name;
+		}
+	}
+	return false;
 }
 
 function getGravatarImg( $email ) {
