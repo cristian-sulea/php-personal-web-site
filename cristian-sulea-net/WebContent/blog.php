@@ -11,8 +11,7 @@ if (isset($_GET[$BLOG_POST_ID_PARAM])) {
 	setBlogPostId($_GET[$BLOG_POST_ID_PARAM]);
 	
 	if (!existsBlogPost()) {
-		header('Location: blog.php');
-		exit();
+		redirect('blog.php');
 	}
 	
 	setIsBlogPost();

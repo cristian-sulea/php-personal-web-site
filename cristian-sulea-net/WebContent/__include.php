@@ -414,6 +414,11 @@ function get_var_name($var) {
 	return false;
 }
 
+function redirect($url) {
+	header('Location: ' . $url);
+	exit();
+}
+
 function getGravatarImg( $email ) {
 	$url = 'http://www.gravatar.com/avatar/';
 	$url .= md5( strtolower( trim( $email ) ) );

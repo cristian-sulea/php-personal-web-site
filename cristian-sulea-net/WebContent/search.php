@@ -2,8 +2,7 @@
 header('Content-Type: text/html; charset=UTF-8');
 
 if (!isset($_GET['q']) || empty($_GET['q'])) {
-	header('Location: blog.php');
-	exit();
+	redirect('blog.php');
 }
 
 include '__include.php';
