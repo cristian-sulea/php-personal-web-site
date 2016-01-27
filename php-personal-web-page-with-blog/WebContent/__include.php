@@ -27,6 +27,30 @@ $MENU = array(
 $GOOGLE_ANALYTICS_TRACKING_CODE = <<<EOT
 EOT;
 
+function getBlogTitle() {
+	global $BLOG_TITLE;
+	return $BLOG_TITLE;
+}
+function printBlogTitle() {
+	echo getBlogTitle();
+}
+
+function getBlogDescription() {
+	global $BLOG_DESCRIPTION;
+	echo $BLOG_DESCRIPTION;
+}
+function printBlogDescription() {
+	echo getBlogDescription();
+}
+
+function getBlogKeywords() {
+	global $BLOG_KEYWORDS;
+	echo $BLOG_KEYWORDS;
+}
+function printBlogKeywords($prefix = '', $sufix = '') {
+	echo $prefix . getBlogKeywords() . $sufix;
+}
+
 function getBlogPostIdParam() {
 	global $BLOG_POST_ID_PARAM;
 	return $BLOG_POST_ID_PARAM;
@@ -35,10 +59,12 @@ function getBlogPostDateFormat() {
 	global $BLOG_POST_DATE_FORMAT;
 	return $BLOG_POST_DATE_FORMAT;
 }
+
 function getMenu() {
 	global $MENU;
 	return $MENU;
 }
+
 function getGoogleAnalyticsTrackingCode() {
 	global $GOOGLE_ANALYTICS_TRACKING_CODE;
 	echo $GOOGLE_ANALYTICS_TRACKING_CODE;
@@ -330,18 +356,7 @@ function printAuthorProfiles() {
 	}
 }
 
-function printBlogTitle() {
-	global $BLOG_TITLE;
-	echo $BLOG_TITLE;
-}
-function printBlogDescription() {
-	global $BLOG_DESCRIPTION;
-	echo $BLOG_DESCRIPTION;
-}
-function printBlogKeywords($prefix = '', $sufix = '') {
-	global $BLOG_KEYWORDS;
-	echo $prefix . $BLOG_KEYWORDS . $sufix;
-}
+
 
 function printMenuItems() {
 	foreach (getMenu() as $menu) {

@@ -16,8 +16,8 @@ echo '<channel>' . PHP_EOL;
 
 echo PHP_EOL;
 
-echo '<title>' . $BLOG_TITLE . '</title>' . PHP_EOL;
-echo '<description>' . $BLOG_DESCRIPTION . '</description>' . PHP_EOL;
+echo '<title>' . getBlogTitle() . '</title>' . PHP_EOL;
+echo '<description>' . getBlogDescription() . '</description>' . PHP_EOL;
 echo '<link>' . getAbsoluteLink() . '</link>' . PHP_EOL;
 echo '<atom:link href="' . getAbsoluteLink('feed.php') . '" rel="self" type="application/rss+xml" />' . PHP_EOL;
 
