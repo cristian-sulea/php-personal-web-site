@@ -27,8 +27,6 @@ $MENU = array(
 $GOOGLE_ANALYTICS_TRACKING_CODE = <<<EOT
 EOT;
 
-include "config/settings.php";
-
 function getBlogPostIdParam() {
 	global $BLOG_POST_ID_PARAM;
 	return $BLOG_POST_ID_PARAM;
@@ -50,10 +48,90 @@ function printGoogleAnalyticsTrackingCode() {
 }
 
 //
-// theme include
+// include
 
-if (existsThemeFile("_include-theme.php")) {
-	include _getThemeFile("_include-theme.php");
+include 'config/settings.php';
+
+includeThemeFileIfExists('_include-theme.php');
+
+//
+// page type
+
+$isIndex     = false;
+$isBlog      = false;
+$isBlogFeed  = false;
+$isBlogPost  = false;
+
+function isIndex() {
+	global $isIndex;
+	return $isIndex;
+}
+function setIsIndex() {
+	global $isIndex;
+	$isIndex = true;
+}
+function isBlog() {
+	global $isBlog;
+	return $isBlog;
+}
+function setIsBlog() {
+	global $isBlog;
+	$isBlog = true;
+}
+function isBlogFeed() {
+	global $isBlogFeed;
+	return $isBlogFeed;
+}
+function setIsBlogFeed() {
+	global $isBlogFeed;
+	$isBlogFeed = true;
+}
+function isBlogPost() {
+	global $isBlogPost;
+	return $isBlogPost;
+}
+function setIsBlogPost() {
+	global $isBlogPost;
+	$isBlogPost = true;
+}
+
+//
+// page content type
+
+function setContentType($contentType) {
+	header('Content-Type: ' . $contentType . '; charset=UTF-8');
+}
+function setContentTypeHTML() {
+	setContentType('text/html');
+}
+function setContentTypeRSS() {
+	setContentType('application/rss+xml');
+}
+function setContentTypeXML() {
+	setContentType('application/rss+xml');
+}
+
+//
+// themes files
+
+function getThemeFile($file) {
+	global $THEME;
+	return "themes/" . $THEME . "/" . $file;
+}
+
+function printThemeFile($file) {
+	echo getThemeFile($file);
+}
+
+function includeThemeFile($file) {
+	include getThemeFile($file);
+}
+
+function includeThemeFileIfExists($file) {
+	$file = getThemeFile($file);
+	if (file_exists($file)) {
+		include $file;
+	}
 }
 
 //
@@ -184,79 +262,11 @@ function printBlogPostContent() {
 	echo $blogPostContentBuffer;
 }
 
-//
-// page type
 
-$isIndex     = false;
-$isBlog      = false;
-$isBlogFeed  = false;
-$isBlogPost  = false;
 
-function isIndex() {
-	global $isIndex;
-	return $isIndex;
-}
-function setIsIndex() {
-	global $isIndex;
-	$isIndex = true;
-}
-function isBlog() {
-	global $isBlog;
-	return $isBlog;
-}
-function setIsBlog() {
-	global $isBlog;
-	$isBlog = true;
-}
-function isBlogFeed() {
-	global $isBlogFeed;
-	return $isBlogFeed;
-}
-function setIsBlogFeed() {
-	global $isBlogFeed;
-	$isBlogFeed = true;
-}
-function isBlogPost() {
-	global $isBlogPost;
-	return $isBlogPost;
-}
-function setIsBlogPost() {
-	global $isBlogPost;
-	$isBlogPost = true;
-}
 
-//
-// page content type
 
-function setContentType($contentType) {
-	header('Content-Type: ' . $contentType . '; charset=UTF-8');
-}
-function setContentTypeHTML() {
-	setContentType('text/html');
-}
-function setContentTypeRSS() {
-	setContentType('application/rss+xml');
-}
-function setContentTypeXML() {
-	setContentType('application/rss+xml');
-}
 
-//
-// theme
-
-function _getThemeFile($file) {
-	global $THEME;
-	return "themes/" . $THEME . "/" . $file;
-}
-function includeThemeFile($file) {
-	include _getThemeFile($file);
-}
-function existsThemeFile($file) {
-	return file_exists(_getThemeFile($file));
-}
-function printThemeFile($file) {
-	echo _getThemeFile($file);
-}
 
 //
 // content
