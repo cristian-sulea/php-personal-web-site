@@ -2,8 +2,8 @@
 <article>
 
 	<header>
-		<h2><a href="?<?php printPostId(); ?>"><?php printPostTitle(); ?></a></h2>
-		<time datetime="<?php printPostDateForTimeTag(); ?>"><?php printPostDate(); ?></time>
+		<h2><a href="?<?php printPostId(); ?>"><?php printBlogPostTitle(); ?></a></h2>
+		<time datetime="<?php printBlogPostDateForHtmlTimeTag(); ?>"><?php printBlogPostDate(); ?></time>
 		<a href="<?php printPostAuthorWebsite(); ?>" title="<?php printPostAuthor(); ?>"><?php printPostAuthor(); ?></a>
 	</header>
 

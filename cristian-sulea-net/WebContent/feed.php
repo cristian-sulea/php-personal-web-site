@@ -35,14 +35,14 @@ foreach (getBlogPostFolders() as $blogPostFolder) {
 	echo '<item>' . PHP_EOL;
 	
 	echo '	<title>';
-	printPostTitle();
+	printBlogPostTitle();
 	echo '</title>' . PHP_EOL;
 	
 	echo '	<link>' . $postLink . '</link>' . PHP_EOL;
 	echo '	<guid>' . $postLink . '</guid>' . PHP_EOL;
 	
 	echo '	<pubDate>';
-	printPostDate('D, d M Y H:i:s O');
+	printBlogPostDate('D, d M Y H:i:s O');
 	echo '</pubDate>' . PHP_EOL;
 	
 	echo '	<dc:creator><![CDATA[';
