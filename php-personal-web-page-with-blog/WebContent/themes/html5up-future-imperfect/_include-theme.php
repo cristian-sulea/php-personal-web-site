@@ -31,21 +31,21 @@ function theme_getAuthorProfileIconClass($title) {
 	}
 }
 
-function theme_printBlogPostContent($blogPostContent) {
+function updateBlogPostContent($blogPostContentBuffer) {
 	
 	//
 	// replace "<pre>" with "<pre><code>"
 	
-	$blogPostContent = str_replace(
+	$blogPostContentBuffer = str_replace(
 			array('<pre>', '</pre>'),
 			array('<pre><code>', '</code></pre>'),
-			$blogPostContent);
+			$blogPostContentBuffer);
 	
 	//
 	// add "image" class to <img> parent (<a>)
 	
 	$dom = new DOMDocument();
-	$dom->loadHTML($blogPostContent);
+	$dom->loadHTML($blogPostContentBuffer);
 	
 	foreach ( $dom->getElementsByTagName ( "img" ) as $img ) {
 		if ($img->parentNode->nodeName == "a") {
@@ -53,12 +53,12 @@ function theme_printBlogPostContent($blogPostContent) {
 		}
 	}
 	
-	$blogPostContent = preg_replace('/^<!DOCTYPE.+?>/', '', str_replace( array('<html>', '</html>', '<body>', '</body>'), array('', '', '', ''), $dom->saveHTML()));
+	$blogPostContentBuffer = preg_replace('/^<!DOCTYPE.+?>/', '', str_replace( array('<html>', '</html>', '<body>', '</body>'), array('', '', '', ''), $dom->saveHTML()));
 	
 	//
-	// print updated content
+	// return updated content
 	
-	echo $blogPostContent;
+	return $blogPostContentBuffer;
 }
 
 function theme_printSearchResults($searchResults) {

@@ -152,13 +152,36 @@ function printBlogPostResources() {
 // blog post content
 
 global $blogPostContent;
+
 function setBlogPostContent($blogPostContentNew) {
 	global $blogPostContent;
 	$blogPostContent = $blogPostContentNew;
 }
+
 function getBlogPostContent() {
 	global $blogPostContent;
 	return $blogPostContent;
+}
+
+function printBlogPostContent() {
+	
+	$blogPostContentBuffer = getBlogPostContent();
+	
+	$blogPostContentBuffer = str_replace('="images/', '="content/blog/' . getBlogPostId() . '/images/', $blogPostContentBuffer);
+	
+	$blogPostContentBuffer = str_replace(
+			array('<pre>' . "\r\n",
+					'<pre>' . "\r",
+					'<pre>' . "\n",
+					'<pre>' . "\n\r"),
+			'<pre>',
+			$blogPostContentBuffer);
+	
+	if (!isBlogFeed() && function_exists('updateBlogPostContent')) {
+		$blogPostContentBuffer = updateBlogPostContent($blogPostContentBuffer);
+	}
+	
+	echo $blogPostContentBuffer;
 }
 
 //
