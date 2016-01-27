@@ -6,9 +6,9 @@ setIsBlog();
 
 include '_include-blog.php';
 
-if (isset($_GET[$BLOG_POST_ID_PARAM])) {
+if (isset($_GET[getBlogPostIdParam()])) {
 	
-	setBlogPostId($_GET[$BLOG_POST_ID_PARAM]);
+	setBlogPostId($_GET[getBlogPostIdParam()]);
 	
 	if (!existsBlogPost()) {
 		redirect('blog.php');
