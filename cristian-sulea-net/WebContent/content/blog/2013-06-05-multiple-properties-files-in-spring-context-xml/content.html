@@ -1,0 +1,43 @@
+<p>
+	Spring allows to externalize string literals in its context configuration files into external properties files,
+	in order to separate application specific settings from framework specific configuration.
+</p>
+
+<h3>&lt;context:property-placeholder/&gt;</h3>
+
+<p>
+	This element activates the replacement of ${...} placeholders, resolved against the specified properties file (as a Spring resource location).
+</p>
+
+<pre>
+&lt;context:property-placeholder
+    location = &quot;classpath:dao.properties,
+                classpath:services.properties,
+                classpath:user.properties,
+                /WEB-INF/config/config.properties&quot;
+    ignore-unresolvable=&quot;true&quot;/&gt;
+</pre>
+
+<h3>PropertyPlaceholderConfigurer</h3>
+
+<p>
+	A property resource configurer that resolves placeholders in bean property values of context definitions.
+</p>
+
+<pre>
+&lt;bean
+    id=&quot;propertyConfigurer&quot;
+    class=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&gt;
+ 
+    &lt;property name=&quot;locations&quot;&gt;
+        &lt;list&gt;
+            &lt;value&gt;classpath:dao.properties&lt;/value&gt;
+            &lt;value&gt;classpath:services.properties&lt;/value&gt;
+            &lt;value&gt;classpath:user.properties&lt;/value&gt;
+            &lt;value&gt;/WEB-INF/config/config.properties&lt;/value&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+ 
+    &lt;property name=&quot;ignoreUnresolvablePlaceholders&quot; value=&quot;true&quot;/&gt;
+&lt;/bean&gt;
+</pre>

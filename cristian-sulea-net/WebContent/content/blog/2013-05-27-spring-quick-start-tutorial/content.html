@@ -1,0 +1,122 @@
+<p>
+	The <a href="http://spring.io">Spring Framework</a> is an open source application framework and inversion of control container for the Java platform.
+	The framework's core features can be used by any Java application, but there are extensions for building web applications on top of the Java EE platform.
+	Although the framework does not impose any specific programming model, it has become popular in the Java community as an alternative to, replacement for,
+	or even addition to the Enterprise JavaBean (EJB) model. (<a href="http://en.wikipedia.org/wiki/Spring_Framework">Wikipedia / Spring Framework</a>)
+</p>
+<p>
+	A key element of Spring is infrastructural support at the application level: Spring focuses on the "plumbing" of enterprise applications
+	so that teams can focus on application-level business logic, without unnecessary ties to specific deployment environments.
+</p>
+
+
+<h3>Spring dependencies</h3>
+
+<p>
+	The Spring dependencies are available for download via <a href="http://search.maven.org">Maven Central Repository</a>.
+</p>
+
+<code>pom.xml</code>
+<pre>
+&lt;project
+    xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0
+                        http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+ 
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+ 
+    &lt;groupId&gt;spring-tutorials&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-quick-tutorial&lt;/artifactId&gt;
+    &lt;version&gt;1.0&lt;/version&gt;
+ 
+    &lt;name&gt;Spring - Quick tutorial&lt;/name&gt;
+ 
+    &lt;dependencies&gt;
+ 
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+            &lt;version&gt;3.1.4.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+ 
+    &lt;/dependencies&gt;
+ 
+&lt;/project&gt;
+</pre>
+
+
+<h3>Spring bean (the java class)</h3>
+
+<code>SpringBean.java</code>
+<pre>
+package spring.quick.tutorial;
+ 
+/**
+ * A simple spring bean.
+ */
+public class SpringBean {
+ 
+    private String name;
+ 
+    public void setName(String name) {
+        this.name = name;
+    }
+ 
+    public String getName() {
+        return name;
+    }
+ 
+    public void printName() {
+        System.out.println(&quot;name: &quot; + name);
+    }
+}
+</pre>
+
+
+<h3>Spring bean configuration file</h3>
+
+<code>spring.xml</code>
+<pre>
+&lt;beans
+    xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd&quot;&gt;
+ 
+    &lt;bean id=&quot;bean&quot; class=&quot;spring.quick.tutorial.SpringBean&quot;&gt;
+        &lt;property name=&quot;name&quot; value=&quot;Cristian Sulea&quot; /&gt;
+    &lt;/bean&gt;
+ 
+&lt;/beans&gt;
+</pre>
+
+
+<h3>Run It</h3>
+
+<code>SpringQuickTutorial.java</code>
+<pre>
+package spring.quick.tutorial;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class SpringQuickTutorial {
+
+    public static void main(String[] args) {
+
+        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;spring.xml&quot;);
+        SpringBean bean = (SpringBean) context.getBean(&quot;bean&quot;);
+
+        bean.printName();
+    }
+}
+</pre>
+
+<p>
+	Output:
+</p>
+
+<pre>
+name: Cristian Sulea
+</pre>

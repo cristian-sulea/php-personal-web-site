@@ -1,0 +1,50 @@
+<skills title="Skills &amp; Expertise">
+
+  <group>
+    <title>Technical skills and competences</title>
+    <description>
+      <![CDATA[
+        <ul>
+          <li>Software Design</li>
+          <li>Software Development</li>
+          <li>Software Engineering</li>
+          <li>Spring</li>
+          <li>Hibernate</li>
+          <li>SQL</li>
+          <li>JUnit</li>
+          <li>Log4j</li>
+          <li>Apache Commons</li>
+          <li>XStream</li>
+          <li>Swing</li>
+          <li>XML</li>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>PHP</li>
+        </ul>
+      ]]>
+    </description>
+  </group>
+
+  <group>
+    <title>Computer skills and competences</title>
+    <description>
+      <![CDATA[
+        <ul>
+          <li>Eclipse</li>
+          <li>Maven</li>
+          <li>SVN</li>
+          <li>Ant</li>
+          <li>IBM Rational</li>
+          <li>WebSphere</li>
+          <li>Tomcat</li>
+          <li>Jetty</li>
+          <li>MySQL</li>
+          <li>DB2</li>
+          <li>Linux (basic)</li>
+        </ul>
+      ]]>
+    </description>
+  </group>
+
+</skills>

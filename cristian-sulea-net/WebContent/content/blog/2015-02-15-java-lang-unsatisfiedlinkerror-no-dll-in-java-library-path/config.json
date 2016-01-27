@@ -1,0 +1,8 @@
+{
+	"title": "java.lang.UnsatisfiedLinkError no ***.dll in java.library.path",
+	"date":  "Feb 15 2015",
+	"keywords": ["java"],
+	"resources": [
+		["Stack Overflow", "http://stackoverflow.com/questions/1403788/java-lang-unsatisfiedlinkerror-no-dll-in-java-library-path"]
+	]
+}
