@@ -21,9 +21,9 @@
 
 	<?php printBlogPostContent(); ?>
 
-	<?php if (hasPostResources()) { ?>
+	<?php if (hasBlogPostResources()) { ?>
 		<?php echo '<hr />'; ?>
-		<?php printPostResources(); ?>
+		<?php printBlogPostResources(); ?>
 	<?php } ?>
 
 </article>

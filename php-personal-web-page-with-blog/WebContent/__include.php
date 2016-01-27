@@ -78,9 +78,6 @@ function printBlogPostLink() {
 
 //
 // blog post config
-// - title
-// - date
-// - 
 
 global $postConfig;
 function setBlogPostConfig($blogPostConfigNew) {
@@ -91,17 +88,31 @@ function getBlogPostConfig($key=null) {
 	global $postConfig;
 	checkIfIsSet($postConfig);
 	if (isset($key)) {
-		return $postConfig[$key];
+		if (isset($postConfig[$key])) {
+			return $postConfig[$key];
+		} else {
+			return null;
+		}
 	} else {
 		return $postConfig;
 	}
 }
+
+//
+// blog post config
+// - title
+
 function getBlogPostTitle() {
 	return getBlogPostConfig('title');
 }
 function printBlogPostTitle() {
 	echo getBlogPostTitle();
 }
+
+//
+// blog post config
+// - date
+
 function getBlogPostDate($format = null) {
 	if (isset($format)) {
 		return date($format, strtotime(getBlogPostConfig('date')));
@@ -114,6 +125,27 @@ function printBlogPostDate($format = null) {
 }
 function printBlogPostDateForHtmlTimeTag() {
 	echo getBlogPostDate('Y-m-d');
+}
+
+//
+// blog post config
+// - resources
+
+function getBlogPostResources() {
+	return getBlogPostConfig('resources');
+}
+function hasBlogPostResources() {
+	return null !== getBlogPostResources();
+}
+function printBlogPostResources() {
+	global $postConfig;
+	echo  PHP_EOL;
+	echo '<b>Resources</b>' . PHP_EOL;
+	echo '<ul id="blog-post-resources">' . PHP_EOL;
+	foreach (getBlogPostResources() as $resource) {
+		echo '<li><a href="' . $resource[1] . '">' . $resource[0] . '</a></li>' . PHP_EOL;
+	}
+	echo '</ul>';
 }
 
 //

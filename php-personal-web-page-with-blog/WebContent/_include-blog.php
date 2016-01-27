@@ -71,16 +71,14 @@ function hasPostImage() {
 }
 
 function printPostImage() {
-	global $postId;
 	global $postConfig;
-	echo "content/blog/" . $postId . "/images/". $postConfig["image"];
+	echo "content/blog/" . getBlogPostId() . "/images/". $postConfig["image"];
 }
 
 function printBlogPostContent() {
 	global $blogPostContent;
-	global $postId;
 	
-	$blogPostContent = str_replace('="images/', '="content/blog/' . $postId . '/images/', $blogPostContent);
+	$blogPostContent = str_replace('="images/', '="content/blog/' . getBlogPostId() . '/images/', $blogPostContent);
 	
 	$blogPostContent = str_replace(
 			array('<pre>' . "\r\n",
@@ -97,22 +95,6 @@ function printBlogPostContent() {
 	else {
 		echo $blogPostContent;
 	}
-}
-
-function hasPostResources() {
-	global $postConfig;
-	return isset($postConfig["resources"]);
-}
-
-function printPostResources() {
-	global $postConfig;
-	echo  PHP_EOL;
-	echo '<b>Resources</b>' . PHP_EOL;
-	echo '<ul id="blog-post-resources">' . PHP_EOL;
-	foreach ($postConfig["resources"] as $resource) {
-		echo '<li><a href="' . $resource[1] . '">' . $resource[0] . '</a></li>' . PHP_EOL;
-	}
-	echo '</ul>';
 }
 
 ?>
