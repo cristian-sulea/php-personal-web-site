@@ -1,7 +1,7 @@
 <?php
 
 //
-// settings
+// default settings
 
 $THEME = "_default";
 
@@ -45,6 +45,9 @@ function getGoogleAnalyticsTrackingCode() {
 	global $GOOGLE_ANALYTICS_TRACKING_CODE;
 	echo $GOOGLE_ANALYTICS_TRACKING_CODE;
 }
+function printGoogleAnalyticsTrackingCode() {
+	echo getGoogleAnalyticsTrackingCode();
+}
 
 //
 // theme include
@@ -72,6 +75,12 @@ function getBlogPostLink() {
 function printBlogPostLink() {
 	echo getBlogPostLink();
 }
+
+//
+// blog post config
+// - title
+// - date
+// - 
 
 global $postConfig;
 function setBlogPostConfig($blogPostConfigNew) {
@@ -106,6 +115,9 @@ function printBlogPostDate($format = null) {
 function printBlogPostDateForHtmlTimeTag() {
 	echo getBlogPostDate('Y-m-d');
 }
+
+//
+// blog post content
 
 global $blogPostContent;
 function setBlogPostContent($blogPostContentNew) {
@@ -386,10 +398,6 @@ function printHtmlHeadLinkCanonical() {
 }
 function printHtmlHeadLinkShortlink() {
 	echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-}
-
-function printHtmlHeadGoogleAnalyticsTrackingCode() {
-	echo getGoogleAnalyticsTrackingCode();
 }
 
 //
