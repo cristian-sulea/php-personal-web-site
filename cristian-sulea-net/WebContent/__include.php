@@ -47,6 +47,13 @@ function getGoogleAnalyticsTrackingCode() {
 }
 
 //
+// theme include
+
+if (existsThemeFile("_include-theme.php")) {
+	include _getThemeFile("_include-theme.php");
+}
+
+//
 // the new sh!t
 
 global $blogPostId;
@@ -80,11 +87,11 @@ function getBlogPostConfig($key=null) {
 		return $postConfig;
 	}
 }
-function getPostTitle() {
+function getBlogPostTitle() {
 	return getBlogPostConfig('title');
 }
-function printPostTitle() {
-	echo getPostTitle();
+function printBlogPostTitle() {
+	echo getBlogPostTitle();
 }
 function getBlogPostDate($format = null) {
 	if (isset($format)) {
@@ -96,6 +103,9 @@ function getBlogPostDate($format = null) {
 function printBlogPostDate($format = null) {
 	echo getBlogPostDate($format);
 }
+function printBlogPostDateForHtmlTimeTag() {
+	echo getBlogPostDate('Y-m-d');
+}
 
 global $blogPostContent;
 function setBlogPostContent($blogPostContentNew) {
@@ -105,13 +115,6 @@ function setBlogPostContent($blogPostContentNew) {
 function getBlogPostContent() {
 	global $blogPostContent;
 	return $blogPostContent;
-}
-
-//
-// theme include
-
-if (existsThemeFile("_include-theme.php")) {
-	include _getThemeFile("_include-theme.php");
 }
 
 //
@@ -269,6 +272,9 @@ function printMenuItems() {
 	}
 }
 
+//
+// print HTML components
+
 function printHtmlHeadTitle() {
 	
 	if (isIndex()) {
@@ -278,7 +284,7 @@ function printHtmlHeadTitle() {
 	else if (isBlog()) {
 		
 		if (isBlogPost()) {
-			printPostTitle();
+			printBlogPostTitle();
 			echo ", ";
 		}
 		
@@ -301,7 +307,7 @@ function printHtmlHeadMetaDescription() {
 	else if (isBlog()) {
 		
 		if (isBlogPost()) {
-			printPostTitle();
+			printBlogPostTitle();
 		}
 		
 		else {

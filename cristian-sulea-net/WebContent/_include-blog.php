@@ -10,21 +10,6 @@ function printBlogLogo() {
 //
 // print
 
-function printPostDate($format = null) {
-	global $postConfig;
-	
-	if (isset($format)) {
-		echo date($format, strtotime($postConfig["date"])); 
-	} else {
-		echo date(getBlogPostDateFormat(), strtotime($postConfig["date"]));
-	}
-}
-
-function printPostDateForTimeTag() {
-	global $postConfig;
-	echo date("Y-m-d", strtotime($postConfig["date"]));
-}
-
 function printBlogPostKeywords($prefix = '', $sufix = '') {
 	global $postConfig;
 	
