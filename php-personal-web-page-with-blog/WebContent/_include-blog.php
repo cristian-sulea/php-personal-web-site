@@ -1,13 +1,6 @@
 <?php
 
 //
-// logo
-
-function printBlogLogo() {
-	echo "config/blog-logo.jpg";
-}
-
-//
 // print
 
 function printBlogPostKeywords($prefix = '', $sufix = '') {

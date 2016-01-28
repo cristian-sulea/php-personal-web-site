@@ -295,6 +295,14 @@ function printIndexLanguages() {
 }
 
 //
+// blog
+// - logo
+
+function printBlogLogo() {
+	echo "config/blog-logo.jpg";
+}
+
+//
 // blog post ID
 
 global $blogPostId;
