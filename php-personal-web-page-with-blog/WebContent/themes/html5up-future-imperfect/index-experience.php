@@ -4,7 +4,7 @@
 	<header>
 
 		<div class="title">
-			<h2><?php printExperienceTitle(); ?></h2>
+			<h2><?php printIndexExperienceTitle(); ?></h2>
 		</div>
 
 	</header>
@@ -17,6 +17,6 @@
 		</p>
 		<?php echo $description ?>
 	<?php }; ?>
-	<?php printExperience(); ?>
+	<?php printIndexExperience(); ?>
 
 </article>

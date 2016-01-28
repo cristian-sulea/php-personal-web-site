@@ -4,7 +4,7 @@
 	<header>
 
 		<div class="title">
-			<h2><?php printSkillsTitle(); ?></h2>
+			<h2><?php printIndexSkillsTitle(); ?></h2>
 		</div>
 
 	</header>
@@ -13,6 +13,6 @@
 		<h3><?php echo $title; ?></h3>
 		<?php echo $description ?>
 	<?php }; ?>
-	<?php printSkills(); ?>
+	<?php printIndexSkills(); ?>
 
 </article>

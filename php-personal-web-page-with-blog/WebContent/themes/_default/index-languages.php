@@ -1,7 +1,7 @@
 <article>
 
 	<header>
-		<h2><?php printLanguagesTitle(); ?></h2>
+		<h2><?php printIndexLanguagesTitle(); ?></h2>
 	</header>
 
 	<?php function printLanguagesLanguage($name, $level) { ?>
@@ -10,6 +10,6 @@
 			<li><?php echo $level ?></li>
 		</ul>
 	<?php }; ?>
-	<?php printLanguages(); ?>
+	<?php printIndexLanguages(); ?>
 
 </article>

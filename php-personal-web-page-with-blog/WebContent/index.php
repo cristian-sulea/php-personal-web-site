@@ -4,7 +4,9 @@ include '__include.php';
 setContentTypeHTML();
 setIsIndex();
 
-include '_include-index.php';
+readIndexExperience();
+readIndexSkills();
+readIndexLanguages();
 
 includeThemeFile('page-prefix.php');
 includeThemeFile('index-experience.php');

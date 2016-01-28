@@ -4,7 +4,7 @@
 	<header>
 
 		<div class="title">
-			<h2><?php printLanguagesTitle(); ?></h2>
+			<h2><?php printIndexLanguagesTitle(); ?></h2>
 		</div>
 
 	</header>
@@ -15,6 +15,6 @@
 			<li><?php echo $level ?></li>
 		</ul>
 	<?php }; ?>
-	<?php printLanguages(); ?>
+	<?php printIndexLanguages(); ?>
 
 </article>

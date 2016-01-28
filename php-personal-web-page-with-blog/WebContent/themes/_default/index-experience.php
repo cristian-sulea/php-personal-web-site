@@ -1,7 +1,7 @@
 <article>
 
 	<header>
-		<h2><?php printExperienceTitle(); ?></h2>
+		<h2><?php printIndexExperienceTitle(); ?></h2>
 	</header>
 
 	<?php function printExperiencePosition($title, $company, $period, $location, $description) { ?>
@@ -12,6 +12,6 @@
 		</p>
 		<?php echo $description ?>
 	<?php }; ?>
-	<?php printExperience(); ?>
+	<?php printIndexExperience(); ?>
 
 </article>

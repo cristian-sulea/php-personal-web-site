@@ -161,33 +161,177 @@ function includeThemeFileIfExists($file) {
 }
 
 //
-// the new sh!t
+// index
+// - logo
+
+function printIndexLogo() {
+	echo 'config/index-logo.jpg';
+}
+
+//
+// index
+// - experience
+
+global $indexExperience;
+
+function setIndexExperience($indexExperienceNew) {
+	global $indexExperience;
+	$indexExperience = $indexExperienceNew;
+}
+
+function getIndexExperience() {
+	global $indexExperience;
+	checkIfIsSet($indexExperience);
+	return $indexExperience;
+}
+
+function readIndexExperience() {
+	setIndexExperience(new DOMDocument());
+	getIndexExperience()->loadXML(file_get_contents('content/index/experience.xml'));
+}
+
+function printIndexExperienceTitle() {
+	global $indexExperience;
+	echo $indexExperience->documentElement->getAttribute("title");
+}
+
+function printIndexExperience() {
+	global $indexExperience;
+
+	foreach($indexExperience->getElementsByTagName('position') as $position) {
+
+		$title = $position->getElementsByTagName("title")->item(0)->textContent;
+		$company = $position->getElementsByTagName("company")->item(0)->textContent;
+		$period = $position->getElementsByTagName("period")->item(0)->textContent;
+		$location = $position->getElementsByTagName("location")->item(0)->textContent;
+
+		$description = $position->getElementsByTagName("description");
+		if ($description->length > 0) {
+			$description = $description->item(0)->textContent;
+		} else {
+			$description = "";
+		}
+
+		printExperiencePosition($title, $company, $period, $location, $description);
+	}
+}
+
+//
+// index
+// - skills
+
+global $indexSkills;
+
+function setIndexSkills($indexSkillsNew) {
+	global $indexSkills;
+	$indexSkills = $indexSkillsNew;
+}
+
+function getIndexSkills() {
+	global $indexSkills;
+	checkIfIsSet($indexSkills);
+	return $indexSkills;
+}
+
+function readIndexSkills() {
+	setIndexSkills(new DOMDocument());
+	getIndexSkills()->loadXML(file_get_contents('content/index/skills.xml'));
+}
+
+function printIndexSkillsTitle() {
+	global $indexSkills;
+	echo $indexSkills->documentElement->getAttribute("title");
+}
+
+function printIndexSkills() {
+	global $indexSkills;
+
+	foreach($indexSkills->getElementsByTagName('group') as $group) {
+
+		$title = $group->getElementsByTagName("title")->item(0)->textContent;
+		$description = $group->getElementsByTagName("description")->item(0)->textContent;
+
+		printSkillsGroup($title, $description);
+	}
+}
+
+//
+// index
+// - languages
+
+global $indexLanguages;
+
+function setIndexLanguages($indexLanguagesNew) {
+	global $indexLanguages;
+	$indexLanguages = $indexLanguagesNew;
+}
+
+function getIndexLanguages() {
+	global $indexLanguages;
+	checkIfIsSet($indexLanguages);
+	return $indexLanguages;
+}
+
+function readIndexLanguages() {
+	setIndexLanguages(new DOMDocument());
+	getIndexLanguages()->loadXML(file_get_contents('content/index/languages.xml'));
+}
+
+function printIndexLanguagesTitle() {
+	global $indexLanguages;
+	echo $indexLanguages->documentElement->getAttribute("title");
+}
+
+function printIndexLanguages() {
+	global $indexLanguages;
+
+	foreach($indexLanguages->getElementsByTagName('language') as $language) {
+
+		$name = $language->getElementsByTagName("name")->item(0)->textContent;
+		$level = $language->getElementsByTagName("level")->item(0)->textContent;
+
+		printLanguagesLanguage($name, $level);
+	}
+}
+
+//
+// blog post ID
 
 global $blogPostId;
+
 function setBlogPostId($blogPostIdNew) {
 	global $blogPostId;
 	$blogPostId = $blogPostIdNew;
 }
+
 function getBlogPostId() {
 	global $blogPostId;
 	checkIfIsSet($blogPostId);
 	return $blogPostId;
 }
+
 function getBlogPostLink() {
 	return 'blog.php?' . getBlogPostIdParam() . '=' . getBlogPostId();
 }
+
 function printBlogPostLink() {
 	echo getBlogPostLink();
+}
+
+function existsBlogPost() {
+	return getBlogPostId() && file_exists('content/blog/' . getBlogPostId());
 }
 
 //
 // blog post config
 
 global $postConfig;
+
 function setBlogPostConfig($blogPostConfigNew) {
 	global $postConfig;
 	$postConfig = $blogPostConfigNew;
 }
+
 function getBlogPostConfig($key=null) {
 	global $postConfig;
 	checkIfIsSet($postConfig);
@@ -200,6 +344,10 @@ function getBlogPostConfig($key=null) {
 	} else {
 		return $postConfig;
 	}
+}
+
+function readBlogPostConfig() {
+	setBlogPostConfig(json_decode(file_get_contents('content/blog/' . getBlogPostId() . '/config.json'), TRUE));
 }
 
 //
@@ -288,41 +436,16 @@ function printBlogPostContent() {
 	echo $blogPostContentBuffer;
 }
 
-
-
-
-
-
-
-//
-// content
-
-function _getContentFile($file) {
-	return "content/" . $file;
-}
-function existsContentFile($file) {
-	return file_exists(_getContentFile($file));
-}
-function readContentFile($file) {
-	return file_get_contents(_getContentFile($file));
-}
-
-function getBlogPostFolders() {
-	return array_diff(scandir('content/blog/', 1), array(".", ".."));
-}
-
-function existsBlogPost() {
-	return getBlogPostId() && file_exists('content/blog/' . getBlogPostId());
-}
-function readBlogPostConfig() {
-	setBlogPostConfig(json_decode(file_get_contents('content/blog/' . getBlogPostId() . '/config.json'), TRUE));
-}
 function readBlogPostContent($useExcerpt = false) {
 	if ($useExcerpt) {
 		setBlogPostContent(file_get_contents('content/blog/' . getBlogPostId() . '/excerpt.html'));
 	} else {
 		setBlogPostContent(file_get_contents('content/blog/' . getBlogPostId() . '/content.html'));
 	}
+}
+
+function getBlogPostFolders() {
+	return array_diff(scandir('content/blog/', 1), array(".", ".."));
 }
 
 //
