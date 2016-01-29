@@ -340,12 +340,20 @@ function setBlogPostConfig($blogPostConfigNew) {
 	$postConfig = $blogPostConfigNew;
 }
 
-function getBlogPostConfig($key = null) {
+function getBlogPostConfig($key = null, $keyIsMandatory = true) {
 	global $postConfig;
 	checkIfIsSet($postConfig);
 	if (isset($key)) {
-		checkIfIsSet($postConfig, $key);
-		return $postConfig[$key];
+		if ($keyIsMandatory) {
+			checkIfIsSet($postConfig, $key);
+			return $postConfig[$key];
+		} else {
+			if (isset($postConfig[$key])) {
+				return $postConfig[$key];
+			} else {
+				return null;
+			}
+		}
 	} else {
 		return $postConfig;
 	}
@@ -391,12 +399,18 @@ function printBlogPostDateForHtmlTimeTag() {
 // - keywords
 
 function getBlogPostKeywords() {
-	return getBlogPostConfig('keywords');
+	return getBlogPostConfig('keywords', false);
+}
+
+function hasBlogPostKeywords() {
+	return getBlogPostResources() !== null;
 }
 
 function printBlogPostKeywords($prefix = '', $sufix = '') {
-	foreach (getBlogPostKeywords() as $keyword) {
-		echo $prefix . $keyword . $sufix;
+	if (hasBlogPostKeywords()) {
+		foreach (getBlogPostKeywords() as $keyword) {
+			echo $prefix . $keyword . $sufix;
+		}
 	}
 }
 
@@ -405,11 +419,11 @@ function printBlogPostKeywords($prefix = '', $sufix = '') {
 // - resources
 
 function getBlogPostResources() {
-	return getBlogPostConfig('resources');
+	return getBlogPostConfig('resources', false);
 }
 
 function hasBlogPostResources() {
-	return count(getBlogPostResources()) > 0;
+	return getBlogPostResources() !== null;
 }
 
 function printBlogPostResources() {
