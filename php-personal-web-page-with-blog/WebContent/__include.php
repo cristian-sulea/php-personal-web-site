@@ -299,7 +299,7 @@ function printIndexLanguages() {
 // - logo
 
 function printBlogLogo() {
-	echo "config/blog-logo.jpg";
+	echo 'config/blog-logo.jpg';
 }
 
 //
@@ -340,15 +340,12 @@ function setBlogPostConfig($blogPostConfigNew) {
 	$postConfig = $blogPostConfigNew;
 }
 
-function getBlogPostConfig($key=null) {
+function getBlogPostConfig($key = null) {
 	global $postConfig;
 	checkIfIsSet($postConfig);
 	if (isset($key)) {
-		if (isset($postConfig[$key])) {
-			return $postConfig[$key];
-		} else {
-			return null;
-		}
+		checkIfIsSet($postConfig, $key);
+		return $postConfig[$key];
 	} else {
 		return $postConfig;
 	}
@@ -380,11 +377,27 @@ function getBlogPostDate($format = null) {
 		return date(getBlogPostDateFormat(), strtotime(getBlogPostConfig('date')));
 	}
 }
+
 function printBlogPostDate($format = null) {
 	echo getBlogPostDate($format);
 }
+
 function printBlogPostDateForHtmlTimeTag() {
 	echo getBlogPostDate('Y-m-d');
+}
+
+//
+// blog post config
+// - keywords
+
+function getBlogPostKeywords() {
+	return getBlogPostConfig('keywords');
+}
+
+function printBlogPostKeywords($prefix = '', $sufix = '') {
+	foreach (getBlogPostKeywords() as $keyword) {
+		echo $prefix . $keyword . $sufix;
+	}
 }
 
 //
@@ -394,9 +407,11 @@ function printBlogPostDateForHtmlTimeTag() {
 function getBlogPostResources() {
 	return getBlogPostConfig('resources');
 }
+
 function hasBlogPostResources() {
-	return null !== getBlogPostResources();
+	return count(getBlogPostResources()) > 0;
 }
+
 function printBlogPostResources() {
 	global $postConfig;
 	echo  PHP_EOL;
@@ -627,19 +642,16 @@ function errorUnknownPageType() {
 	trigger_error("unknown page type", E_USER_ERROR);
 }
 
-function checkIfIsSet($param) {
-	if (!isset($param)) {
-		trigger_error('parameter <b>' . get_var_name($param) . '</b> not set', E_USER_ERROR);
-	}
-}
-
-function get_var_name($var) {
-	foreach($GLOBALS as $var_name => $value) {
-		if ($value === $var) {
-			return $var_name;
+function checkIfIsSet($param, $index = null) {
+	if (isset($index)) {
+		if (!isset($param[$index])) {
+			throw new Exception('variable not set or NULL');
+		}
+	} else {
+		if (!isset($param)) {
+			throw new Exception('variable not set or NULL');
 		}
 	}
-	return false;
 }
 
 function redirect($url) {

@@ -3,16 +3,6 @@
 //
 // print
 
-function printBlogPostKeywords($prefix = '', $sufix = '') {
-	global $postConfig;
-	
-	if (isset($postConfig["keywords"])) {
-		foreach ($postConfig["keywords"] as $keyword) {
-			echo $prefix . $keyword . $sufix;
-		}
-	}
-}
-
 function printPostAuthor() {
 	global $postConfig;
 	if (isset($postConfig["author"])) {
@@ -56,16 +46,6 @@ function hasPostDescription() {
 function printPostDescription() {
 	global $postConfig;
 	echo $postConfig["description"];
-}
-
-function hasPostImage() {
-	global $postConfig;
-	return isset($postConfig["image"]);
-}
-
-function printPostImage() {
-	global $postConfig;
-	echo "content/blog/" . getBlogPostId() . "/images/". $postConfig["image"];
 }
 
 ?>
