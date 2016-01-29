@@ -3,15 +3,6 @@
 //
 // print
 
-function printPostAuthor() {
-	global $postConfig;
-	if (isset($postConfig["author"])) {
-		echo $postConfig["author"];
-	} else {
-		printAuthorName();
-	}
-}
-
 function printPostAuthorImg() {
 	global $postConfig;
 	if (isset($postConfig["author-email"])) {

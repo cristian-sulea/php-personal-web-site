@@ -46,7 +46,7 @@ foreach (getBlogPostFolders() as $blogPostFolder) {
 	echo '</pubDate>' . PHP_EOL;
 	
 	echo '	<dc:creator><![CDATA[';
-	printPostAuthor();
+	printBlogPostAuthor();
 	echo ']]></dc:creator>' . PHP_EOL;
 	
 	echo '	<description><![CDATA[';

@@ -12,8 +12,8 @@
 
 		<div class="meta">
 			<time datetime="<?php printBlogPostDateForHtmlTimeTag(); ?>" class="published"><?php printBlogPostDate(); ?></time>
-			<a href="<?php printPostAuthorWebsite(); ?>" title="<?php printPostAuthor(); ?>" class="author">
-				<span class="name"><?php printPostAuthor(); ?></span><img src="<?php printPostAuthorImg(); ?>" alt="" />
+			<a href="<?php printPostAuthorWebsite(); ?>" title="<?php printBlogPostAuthor(); ?>" class="author">
+				<span class="name"><?php printBlogPostAuthor(); ?></span><img src="<?php printPostAuthorImg(); ?>" alt="" />
 			</a>
 		</div>
 

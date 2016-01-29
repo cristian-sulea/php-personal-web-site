@@ -370,6 +370,7 @@ function readBlogPostConfig() {
 function getBlogPostTitle() {
 	return getBlogPostConfig('title');
 }
+
 function printBlogPostTitle() {
 	echo getBlogPostTitle();
 }
@@ -392,6 +393,26 @@ function printBlogPostDate($format = null) {
 
 function printBlogPostDateForHtmlTimeTag() {
 	echo getBlogPostDate('Y-m-d');
+}
+
+//
+// blog post config
+// - author
+
+function getBlogPostAuthor() {
+	return getBlogPostConfig('author', false);
+}
+
+function hasBlogPostAuthor() {
+	return getBlogPostAuthor() !== null;
+}
+
+function printBlogPostAuthor() {
+	if (hasBlogPostAuthor()) {
+		echo getBlogPostAuthor();
+	} else {
+		printAuthorName();
+	}
 }
 
 //
@@ -605,7 +626,7 @@ function printHtmlHeadMetaAuthor() {
 	else if (isBlog()) {
 		
 		if (isBlogPost()) {
-			printPostAuthor();
+			printBlogPostAuthor();
 		}
 		
 		else {

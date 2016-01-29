@@ -4,7 +4,7 @@
 	<header>
 		<h2><a href="?<?php printPostId(); ?>"><?php printBlogPostTitle(); ?></a></h2>
 		<time datetime="<?php printBlogPostDateForHtmlTimeTag(); ?>"><?php printBlogPostDate(); ?></time>
-		<a href="<?php printPostAuthorWebsite(); ?>" title="<?php printPostAuthor(); ?>"><?php printPostAuthor(); ?></a>
+		<a href="<?php printPostAuthorWebsite(); ?>" title="<?php printBlogPostAuthor(); ?>"><?php printBlogPostAuthor(); ?></a>
 	</header>
 
 	<?php printBlogPostContent(); ?>
