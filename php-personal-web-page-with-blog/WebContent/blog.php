@@ -4,8 +4,6 @@ include '__include.php';
 setContentTypeHTML();
 setIsBlog();
 
-include '_include-blog.php';
-
 if (isset($_GET[getBlogPostIdParam()])) {
 	
 	setBlogPostId($_GET[getBlogPostIdParam()]);
