@@ -627,14 +627,14 @@ function getSearchResults() {
 }
 
 function printSearchResults() {
-
-	if (function_exists('theme_printSearchResults')) {
-		theme_printSearchResults(getSearchResults());
+	
+	$searchResultsBuffer = getSearchResults();
+	
+	if (function_exists('updateSearchResults')) {
+		$searchResultsBuffer = updateSearchResults($searchResultsBuffer);
 	}
-
-	else {
-		echo getSearchResults();
-	}
+	
+	echo $searchResultsBuffer;
 }
 
 //

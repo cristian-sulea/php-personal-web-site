@@ -61,7 +61,7 @@ function updateBlogPostContent($blogPostContentBuffer) {
 	return $blogPostContentBuffer;
 }
 
-function theme_printSearchResults($searchResults) {
+function updateSearchResults($searchResultsBuffer) {
 	
 	$searchResultsSuffix = <<<EOT
 
@@ -89,7 +89,7 @@ loadStyleSheet("themes/html5up-future-imperfect/css/search.css");
 
 EOT;
 	
-	echo $searchResults . $searchResultsSuffix;
+	return $searchResultsBuffer . $searchResultsSuffix;
 }
 
 ?>
