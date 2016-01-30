@@ -9,7 +9,6 @@ include '__include.php';
 
 $isBlog = true;
 
-include '_include-blog.php';
 include '_include-search.php';
 
 $searchQuery = $_GET['q'];

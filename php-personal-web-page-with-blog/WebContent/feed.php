@@ -4,8 +4,6 @@ include '__include.php';
 setContentTypeRSS();
 setIsBlogFeed();
 
-include '_include-blog.php';
-
 echo '<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"' . PHP_EOL;
 echo '	xmlns:atom="http://www.w3.org/2005/Atom"' . PHP_EOL;
 echo '	xmlns:dc="http://purl.org/dc/elements/1.1/">' . PHP_EOL;
