@@ -1,19 +1,20 @@
 <?php
-header('Content-Type: text/html; charset=UTF-8');
+include '__include.php';
 
-if (!isset($_GET['q']) || empty($_GET['q'])) {
+setContentTypeHTML();
+setIsBlog();
+
+if (isset($_GET[getSearchQueryParam()])) {
+	setSearchQuery($_GET[getSearchQueryParam()]);
+}
+
+if (!getSearchQuery()) {
 	redirect('blog.php');
 }
 
-include '__include.php';
-
-$isBlog = true;
-
 include '_include-search.php';
 
-$searchQuery = $_GET['q'];
-
-$searchResults = <<<EOT
+$searchResultsGoogle = <<<EOT
 
 <script>
   (function() {
@@ -39,6 +40,8 @@ $searchResults = <<<EOT
 <gcse:searchresults-only></gcse:searchresults-only>
 
 EOT;
+
+setSearchResults($searchResultsGoogle);
 
 includeThemeFile("page-prefix.php");
 includeThemeFile("search-results.php");

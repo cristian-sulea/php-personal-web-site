@@ -20,6 +20,8 @@ $BLOG_KEYWORDS    = "";
 $BLOG_POST_ID_PARAM = 'p';
 $BLOG_POST_DATE_FORMAT = "F j, Y";
 
+$SEARCH_QUERY_PARAM = 'q';
+
 $MENU = array(
 		array("Blog", "blog.php"),
 		// 	array("Photos", "photos.php")
@@ -67,6 +69,11 @@ function getBlogPostIdParam() {
 function getBlogPostDateFormat() {
 	global $BLOG_POST_DATE_FORMAT;
 	return $BLOG_POST_DATE_FORMAT;
+}
+
+function getSearchQueryParam() {
+	global $SEARCH_QUERY_PARAM;
+	return $SEARCH_QUERY_PARAM;
 }
 
 function getMenu() {
@@ -581,6 +588,53 @@ function readBlogPostContent($useExcerpt = false) {
 
 function getBlogPostFolders() {
 	return array_diff(scandir('content/blog/', 1), array(".", ".."));
+}
+
+//
+// search
+// - query
+
+global $searchQuery;
+
+function setSearchQuery($searchQueryNew) {
+	global $searchQuery;
+	$searchQuery = $searchQueryNew;
+}
+
+function getSearchQuery() {
+	global $searchQuery;
+	return $searchQuery;
+}
+
+function printSearchQuery() {
+	echo getSearchQuery();
+}
+
+//
+// search
+// - results
+
+global $searchResults;
+
+function setSearchResults($searchResultsNew) {
+	global $searchResults;
+	$searchResults = $searchResultsNew;
+}
+
+function getSearchResults() {
+	global $searchResults;
+	return $searchResults;
+}
+
+function printSearchResults() {
+
+	if (function_exists('theme_printSearchResults')) {
+		theme_printSearchResults(getSearchResults());
+	}
+
+	else {
+		echo getSearchResults();
+	}
 }
 
 //
