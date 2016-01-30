@@ -183,6 +183,9 @@ function setContentType($contentType) {
 function setContentTypeHTML() {
 	setContentType('text/html');
 }
+function setContentTypeTEXT() {
+	setContentType('text/plain');
+}
 function setContentTypeRSS() {
 	setContentType('application/rss+xml');
 }
