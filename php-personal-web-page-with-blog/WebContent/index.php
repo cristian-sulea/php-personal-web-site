@@ -1,5 +1,5 @@
 <?php
-include '__include.php';
+include '_include.php';
 
 setContentTypeHTML();
 setIsIndex();
