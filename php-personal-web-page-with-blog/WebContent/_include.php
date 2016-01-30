@@ -30,12 +30,44 @@ $MENU = array(
 $GOOGLE_ANALYTICS_TRACKING_CODE = <<<EOT
 EOT;
 
+function printAuthorName() {
+	global $AUTHOR_NAME;
+	echo $AUTHOR_NAME;
+}
+
+function printAuthorDescription() {
+	global $AUTHOR_DESCRIPTION;
+	echo $AUTHOR_DESCRIPTION;
+}
+
 function getAuthorWebsite() {
 	global $AUTHOR_WEBSITE;
 	return $AUTHOR_WEBSITE;
 }
 function printAuthorWebsite() {
 	echo getAuthorWebsite();
+}
+
+function printAuthorBirthday() {
+	global $AUTHOR_BIRTHDAY;
+	echo $AUTHOR_BIRTHDAY;
+}
+
+function printAuthorAddress() {
+	global $AUTHOR_ADDRESS;
+	echo $AUTHOR_ADDRESS;
+}
+
+function printAuthorKeywords($prefix = '', $sufix = '') {
+	global $AUTHOR_KEYWORDS;
+	echo $prefix . $AUTHOR_KEYWORDS . $sufix;
+}
+
+function printAuthorProfiles() {
+	global $AUTHOR_PROFILES;
+	foreach ($AUTHOR_PROFILES as $authorProfile) {
+		theme_printAuthorProfile($authorProfile[0], $authorProfile[1]);
+	}
 }
 
 function getBlogTitle() {
@@ -79,6 +111,11 @@ function getSearchQueryParam() {
 function getMenu() {
 	global $MENU;
 	return $MENU;
+}
+function printMenuItems() {
+	foreach (getMenu() as $menu) {
+		theme_printMenuItem($menu[0], $menu[1]);
+	}
 }
 
 function getGoogleAnalyticsTrackingCode() {
@@ -635,45 +672,6 @@ function printSearchResults() {
 	}
 	
 	echo $searchResultsBuffer;
-}
-
-//
-// print funtions
-
-function printAuthorName() {
-	global $AUTHOR_NAME;
-	echo $AUTHOR_NAME;
-}
-function printAuthorDescription() {
-	global $AUTHOR_DESCRIPTION;
-	echo $AUTHOR_DESCRIPTION;
-}
-function printAuthorBirthday() {
-	global $AUTHOR_BIRTHDAY;
-	echo $AUTHOR_BIRTHDAY;
-}
-function printAuthorAddress() {
-	global $AUTHOR_ADDRESS;
-	echo $AUTHOR_ADDRESS;
-}
-function printAuthorKeywords($prefix = '', $sufix = '') {
-	global $AUTHOR_KEYWORDS;
-	echo $prefix . $AUTHOR_KEYWORDS . $sufix;
-}
-
-function printAuthorProfiles() {
-	global $AUTHOR_PROFILES;
-	foreach ($AUTHOR_PROFILES as $authorProfile) {
-		theme_printAuthorProfile($authorProfile[0], $authorProfile[1]);
-	}
-}
-
-
-
-function printMenuItems() {
-	foreach (getMenu() as $menu) {
-		theme_printMenuItem($menu[0], $menu[1]);
-	}
 }
 
 //
