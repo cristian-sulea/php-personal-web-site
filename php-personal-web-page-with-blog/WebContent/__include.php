@@ -7,6 +7,7 @@ $THEME = "_default";
 
 $AUTHOR_NAME        = "";
 $AUTHOR_DESCRIPTION = "";
+$AUTHOR_WEBSITE     = "";
 $AUTHOR_BIRTHDAY    = "";
 $AUTHOR_ADDRESS     = "";
 $AUTHOR_KEYWORDS    = "";
@@ -26,6 +27,14 @@ $MENU = array(
 
 $GOOGLE_ANALYTICS_TRACKING_CODE = <<<EOT
 EOT;
+
+function getAuthorWebsite() {
+	global $AUTHOR_WEBSITE;
+	return $AUTHOR_WEBSITE;
+}
+function printAuthorWebsite() {
+	echo getAuthorWebsite();
+}
 
 function getBlogTitle() {
 	global $BLOG_TITLE;
@@ -412,6 +421,54 @@ function printBlogPostAuthor() {
 		echo getBlogPostAuthor();
 	} else {
 		printAuthorName();
+	}
+}
+
+//
+// blog post config
+// - author-email
+
+function getBlogPostAuthorEmail() {
+	return getBlogPostConfig('author-email', false);
+}
+
+function hasBlogPostAuthorEmail() {
+	return getBlogPostAuthorEmail() !== null;
+}
+
+function printBlogPostAuthorEmail() {
+	if (hasBlogPostAuthorEmail()) {
+		echo getGravatarImg(getBlogPostAuthorEmail());
+	} else {
+		if (hasBlogPostAuthor()) {
+			echo getGravatarImg('');
+		} else {
+			echo 'config/blog-author.jpg';
+		}
+	}
+}
+
+//
+// blog post config
+// - author-website
+
+function getBlogPostAuthorWebsite() {
+	return getBlogPostConfig('author-website', false);
+}
+
+function hasBlogPostAuthorWebsite() {
+	return getBlogPostAuthorWebsite() !== null;
+}
+
+function printBlogPostAuthorWebsite() {
+	if (hasBlogPostAuthorWebsite()) {
+		echo getBlogPostAuthorWebsite();
+	} else {
+		if (hasBlogPostAuthor()) {
+			echo '';
+		} else {
+			echo getAuthorWebsite();
+		}
 	}
 }
 
