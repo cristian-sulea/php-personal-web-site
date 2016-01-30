@@ -12,8 +12,6 @@ if (!getSearchQuery()) {
 	redirect('blog.php');
 }
 
-include '_include-search.php';
-
 $searchResultsGoogle = <<<EOT
 
 <script>
