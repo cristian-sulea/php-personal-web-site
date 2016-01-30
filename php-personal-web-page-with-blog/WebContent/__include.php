@@ -494,6 +494,26 @@ function printBlogPostKeywords($prefix = '', $sufix = '') {
 
 //
 // blog post config
+// - description
+
+function getBlogPostDescription() {
+	return getBlogPostConfig('description', false);
+}
+
+// function hasBlogPostDescription() {d
+
+function hasBlogPostDescription() {
+	return getBlogPostDescription() !== null;
+}
+
+function printBlogPostDescription() {
+	if (hasBlogPostDescription()) {
+		echo getBlogPostDescription();
+	}
+}
+
+//
+// blog post config
 // - resources
 
 function getBlogPostResources() {

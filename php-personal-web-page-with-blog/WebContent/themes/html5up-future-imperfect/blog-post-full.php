@@ -5,8 +5,8 @@
 
 		<div class="title">
 			<h2><?php printBlogPostTitle(); ?></h2>
-			<?php if (hasPostDescription()) { ?>
-				<p><?php printPostDescription(); ?></p>
+			<?php if (hasBlogPostDescription()) { ?>
+				<p><?php printBlogPostDescription(); ?></p>
 			<?php } ?>
 		</div>
 
