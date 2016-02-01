@@ -1,0 +1,9 @@
+{
+	"title": "API vs SPI",
+	"date":  "Aug 7 2015",
+	"keywords": ["java", "api", "spi"],
+	"resources": [
+		["http://mussabsharif.blogspot.ro/2011/08/api-vs-spi.html", "http://mussabsharif.blogspot.ro/2011/08/api-vs-spi.html"],
+		["Stack Overflow", "http://stackoverflow.com/questions/2954372/difference-between-spi-and-api"]
+	]
+}
