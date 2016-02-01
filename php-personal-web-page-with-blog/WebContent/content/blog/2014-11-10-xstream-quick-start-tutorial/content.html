@@ -1,0 +1,223 @@
+<p>
+	<a href="http://x-stream.github.io">XStream</a> is a simple java library to serialize objects to XML and back again.
+</p>
+
+<h3>Create classes to be serialized</h3>
+
+<pre>
+public class Contact {
+ 
+    private String name;
+ 
+    private List&lt;Address&gt; addresses;
+ 
+    public Contact(String name, Address... addresses) {
+        this.name = name;
+        this.addresses = new ArrayList&lt;Address&gt;(Arrays.asList(addresses));
+    }
+ 
+    public Contact(String name, List&lt;Address&gt; addresses) {
+        this.name = name;
+        this.addresses = addresses;
+    }
+ 
+    // ... other constructors and methods
+}
+</pre>
+
+<pre>
+public class Address {
+ 
+    private String street;
+    private String city;
+ 
+    public Address(String street, String city) {
+        this.street = street;
+        this.city = city;
+    }
+ 
+    // ... other constructors and methods
+}
+</pre>
+
+<p>
+	<a href="http://x-stream.github.io">XStream</a> doesn't care about the visibility of the fields. No getters or setters are needed.
+	Also, <a href="http://x-stream.github.io">XStream</a> does not limit you to having a default constructor.
+</p>
+
+<h3>Initializing XStream</h3>
+
+<pre>
+XStream xStream = new XStream();
+</pre>
+
+<p>
+	In this case you require in the classpath <a href="http://www.extreme.indiana.edu/xgws/xsoap/xpp/">XPP3</a>, a very fast XML pull-parser implementation.
+	<br>
+	If you do not want to include these dependencies, you can use a standard <a href="http://en.wikipedia.org/wiki/Java_API_for_XML_Processing">JAXP DOM</a> parser:
+</p>
+
+<pre>
+// does not require XPP3 library
+XStream xStream = new XStream(new DomDriver());
+</pre>
+
+<p>
+	or since Java 6 the integrated <a href="http://en.wikipedia.org/wiki/StAX">StAX</a> parser instead:
+</p>
+
+<pre>
+// does not require XPP3 library starting with Java 6
+XStream xStream = new XStream(new StaxDriver());
+</pre>
+
+<p>
+	To make the XML more concise, you can create aliases for your custom class names to XML element names:
+</p>
+
+<pre>
+xStream.alias(&quot;contact&quot;, Contact.class);
+xStream.alias(&quot;address&quot;, Address.class);
+</pre>
+
+<h3>Serializing an object to XML</h3>
+
+<p>
+	Create the object:
+</p>
+
+<pre>
+Address address1 = new Address(&quot;My Street&quot;, &quot;Bucharest&quot;);
+Address address2 = new Address(&quot;Another Street&quot;, &quot;Bucharest&quot;);
+
+Contact contact = new Contact(&quot;Cristian Sulea&quot;, address1, address2);
+</pre>
+
+<p>
+	Convert the object to XML:
+</p>
+
+<pre>
+String xml = xStream.toXML(contact);
+</pre>
+
+<p>
+	The resulting XML is:
+</p>
+
+<pre>
+&lt;contact&gt;
+    &lt;name&gt;Cristian Sulea&lt;/name&gt;
+    &lt;addresses&gt;
+        &lt;address&gt;
+            &lt;street&gt;My Street&lt;/street&gt;
+            &lt;city&gt;Bucharest&lt;/city&gt;
+        &lt;/address&gt;
+        &lt;address&gt;
+            &lt;street&gt;Another Street&lt;/street&gt;
+            &lt;city&gt;Bucharest&lt;/city&gt;
+        &lt;/address&gt;
+    &lt;/addresses&gt;
+&lt;/contact&gt;
+</pre>
+
+<h3>Deserializing an object back from XML</h3>
+
+<pre>
+Contact contact = (Contact) xStream.fromXML(xml);
+</pre>
+
+<h3>Putting It All Together</h3>
+
+<p>
+	All the code in a single <code>class</code> to make'it easier to copy/paste/run and then play with the code.
+</p>
+
+<pre>
+package xstream.tutorial;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+
+public class XStreamTutorial {
+
+  public static void main(String[] args) {
+
+    XStream xStream = new XStream(new DomDriver());
+
+    xStream.alias(&quot;contact&quot;, Contact.class);
+    xStream.alias(&quot;address&quot;, Address.class);
+
+    Address address1 = new Address(&quot;My Street&quot;, &quot;Bucharest&quot;);
+    Address address2 = new Address(&quot;Another Street&quot;, &quot;Bucharest&quot;);
+
+    Contact contact = new Contact(&quot;Cristian Sulea&quot;, address1, address2);
+
+    xStream.toXML(contact, System.out);
+  }
+
+  public static class Contact {
+
+    private String name;
+
+    private List&lt;Address&gt; addresses;
+
+    public Contact(String name, Address... addresses) {
+      this.name = name;
+      this.addresses = new ArrayList&lt;Address&gt;(Arrays.asList(addresses));
+    }
+
+    public Contact(String name, List&lt;Address&gt; addresses) {
+      this.name = name;
+      this.addresses = addresses;
+    }
+
+    public String getName() {
+      return name;
+    }
+
+    public void setName(String name) {
+      this.name = name;
+    }
+
+    public List&lt;Address&gt; getAddresses() {
+      return addresses;
+    }
+
+    public void setAddresses(List&lt;Address&gt; addresses) {
+      this.addresses = addresses;
+    }
+  }
+
+  public static class Address {
+
+    private String street;
+    private String city;
+
+    public Address(String street, String city) {
+      this.street = street;
+      this.city = city;
+    }
+
+    public String getStreet() {
+      return street;
+    }
+
+    public void setStreet(String street) {
+      this.street = street;
+    }
+
+    public String getCity() {
+      return city;
+    }
+
+    public void setCity(String city) {
+      this.city = city;
+    }
+  }
+}
+</pre>
