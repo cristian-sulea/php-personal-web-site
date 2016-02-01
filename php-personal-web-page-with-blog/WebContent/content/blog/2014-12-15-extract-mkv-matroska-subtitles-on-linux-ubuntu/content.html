@@ -1,0 +1,59 @@
+<p>
+	Install <a href="http://www.bunkus.org/videotools/mkvtoolnix/">MKVToolNix</a> (cross-platform set of tools to create, alter and inspect Matroska files):
+</p>
+
+<pre>
+sudo apt-get install mkvtoolnix
+</pre>
+
+<p>
+	Find the subtitle track number and the attachment IDs of the fonts using
+	the <a href="http://www.bunkus.org/videotools/mkvtoolnix/doc/mkvinfo.html">mkvinfo</a> tool (print information about elements in Matroska files):
+</p>
+
+<pre>
+mkvinfo movie.mkv
+</pre>
+
+<p>
+	or using the GUI version:
+</p>
+
+<pre>
+mkvinfo -g
+</pre>
+
+<p>
+	Assuming the subtitles are track 3, extract them using
+	the <a href="http://www.bunkus.org/videotools/mkvtoolnix/doc/mkvextract.html">mkvextract</a> tool (extract tracks from Matroska files into other files):
+</p>
+
+<pre>
+mkvextract tracks movie.mkv 3:movie.***
+</pre>
+
+<p>
+	Optionally extract also the font (by not specifying a file name for the font, the filename of the attached font will be used; this needs to be done for each font that is attached):
+</p>
+
+<pre>
+mkvextract attachments movie.mkv FontID:
+</pre>
+
+<p>
+	Install the fonts and regenerate the font cache so that the subtitles will be rendered properly:
+</p>
+
+<pre>
+cp *.ttf ~/.fonts
+sudo fc-cache -v ~/.fonts
+</pre>
+
+<p>
+	Make sure that the file is in MSDOS (CR-LF) format by using <a href="http://manpages.debian.org/cgi-bin/man.cgi?query=flip">flip</a> command:
+<p>
+
+<pre>
+sudo apt-get install flip
+flip -m movie.srt
+</pre>
