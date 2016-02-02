@@ -1,0 +1,9 @@
+{
+	"title": "Install Maven Repository on Linux Debian (Sonatype Nexus)",
+	"date":  "Sep 9 2014",
+	"keywords": ["debian", "linux", "maven", "nexus"],
+	"resources": [
+		["http://www.sonatype.org/nexus/go", "http://www.sonatype.org/nexus/go"],
+		["http://books.sonatype.com/nexus-book/reference/install-sect-service.html", "http://books.sonatype.com/nexus-book/reference/install-sect-service.html"]
+	]
+}
