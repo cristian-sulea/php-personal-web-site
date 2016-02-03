@@ -1,0 +1,11 @@
+{
+	"title": "Code Review",
+	"date":  "Feb 2 2014",
+	"keywords": ["code", "development", "review", "software"],
+	"resources": [
+		["Effective Code Review", "http://alexgaynor.net/2013/sep/26/effective-code-review/"],
+		["Effective Code Reviews Without the Pain", "http://www.developer.com/tech/article.php/3579756/Effective-Code-Reviews-Without-the-Pain.htm"],
+		["Code reviews in the 21st Century", "http://www.javacodegeeks.com/2012/02/code-reviews-in-21st-century.html"],
+		["Google (code+review)", "http://www.google.com/search?q=code%20review"]
+	]
+}
