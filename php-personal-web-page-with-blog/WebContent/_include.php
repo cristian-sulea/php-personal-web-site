@@ -577,7 +577,14 @@ function printBlogPostResources() {
 	echo '<b>Resources</b>' . PHP_EOL;
 	echo '<ul id="blog-post-resources">' . PHP_EOL;
 	foreach (getBlogPostResources() as $resource) {
-		echo '<li><a href="' . $resource[1] . '">' . $resource[0] . '</a></li>' . PHP_EOL;
+		echo '<li>';
+		if (is_array($resource)) {
+			echo '<li><a href="' . $resource[1] . '">' . $resource[0] . '</a></li>' . PHP_EOL;
+		} else {
+			echo $resource;
+		}
+		echo '</li>';
+		echo PHP_EOL;
 	}
 	echo '</ul>';
 }
