@@ -1,7 +1,7 @@
 {
 	"title": "Code Review",
 	"date":  "Feb 2 2014",
-	"keywords": ["code", "development", "review", "software"],
+	"keywords": ["code", "review", "software", "development"],
 	"resources": [
 		["Effective Code Review", "http://alexgaynor.net/2013/sep/26/effective-code-review/"],
 		["Effective Code Reviews Without the Pain", "http://www.developer.com/tech/article.php/3579756/Effective-Code-Reviews-Without-the-Pain.htm"],
