@@ -588,7 +588,7 @@ function printBlogPostResources() {
 	foreach (getBlogPostResources() as $resource) {
 		echo '<li>';
 		if (is_array($resource)) {
-			echo '<li><a href="' . $resource[1] . '">' . $resource[0] . '</a></li>' . PHP_EOL;
+			echo '<a href="' . $resource[1] . '">' . $resource[0] . '</a>';
 		} else {
 			echo $resource;
 		}
