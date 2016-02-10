@@ -3,6 +3,7 @@ include '_include.php';
 
 setContentTypeHTML();
 setIsBlog();
+setIsBlogSearch();
 
 if (isset($_GET[getSearchQueryParam()])) {
 	setSearchQuery($_GET[getSearchQueryParam()]);

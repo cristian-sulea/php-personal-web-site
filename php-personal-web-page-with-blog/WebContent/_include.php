@@ -88,7 +88,7 @@ function printBlogDescription() {
 
 function getBlogKeywords() {
 	global $BLOG_KEYWORDS;
-	echo $BLOG_KEYWORDS;
+	return $BLOG_KEYWORDS;
 }
 function printBlogKeywords($prefix = '', $sufix = '') {
 	echo $prefix . getBlogKeywords() . $sufix;
@@ -136,10 +136,11 @@ includeThemeFileIfExists('_include-theme.php');
 //
 // page type
 
-$isIndex     = false;
-$isBlog      = false;
-$isBlogFeed  = false;
-$isBlogPost  = false;
+$isIndex      = false;
+$isBlog       = false;
+$isBlogPost   = false;
+$isBlogFeed   = false;
+$isBlogSearch = false;
 
 function isIndex() {
 	global $isIndex;
@@ -157,6 +158,14 @@ function setIsBlog() {
 	global $isBlog;
 	$isBlog = true;
 }
+function isBlogPost() {
+	global $isBlogPost;
+	return $isBlogPost;
+}
+function setIsBlogPost() {
+	global $isBlogPost;
+	$isBlogPost = true;
+}
 function isBlogFeed() {
 	global $isBlogFeed;
 	return $isBlogFeed;
@@ -165,13 +174,13 @@ function setIsBlogFeed() {
 	global $isBlogFeed;
 	$isBlogFeed = true;
 }
-function isBlogPost() {
-	global $isBlogPost;
-	return $isBlogPost;
+function isBlogSearch() {
+	global $isBlogSearch;
+	return $isBlogSearch;
 }
-function setIsBlogPost() {
-	global $isBlogPost;
-	$isBlogPost = true;
+function setIsBlogSearch() {
+	global $isBlogSearch;
+	$isBlogSearch = true;
 }
 
 //
@@ -698,6 +707,10 @@ function printHtmlHeadTitle() {
 		if (isBlogPost()) {
 			printBlogPostTitle();
 			echo ", ";
+		}
+		
+		else if (isBlogSearch()) {
+			echo "Search: " . getSearchQuery() . ", ";
 		}
 		
 		printBlogTitle();
