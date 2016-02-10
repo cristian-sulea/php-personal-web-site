@@ -710,7 +710,8 @@ function printHtmlHeadTitle() {
 		}
 		
 		else if (isBlogSearch()) {
-			echo "Search: " . getSearchQuery() . ", ";
+			echo "Search: " . getSearchQuery();
+			echo ", ";
 		}
 		
 		printBlogTitle();
@@ -735,7 +736,17 @@ function printHtmlHeadMetaDescription() {
 			printBlogPostTitle();
 		}
 		
+		else if (isBlogSearch()) {
+			echo "Search: " . getSearchQuery();
+			echo ", ";
+			printBlogTitle();
+			echo ", ";
+			printBlogDescription();
+		}
+		
 		else {
+			printBlogTitle();
+			echo ", ";
 			printBlogDescription();
 		}
 	}
