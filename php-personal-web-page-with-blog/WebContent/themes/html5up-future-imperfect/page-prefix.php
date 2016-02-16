@@ -25,6 +25,8 @@
 
 <?php printGoogleAnalyticsTrackingCode(); ?>
 
+<?php printGoogleStructuredData(); ?>
+
 </head>
 <body>
 

@@ -30,14 +30,22 @@ $MENU = array(
 $GOOGLE_ANALYTICS_TRACKING_CODE = <<<EOT
 EOT;
 
-function printAuthorName() {
+function getAuthorName() {
 	global $AUTHOR_NAME;
-	echo $AUTHOR_NAME;
+	return $AUTHOR_NAME;
+}
+
+function printAuthorName() {
+	echo getAuthorName();
+}
+
+function getAuthorDescription() {
+	global $AUTHOR_DESCRIPTION;
+	return $AUTHOR_DESCRIPTION;
 }
 
 function printAuthorDescription() {
-	global $AUTHOR_DESCRIPTION;
-	echo $AUTHOR_DESCRIPTION;
+	echo getAuthorDescription();
 }
 
 function getAuthorWebsite() {
@@ -862,6 +870,71 @@ function getGravatarImg( $email ) {
 	$url .= md5( strtolower( trim( $email ) ) );
 	$url .= "?d=mm";
 	return $url;
+}
+
+
+
+$GOOGLE_STRUCTURED_DATA_WEBSITE = <<<EOT
+
+<script type="application/ld+json">
+{
+	"@context" : "http://schema.org",
+	"@type" : "WebSite",
+	"name" : "%name%",
+	"alternateName": "%alternateName%",
+	"url" : "%url%",
+	"potentialAction": {
+		"@type": "SearchAction",
+		"target": "%target%={search_term_string}",
+		"query-input": "required name=search_term_string"
+	}
+}
+</script>
+
+EOT;
+
+$GOOGLE_STRUCTURED_DATA_BREADCRUMB_LIST = <<<EOT
+
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [{
+		"@type": "ListItem",
+		"position": 1,
+		"item": {
+			"@id": "%id1%",
+			"name": "%name1%"
+		}
+	}]
+}
+</script>
+
+EOT;
+
+function printGoogleStructuredData() {
+	
+	global $GOOGLE_STRUCTURED_DATA_WEBSITE;
+	global $GOOGLE_STRUCTURED_DATA_BREADCRUMB_LIST;
+	
+	$buffer = $GOOGLE_STRUCTURED_DATA_WEBSITE;
+	
+	$buffer = str_replace("%name%", getAuthorName(), $buffer);
+	$buffer = str_replace("%alternateName%", getAuthorName() . ', ' . getAuthorDescription(), $buffer);
+	$buffer = str_replace("%url%", getAbsoluteLink(), $buffer);
+	$buffer = str_replace("%target%", getAbsoluteLink('search.php?' . getSearchQueryParam()), $buffer);
+	
+	if (isBlogPost()) {
+
+		$bufferBreadcrumbList = $GOOGLE_STRUCTURED_DATA_BREADCRUMB_LIST;
+
+		$bufferBreadcrumbList = str_replace("%id1%", getAbsoluteLink('blog.php'), $bufferBreadcrumbList);
+		$bufferBreadcrumbList = str_replace("%name1%", getBlogTitle(), $bufferBreadcrumbList);
+
+		$buffer .= $bufferBreadcrumbList;
+	}
+	
+	echo $buffer;
 }
 
 ?>
