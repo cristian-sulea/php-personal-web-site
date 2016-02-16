@@ -13,12 +13,10 @@
 
 <link rel="icon" href="<?php printHtmlHeadLinkIcon(); ?>">
 
-<?php if (isBlog()) { ?>
-	<link rel="alternate" type="application/rss+xml" title="<?php printBlogTitle(); ?> &raquo; Feed" href="feed.php" />
-<?php } ?>
-
 <link rel="canonical" href="<?php printHtmlHeadLinkCanonical(); ?>">
 <link rel="shortlink" href="<?php printHtmlHeadLinkShortlink(); ?>">
+
+<link rel="alternate" type="application/rss+xml" title="<?php printBlogTitle(); ?> &raquo; Feed" href="feed.php" />
 
 <!--[if lte IE 8]><script src="<?php printThemeFile('js/ie/html5shiv.js'); ?>"></script><![endif]-->
 <link rel="stylesheet" href="<?php printThemeFile('css/main.min.css'); ?>" />
