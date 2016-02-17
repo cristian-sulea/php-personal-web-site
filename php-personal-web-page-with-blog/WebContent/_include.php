@@ -7,7 +7,6 @@ $THEME = "_default";
 
 $AUTHOR_NAME        = "";
 $AUTHOR_DESCRIPTION = "";
-$AUTHOR_WEBSITE     = "";
 $AUTHOR_BIRTHDAY    = "";
 $AUTHOR_ADDRESS     = "";
 $AUTHOR_KEYWORDS    = "";
@@ -46,14 +45,6 @@ function getAuthorDescription() {
 
 function printAuthorDescription() {
 	echo getAuthorDescription();
-}
-
-function getAuthorWebsite() {
-	global $AUTHOR_WEBSITE;
-	return $AUTHOR_WEBSITE;
-}
-function printAuthorWebsite() {
-	echo getAuthorWebsite();
 }
 
 function printAuthorBirthday() {
@@ -369,6 +360,13 @@ function printIndexLanguages() {
 
 //
 // blog
+
+function getBlogLink() {
+	return 'blog.php';
+}
+
+//
+// blog
 // - logo
 
 function printBlogLogo() {
@@ -392,7 +390,7 @@ function getBlogPostId() {
 }
 
 function getBlogPostLink() {
-	return 'blog.php?' . getBlogPostIdParam() . '=' . getBlogPostId();
+	return getBlogLink() . '?' . getBlogPostIdParam() . '=' . getBlogPostId();
 }
 
 function printBlogPostLink() {
@@ -468,6 +466,23 @@ function printBlogPostDateForHtmlTimeTag() {
 	echo getBlogPostDate('Y-m-d');
 }
 
+function getBlogPostDateModified($format = null) {
+	
+	$dateModified = getBlogPostConfig('date-modified', false);
+	
+	if ($dateModified !== null) {
+		if (isset($format)) {
+			return date($format, strtotime($dateModified));
+		} else {
+			return date(getBlogPostDateFormat(), strtotime($dateModified));
+		}
+	}
+	
+	else {
+		return getBlogPostDate($format);
+	}
+}
+
 //
 // blog post config
 // - author
@@ -531,7 +546,7 @@ function printBlogPostAuthorWebsite() {
 		if (hasBlogPostAuthor()) {
 			echo '';
 		} else {
-			echo getAuthorWebsite();
+			echo getAbsoluteLink();
 		}
 	}
 }
@@ -563,8 +578,6 @@ function printBlogPostKeywords($prefix = '', $sufix = '') {
 function getBlogPostDescription() {
 	return getBlogPostConfig('description', false);
 }
-
-// function hasBlogPostDescription() {d
 
 function hasBlogPostDescription() {
 	return getBlogPostDescription() !== null;
@@ -741,7 +754,11 @@ function printHtmlHeadMetaDescription() {
 	else if (isBlog()) {
 		
 		if (isBlogPost()) {
-			printBlogPostTitle();
+			if (hasBlogPostDescription()) {
+				printBlogPostDescription();
+			} else {
+				printBlogPostTitle();
+			}
 		}
 		
 		else if (isBlogSearch()) {
