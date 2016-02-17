@@ -5,9 +5,6 @@
 
 		<div class="title">
 			<h2><?php printBlogPostTitle(); ?></h2>
-			<?php if (hasBlogPostDescription()) { ?>
-				<p><?php printBlogPostDescription(); ?></p>
-			<?php } ?>
 		</div>
 
 		<div class="meta">
