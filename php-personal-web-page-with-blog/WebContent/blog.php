@@ -33,7 +33,11 @@ else {
 		readBlogPostConfig();
 		readBlogPostContent(true);
 		
-		includeThemeFile('blog-post-excerpt.php');
+		if (hasBlogPostDescription()) {
+			includeThemeFile('blog-post-description.php');
+		} else {
+			includeThemeFile('blog-post-excerpt.php');
+		}
 	}
 	
 	includeThemeFile('page-suffix.php');
