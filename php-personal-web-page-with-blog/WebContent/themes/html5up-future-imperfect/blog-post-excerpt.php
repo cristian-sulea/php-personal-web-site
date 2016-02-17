@@ -5,9 +5,6 @@
 
 		<div class="title">
 			<h2><a href="<?php printBlogPostLink(); ?>"><?php printBlogPostTitle(); ?></a></h2>
-			<?php if (hasBlogPostDescription()) { ?>
-				<p><?php printBlogPostDescription(); ?></p>
-			<?php } ?>
 		</div>
 
 		<div class="meta">
@@ -19,8 +16,12 @@
 
 	</header>
 
+<?php if (hasBlogPostDescription()) { ?>
+	<p><?php printBlogPostDescription(); ?></p>
+<?php } else { ?>
 	<?php printBlogPostContent(); ?>
-
+<?php } ?>
+			
 	<footer>
 		<ul class="actions">
 			<li><a href="<?php printBlogPostLink(); ?>" class="button big">Continue Reading</a></li>
