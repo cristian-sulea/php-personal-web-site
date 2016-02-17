@@ -488,19 +488,22 @@ function getBlogPostDateModified($format = null) {
 // - author
 
 function getBlogPostAuthor() {
-	return getBlogPostConfig('author', false);
+	
+	$author = getBlogPostConfig('author', false);
+	
+	if ($author === null) {
+		return getAuthorName();
+	}
+	
+	return $author;
 }
 
 function hasBlogPostAuthor() {
-	return getBlogPostAuthor() !== null;
+	return getBlogPostConfig('author', false) !== null;
 }
 
 function printBlogPostAuthor() {
-	if (hasBlogPostAuthor()) {
-		echo getBlogPostAuthor();
-	} else {
-		printAuthorName();
-	}
+	echo getBlogPostAuthor();
 }
 
 //
@@ -508,23 +511,24 @@ function printBlogPostAuthor() {
 // - author-email
 
 function getBlogPostAuthorEmail() {
-	return getBlogPostConfig('author-email', false);
-}
-
-function hasBlogPostAuthorEmail() {
-	return getBlogPostAuthorEmail() !== null;
+	
+	$author = getBlogPostConfig('author', false);
+	
+	if ($author === null) {
+		return 'config/blog-author.jpg';
+	}
+	
+	$email = getBlogPostConfig('author-email', false);
+	
+	if ($email === null) {
+		return getGravatarImg('');
+	}
+	
+	return getGravatarImg($email);
 }
 
 function printBlogPostAuthorEmail() {
-	if (hasBlogPostAuthorEmail()) {
-		echo getGravatarImg(getBlogPostAuthorEmail());
-	} else {
-		if (hasBlogPostAuthor()) {
-			echo getGravatarImg('');
-		} else {
-			echo 'config/blog-author.jpg';
-		}
-	}
+	echo getBlogPostAuthorEmail();
 }
 
 //
@@ -532,23 +536,24 @@ function printBlogPostAuthorEmail() {
 // - author-website
 
 function getBlogPostAuthorWebsite() {
-	return getBlogPostConfig('author-website', false);
-}
 
-function hasBlogPostAuthorWebsite() {
-	return getBlogPostAuthorWebsite() !== null;
+	$author = getBlogPostConfig('author', false);
+	
+	if ($author === null) {
+		return getAbsoluteLink();
+	}
+	
+	$website = getBlogPostConfig('author-website', false);
+	
+	if ($website === null) {
+		return '';
+	}
+	
+	return $website;
 }
 
 function printBlogPostAuthorWebsite() {
-	if (hasBlogPostAuthorWebsite()) {
-		echo getBlogPostAuthorWebsite();
-	} else {
-		if (hasBlogPostAuthor()) {
-			echo '';
-		} else {
-			echo getAbsoluteLink();
-		}
-	}
+	echo getBlogPostAuthorWebsite();
 }
 
 //
@@ -1017,8 +1022,8 @@ function printGoogleStructuredData() {
 		$bufferBlogPosting = str_replace('%image-width%', '', $bufferBlogPosting);
 		$bufferBlogPosting = str_replace('%image-height%', '', $bufferBlogPosting);
 		
-		$bufferBlogPosting = str_replace('%author-name%', getAuthorName(), $bufferBlogPosting);
-		$bufferBlogPosting = str_replace('%author-url%', getAbsoluteLink(), $bufferBlogPosting);
+		$bufferBlogPosting = str_replace('%author-name%', getBlogPostAuthor(), $bufferBlogPosting);
+		$bufferBlogPosting = str_replace('%author-url%', getBlogPostAuthorWebsite(), $bufferBlogPosting);
 		
 		$bufferBlogPosting = str_replace('%publisher-name%', getBlogTitle(), $bufferBlogPosting);
 		$bufferBlogPosting = str_replace('%publisher-url%', getAbsoluteLink(getBlogLink()), $bufferBlogPosting);
