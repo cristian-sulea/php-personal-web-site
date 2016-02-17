@@ -31,11 +31,13 @@ else {
 		setBlogPostId(basename($blogPostFolder));
 		
 		readBlogPostConfig();
-		readBlogPostContent(true);
 		
 		if (hasBlogPostDescription()) {
 			includeThemeFile('blog-post-description.php');
-		} else {
+		}
+		
+		else {
+			readBlogPostContent(true);
 			includeThemeFile('blog-post-excerpt.php');
 		}
 	}
