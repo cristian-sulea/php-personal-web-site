@@ -16,12 +16,8 @@
 
 	</header>
 
-<?php if (hasBlogPostDescription()) { ?>
-	<p><?php printBlogPostDescription(); ?></p>
-<?php } else { ?>
 	<?php printBlogPostContent(); ?>
-<?php } ?>
-			
+
 	<footer>
 		<ul class="actions">
 			<li><a href="<?php printBlogPostLink(); ?>" class="button big">Continue Reading</a></li>
