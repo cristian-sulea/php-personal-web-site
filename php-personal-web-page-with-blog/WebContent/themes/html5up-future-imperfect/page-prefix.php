@@ -82,7 +82,7 @@
 						</ul>
 					</header>
 				<?php } else if (isBlog()) { ?>
-					<a class="logo"><img src="<?php printBlogLogo(); ?>" alt="" /></a>
+					<a class="logo"><img src="<?php printBlogLogo('128'); ?>" alt="" /></a>
 					<header>
 						<h2><a href="blog.php"><?php printBlogTitle(); ?></a></h2>
 						<p><?php printBlogDescription(); ?></p>
