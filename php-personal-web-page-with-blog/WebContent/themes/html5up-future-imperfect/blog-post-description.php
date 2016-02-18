@@ -10,7 +10,7 @@
 		<div class="meta">
 			<time datetime="<?php printBlogPostDateForHtmlTimeTag(); ?>" class="published"><?php printBlogPostDate(); ?></time>
 			<a href="<?php printBlogPostAuthorWebsite(); ?>" title="<?php printBlogPostAuthor(); ?>" class="author">
-				<span class="name"><?php printBlogPostAuthor(); ?></span><img src="<?php printBlogPostAuthorEmail(); ?>" alt="" />
+				<span class="name"><?php printBlogPostAuthor(); ?></span><img src="<?php printBlogPostAuthorImage(); ?>" alt="" />
 			</a>
 		</div>
 
