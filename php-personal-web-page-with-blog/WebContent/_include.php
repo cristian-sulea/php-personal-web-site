@@ -367,10 +367,29 @@ function getBlogLink() {
 
 //
 // blog
+// - icon
+
+function getBlogIcon() {
+	return 'config/content/blog/icon.png';
+}
+
+//
+// blog
 // - logo
 
-function printBlogLogo() {
-	echo 'config/blog-logo.jpg';
+function getBlogLogo($size) {
+	
+	$logo = 'config/content/blog/logo-' . $size . '.png';
+	
+	if (file_exists($logo)) {
+		return $logo;
+	}
+	
+	return 'config/content/blog/logo.png';
+}
+
+function printBlogLogo($size) {
+	echo getBlogLogo($size);
 }
 
 //
@@ -508,9 +527,9 @@ function printBlogPostAuthor() {
 
 //
 // blog post config
-// - author-email
+// - author-image
 
-function getBlogPostAuthorEmail() {
+function getBlogPostAuthorImage() {
 	
 	$author = getBlogPostConfig('author', false);
 	
@@ -527,8 +546,8 @@ function getBlogPostAuthorEmail() {
 	return getGravatarImg($email);
 }
 
-function printBlogPostAuthorEmail() {
-	echo getBlogPostAuthorEmail();
+function printBlogPostAuthorImage() {
+	echo getBlogPostAuthorImage();
 }
 
 //
@@ -776,7 +795,7 @@ function printHtmlHeadMetaDescription() {
 		
 		else {
 			printBlogTitle();
-			echo ", ";
+			echo ' - ';
 			printBlogDescription();
 		}
 	}
@@ -839,7 +858,7 @@ function printHtmlHeadLinkIcon() {
 	}
 	
 	else if (isBlog()) {
-		echo "config/blog-icon.png";
+		echo getBlogIcon();
 	}
 	
 	else {
@@ -963,39 +982,39 @@ $GOOGLE_STRUCTURED_DATA_BLOG_POSTING = <<<EOT
 
 	"mainEntityOfPage": {
 		"@type": "WebPage",
-		"@id": "%mainEntityOfPage-id%"
+		"@id":   "%mainEntityOfPage.id%"
 	},
 
-	"headline": "%headline%",
+	"headline":    "%headline%",
 	"description": "%description%",
 
 	"datePublished": "%datePublished%",
-	"dateModified": "%dateModified%",
+	"dateModified":  "%dateModified%",
 
-// 	"image": {
-// 		"@type": "ImageObject",
-// 		"url": "%image-url%",
-// 		"width": %image-width%,
-// 		"height": %image-height%
-// 	},
+	"image": {
+		"@type": "ImageObject",
+		"url":   "%image.url%",
+		"width":  %image.width%,
+		"height": %image.height%
+	},
 
 	"author": {
 		"@type": "Person",
-		"name": "%author-name%",
-		"url": "%author-url%"
-	}
+		"name":  "%author.name%",
+		"url":   "%author.url%"
+	},
 
-// 	,"publisher": {
-// 		"@type": "Organization",
-// 		"name": "%publisher-name%",
-// 		"url": "%publisher-url%",
-// 		"logo": {
-// 			"@type": "ImageObject",
-// 			"url": "http://cristian.sulea.net/config/blog-author.jpg",
-// 			"width": 600,
-// 			"height": 60
-// 		}
-// 	}
+	"publisher": {
+		"@type": "Organization",
+		"name":  "%publisher.name%",
+		"url":   "%publisher.url%",
+		"logo": {
+			"@type": "ImageObject",
+			"url":   "%publisher.logo.url%",
+			"width":  %publisher.logo.width%,
+			"height": %publisher.logo.height%
+		}
+	}
 
 }
 </script>
@@ -1016,7 +1035,7 @@ function printGoogleStructuredData() {
 		$bufferWebSite = $GOOGLE_STRUCTURED_DATA_WEBSITE;
 		
 		$bufferWebSite = str_replace("%name%", getAuthorName(), $bufferWebSite);
-		$bufferWebSite = str_replace("%alternateName%", getAuthorName() . ', ' . getAuthorDescription(), $bufferWebSite);
+		$bufferWebSite = str_replace("%alternateName%", getAuthorName() . ' - ' . getAuthorDescription(), $bufferWebSite);
 		$bufferWebSite = str_replace("%url%", getAbsoluteLink(), $bufferWebSite);
 		$bufferWebSite = str_replace("%target%", getAbsoluteLink('search.php?' . getSearchQueryParam()), $bufferWebSite);
 		
@@ -1042,20 +1061,24 @@ function printGoogleStructuredData() {
 			
 			$bufferBlogPosting = $GOOGLE_STRUCTURED_DATA_BLOG_POSTING;
 			
-			$bufferBlogPosting = str_replace('%mainEntityOfPage-id%', getAbsoluteLink(getBlogPostLink()), $bufferBlogPosting);
+			$bufferBlogPosting = str_replace('%mainEntityOfPage.id%', getAbsoluteLink(getBlogPostLink()), $bufferBlogPosting);
 			$bufferBlogPosting = str_replace('%headline%', getBlogPostTitle(), $bufferBlogPosting);
 			$bufferBlogPosting = str_replace('%datePublished%', getBlogPostDate('c'), $bufferBlogPosting);
 			$bufferBlogPosting = str_replace('%dateModified%', getBlogPostDateModified('c'), $bufferBlogPosting);
 			
-			$bufferBlogPosting = str_replace('%image-url%', '', $bufferBlogPosting);
-			$bufferBlogPosting = str_replace('%image-width%', '', $bufferBlogPosting);
-			$bufferBlogPosting = str_replace('%image-height%', '', $bufferBlogPosting);
+			$imageSize = getimagesize(getAbsoluteLink(getBlogLogo('696')));
+			$bufferBlogPosting = str_replace('%image.url%', getAbsoluteLink(getBlogLogo('696')), $bufferBlogPosting);
+			$bufferBlogPosting = str_replace('%image.width%', '696', $bufferBlogPosting);
+			$bufferBlogPosting = str_replace('%image.height%', $imageSize[1], $bufferBlogPosting);
 			
-			$bufferBlogPosting = str_replace('%author-name%', getBlogPostAuthor(), $bufferBlogPosting);
-			$bufferBlogPosting = str_replace('%author-url%', getBlogPostAuthorWebsite(), $bufferBlogPosting);
+			$bufferBlogPosting = str_replace('%author.name%', getBlogPostAuthor(), $bufferBlogPosting);
+			$bufferBlogPosting = str_replace('%author.url%', getBlogPostAuthorWebsite(), $bufferBlogPosting);
 			
-			$bufferBlogPosting = str_replace('%publisher-name%', getBlogTitle(), $bufferBlogPosting);
-			$bufferBlogPosting = str_replace('%publisher-url%', getAbsoluteLink(getBlogLink()), $bufferBlogPosting);
+			$bufferBlogPosting = str_replace('%publisher.name%', getBlogTitle(), $bufferBlogPosting);
+			$bufferBlogPosting = str_replace('%publisher.url%', getAbsoluteLink(getBlogLink()), $bufferBlogPosting);
+			$bufferBlogPosting = str_replace('%publisher.logo.url%', getAbsoluteLink(getBlogLogo('060')), $bufferBlogPosting);
+			$bufferBlogPosting = str_replace('%publisher.logo.width%', '60', $bufferBlogPosting);
+			$bufferBlogPosting = str_replace('%publisher.logo.height%', '60', $bufferBlogPosting);
 			
 			$bufferBlogPosting = str_replace('%description%', getBlogPostDescription(), $bufferBlogPosting);
 			
@@ -1067,7 +1090,7 @@ function printGoogleStructuredData() {
 			$bufferBlog = $GOOGLE_STRUCTURED_DATA_BLOG;
 			
 			$bufferBlog = str_replace("%name%", getBlogTitle(), $bufferBlog);
-			$bufferBlog = str_replace("%alternateName%", getBlogTitle() . ', ' . getBlogDescription(), $bufferBlog);
+			$bufferBlog = str_replace("%alternateName%", getBlogTitle() . ' - ' . getBlogDescription(), $bufferBlog);
 			$bufferBlog = str_replace("%url%", getAbsoluteLink(getBlogLink()), $bufferBlog);
 			$bufferBlog = str_replace("%target%", getAbsoluteLink('search.php?' . getSearchQueryParam()), $bufferBlog);
 			
