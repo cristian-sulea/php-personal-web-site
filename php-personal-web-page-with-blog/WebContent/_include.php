@@ -644,6 +644,24 @@ function printBlogPostResources() {
 }
 
 //
+// blog post image
+
+function getBlogPostImage() {
+	
+	$image = 'content/blog/' . getBlogPostId() . '/image.png';
+	if (file_exists($image)) {
+		return $image;
+	}
+	
+	$image = 'content/blog/' . getBlogPostId() . '/image.jpg';
+	if (file_exists($image)) {
+		return $image;
+	}
+	
+	return 'config/content/blog/logo-696.png';
+}
+
+//
 // blog post content
 
 global $blogPostContent;
@@ -1066,9 +1084,10 @@ function printGoogleStructuredData() {
 			$bufferBlogPosting = str_replace('%datePublished%', getBlogPostDate('c'), $bufferBlogPosting);
 			$bufferBlogPosting = str_replace('%dateModified%', getBlogPostDateModified('c'), $bufferBlogPosting);
 			
-			$imageSize = getimagesize(getAbsoluteLink(getBlogLogo('696')));
-			$bufferBlogPosting = str_replace('%image.url%', getAbsoluteLink(getBlogLogo('696')), $bufferBlogPosting);
-			$bufferBlogPosting = str_replace('%image.width%', '696', $bufferBlogPosting);
+			$image = getAbsoluteLink(getBlogPostImage());
+			$imageSize = getimagesize($image);
+			$bufferBlogPosting = str_replace('%image.url%', $image, $bufferBlogPosting);
+			$bufferBlogPosting = str_replace('%image.width%', $imageSize[0], $bufferBlogPosting);
 			$bufferBlogPosting = str_replace('%image.height%', $imageSize[1], $bufferBlogPosting);
 			
 			$bufferBlogPosting = str_replace('%author.name%', getBlogPostAuthor(), $bufferBlogPosting);
