@@ -4,7 +4,6 @@ $THEME = "html5up-future-imperfect";
 
 $AUTHOR_NAME        = "Cristian Sulea";
 $AUTHOR_DESCRIPTION = "Software Architect &amp; Developer";
-$AUTHOR_WEBSITE     = "http://cristian.sulea.net";
 $AUTHOR_BIRTHDAY    = "December 21, 1979";
 $AUTHOR_ADDRESS     = "Bucharest, Romania";
 $AUTHOR_KEYWORDS    = "cristian sulea, sulea cristian";
