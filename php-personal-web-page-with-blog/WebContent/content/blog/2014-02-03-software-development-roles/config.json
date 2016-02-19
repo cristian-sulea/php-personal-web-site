@@ -1,9 +1,16 @@
 {
+
 	"title": "Software Development Roles",
-	"date":  "Feb 3 2014",
-	"keywords": ["software", "development"],
+	"description": "Each of the software development processes may change to some extent, but fundamentally there are some roles which every process has in one form or another.",
+
+	"date": "Feb 3 2014",
+	"date-modified": "Feb 19 2016",
+
+	"keywords": ["software development roles", "software development"],
+
 	"resources": [
 		"a PDF file named \"Developer eBook\" and downloaded from <a href=\"http://www.internet.com\">Internet.com</a> (deleted in the meantime)",
 		"it seems that the source for that \"Developer eBook\" is an older article from <a href=\"http://www.developer.com/mgmt/article.php/3490871/Cracking-the-Code-Breaking-Down-the-Software-Development-Roles.htm\">Developer.com</a> web site, and the author is <a href=\"mailto:Robert.Bogue@CroweChizek.com\">Robert Bogue</a>"
 	]
+
 }
