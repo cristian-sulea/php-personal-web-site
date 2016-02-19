@@ -645,22 +645,7 @@ function printBlogPostResources() {
 //
 // blog post image
 
-function getBlogPostImage($size=null) {
-	
-	if ($size === null) {
-		
-		$image = 'content/blog/' . getBlogPostId() . '/image-696.png';
-		if (file_exists($image)) {
-			return $image;
-		}
-		
-		$image = 'content/blog/' . getBlogPostId() . '/image-696.jpg';
-		if (file_exists($image)) {
-			return $image;
-		}
-		
-		return 'config/content/blog/logo-696.png';
-	}
+function getBlogPostImage($size = '696') {
 	
 	$image = 'content/blog/' . getBlogPostId() . '/image-' . $size . '.png';
 	if (file_exists($image)) {
@@ -670,6 +655,19 @@ function getBlogPostImage($size=null) {
 	$image = 'content/blog/' . getBlogPostId() . '/image-' . $size . '.jpg';
 	if (file_exists($image)) {
 		return $image;
+	}
+	
+	foreach (getBlogPostKeywords() as $keyword) {
+		
+		$image = 'config/content/blog/images/' . $keyword . '-' . $size . '.png';
+		if (file_exists($image)) {
+			return $image;
+		}
+		
+		$image = 'config/content/blog/images/' . $keyword . '-' . $size . '.jpg';
+		if (file_exists($image)) {
+			return $image;
+		}
 	}
 	
 	return getBlogLogo($size);
