@@ -16,7 +16,7 @@
 
 	</header>
 
-	<p><span class="image left"><img src="<?php echo getBlogPostImage('128'); ?>" alt="" /></span><?php printBlogPostDescription(); ?></p>
+	<p><span class="image left"><img src="<?php echo getBlogPostImage('128'); ?>" alt="<?php printBlogPostTitle(); ?>" /></span><?php printBlogPostDescription(); ?></p>
 
 	<footer>
 		<ul class="actions">
