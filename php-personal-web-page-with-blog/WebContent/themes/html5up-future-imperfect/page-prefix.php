@@ -76,7 +76,7 @@
 					<a class="logo"><img src="<?php printIndexLogo(); ?>" alt="" /></a>
 					<header>
 						<h2><a href="index.php"><?php printAuthorName(); ?></a></h2>
-						<p><?php printAuthorDescription(); ?></p>
+						<p><?php printAuthorTitle(); ?></p>
 						<ul class="icons">
 							<?php printAuthorProfiles(); ?>
 						</ul>

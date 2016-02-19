@@ -6,6 +6,7 @@
 $THEME = "_default";
 
 $AUTHOR_NAME        = "";
+$AUTHOR_TITLE       = "";
 $AUTHOR_DESCRIPTION = "";
 $AUTHOR_BIRTHDAY    = "";
 $AUTHOR_ADDRESS     = "";
@@ -36,6 +37,15 @@ function getAuthorName() {
 
 function printAuthorName() {
 	echo getAuthorName();
+}
+
+function getAuthorTitle() {
+	global $AUTHOR_TITLE;
+	return $AUTHOR_TITLE;
+}
+
+function printAuthorTitle() {
+	echo getAuthorTitle();
 }
 
 function getAuthorDescription() {
@@ -774,24 +784,28 @@ function printSearchResults() {
 function printHtmlHeadTitle() {
 	
 	if (isIndex()) {
-		printAuthorName();
+		echo getAuthorName() . ' - ' . getAuthorTitle();
 	}
 	
 	else if (isBlog()) {
 		
 		if (isBlogPost()) {
 			printBlogPostTitle();
-			echo ", ";
+			echo ' | ';
+			printAuthorName();
 		}
 		
 		else if (isBlogSearch()) {
-			echo "Search: " . getSearchQuery();
-			echo ", ";
+			echo 'Search: ' . getSearchQuery();
+			echo ' | ';
+			printBlogTitle();
 		}
 		
-		printBlogTitle();
-		echo ", ";
-		printAuthorName();
+		else {
+			printBlogTitle();
+			echo ' | ';
+			printAuthorName();
+		}
 	}
 	
 	else {
@@ -1065,7 +1079,7 @@ function printGoogleStructuredData() {
 		$bufferWebSite = $GOOGLE_STRUCTURED_DATA_WEBSITE;
 		
 		$bufferWebSite = str_replace("%name%", getAuthorName(), $bufferWebSite);
-		$bufferWebSite = str_replace("%alternateName%", getAuthorName() . ' - ' . getAuthorDescription(), $bufferWebSite);
+		$bufferWebSite = str_replace("%alternateName%", getAuthorName() . ' - ' . getAuthorTitle(), $bufferWebSite);
 		$bufferWebSite = str_replace("%url%", getAbsoluteLink(), $bufferWebSite);
 		$bufferWebSite = str_replace("%target%", getAbsoluteLink('search.php?' . getSearchQueryParam()), $bufferWebSite);
 		
