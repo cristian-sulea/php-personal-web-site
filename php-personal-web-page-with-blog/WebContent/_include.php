@@ -1136,7 +1136,7 @@ function printGoogleStructuredData() {
 			
 			$bufferBlog = $GOOGLE_STRUCTURED_DATA_BLOG;
 			
-			$bufferBlog = str_replace("%name%", getBlogTitle(), $bufferBlog);
+			$bufferBlog = str_replace("%name%", getBlogTitle() . ' | ' . getAuthorName(), $bufferBlog);
 			$bufferBlog = str_replace("%alternateName%", getBlogTitle() . ' - ' . getBlogDescription(), $bufferBlog);
 			$bufferBlog = str_replace("%url%", getAbsoluteLink(getBlogLink()), $bufferBlog);
 			$bufferBlog = str_replace("%target%", getAbsoluteLink('search.php?' . getSearchQueryParam()), $bufferBlog);
