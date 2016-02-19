@@ -3,7 +3,7 @@
 	"title": "Disable browser caching with meta HTML tags",
 	"description": "The minimum set of HTML headers to disable browser caching that works across the most important browsers: Cache-Control, Pragma, Expires.",
 
-	"date":  "Jan 14 2014",
+	"date": "Jan 14 2014",
 	"date-modified": "Feb 17 2016",
 
 	"keywords": ["cache", "browser", "html"],

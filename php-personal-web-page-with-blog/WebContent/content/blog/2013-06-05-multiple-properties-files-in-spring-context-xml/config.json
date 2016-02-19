@@ -3,7 +3,7 @@
 	"title": "Multiple properties files in Spring context XML",
 	"description": "Spring allows to externalize string literals in its context configuration files into external properties files.",
 
-	"date":  "Jun 5 2013",
+	"date": "Jun 5 2013",
 	"date-modified": "Feb 17 2016",
 
 	"keywords": ["spring", "framework", "java"]
