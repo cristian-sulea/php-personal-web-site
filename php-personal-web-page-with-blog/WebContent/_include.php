@@ -596,7 +596,23 @@ function hasBlogPostKeywords() {
 	return getBlogPostResources() !== null;
 }
 
-function printBlogPostKeywords($prefix = '', $sufix = '') {
+function printBlogPostKeywords() {
+	if (hasBlogPostKeywords()) {
+		$isFirst = true;
+		foreach (getBlogPostKeywords() as $keyword) {
+			
+			if ($isFirst) {
+				$isFirst = false;
+			} else {
+				echo ', ';
+			}
+			
+			echo $keyword;
+		}
+	}
+}
+
+function printBlogPostKeywordsOld($prefix = '', $sufix = '') {
 	if (hasBlogPostKeywords()) {
 		foreach (getBlogPostKeywords() as $keyword) {
 			echo $prefix . $keyword . $sufix;
@@ -860,8 +876,7 @@ function printHtmlHeadMetaKeywords() {
 	else if (isBlog()) {
 	
 		if (isBlogPost()) {
-			printBlogPostKeywords('', ', ');
-			printAuthorKeywords();
+			printBlogPostKeywords();
 		}
 	
 		else {

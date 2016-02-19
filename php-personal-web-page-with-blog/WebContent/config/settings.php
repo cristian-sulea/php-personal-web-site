@@ -7,7 +7,7 @@ $AUTHOR_TITLE       = "Software Architect &amp; Developer";
 $AUTHOR_DESCRIPTION = "Senior Java Developer (&amp; Software Architect), PSS Prosoft Solutions, February 2008 - Present, Bucharest, Romania";
 $AUTHOR_BIRTHDAY    = "December 21, 1979";
 $AUTHOR_ADDRESS     = "Bucharest, Romania";
-$AUTHOR_KEYWORDS    = "cristian sulea, sulea cristian";
+$AUTHOR_KEYWORDS    = "cristian sulea, sulea cristian, sulea, cristian";
 
 $AUTHOR_PROFILES = array (
 		array (
