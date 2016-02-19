@@ -4,9 +4,9 @@
 	"description": "Code review is a phase in the software development process to catch bugs and design errors before the code becomes part of the product.",
 
 	"date":  "Feb 2 2014",
-	"date-modified": "Feb 17 2016",
+	"date-modified": "Feb 19 2016",
 
-	"keywords": ["code", "review", "software", "development"],
+	"keywords": ["code review",  "software development"],
 
 	"resources": [
 		["Effective Code Review", "http://alexgaynor.net/2013/sep/26/effective-code-review/"],
