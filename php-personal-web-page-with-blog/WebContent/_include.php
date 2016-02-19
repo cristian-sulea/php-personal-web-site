@@ -669,6 +669,8 @@ function getBlogPostImage($size = '696') {
 	
 	foreach (getBlogPostKeywords() as $keyword) {
 		
+		$keyword = preg_replace('/\s+/', '-', $keyword);
+		
 		$image = 'config/content/blog/images/' . $keyword . '-' . $size . '.png';
 		if (file_exists($image)) {
 			return $image;
