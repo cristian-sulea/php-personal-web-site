@@ -937,13 +937,40 @@ function printHtmlHeadLinkShortlink() {
 //
 // utility funtions
 
-function getAbsoluteLink($page='') {
+function getAbsoluteLink($page = null) {
 
-	$linkPrefix = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
-	$linkPrefix .= $_SERVER ['HTTP_HOST'];
-	$linkPrefix .= $_SERVER ['REQUEST_URI'];
+	$prefix = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
+	$host = $_SERVER ['HTTP_HOST'];
+	$request = $_SERVER ['REQUEST_URI'];
+	
+	$link = $prefix . $host;
+	
+	if (strcmp('/', $request) !== 0) {
+		
+		$link .= $request;
+		
+		if (!endsWith($link, '/')) {
+			$link = dirname($link);
+		}
+	}
+	
+	if ($page !== null) {
+		
+		if (!endsWith($link, '/')) {
+			$link .= '/';
+		}
+		
+		$link .= $page;
+	}
+	
+	return $link;
+}
 
-	return dirname($linkPrefix) . '/' . $page;
+function endsWith($string, $test) {
+	$strlen = strlen($string);
+	$testlen = strlen($test);
+	if ($testlen > $strlen) return false;
+	return substr_compare($string, $test, $strlen - $testlen, $testlen) === 0;
 }
 
 function errorUnknownPageType() {
@@ -974,7 +1001,8 @@ function getGravatarImg( $email ) {
 	return $url;
 }
 
-
+//
+// google structured data
 
 $GOOGLE_STRUCTURED_DATA_WEBSITE = <<<EOT
 
