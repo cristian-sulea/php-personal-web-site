@@ -1009,7 +1009,6 @@ $GOOGLE_STRUCTURED_DATA_WEBSITE = <<<EOT
 	"@context" : "http://schema.org",
 	"@type" : "WebSite",
 	"name" : "%name%",
-	"alternateName": "%alternateName%",
 	"url" : "%url%",
 	"potentialAction": {
 		"@type": "SearchAction",
@@ -1028,7 +1027,6 @@ $GOOGLE_STRUCTURED_DATA_BLOG = <<<EOT
 	"@context" : "http://schema.org",
 	"@type" : "Blog",
 	"name" : "%name%",
-	"alternateName": "%alternateName%",
 	"url" : "%url%",
 	"potentialAction": {
 		"@type": "SearchAction",
@@ -1121,8 +1119,7 @@ function printGoogleStructuredData() {
 		
 		$bufferWebSite = $GOOGLE_STRUCTURED_DATA_WEBSITE;
 		
-		$bufferWebSite = str_replace("%name%", getAuthorName(), $bufferWebSite);
-		$bufferWebSite = str_replace("%alternateName%", getAuthorName() . ' - ' . getAuthorTitle(), $bufferWebSite);
+		$bufferWebSite = str_replace("%name%", getAuthorName() . ' - ' . getAuthorTitle(), $bufferWebSite);
 		$bufferWebSite = str_replace("%url%", getAbsoluteLink(), $bufferWebSite);
 		$bufferWebSite = str_replace("%target%", getAbsoluteLink('search.php?' . getSearchQueryParam()), $bufferWebSite);
 		
@@ -1178,7 +1175,6 @@ function printGoogleStructuredData() {
 			$bufferBlog = $GOOGLE_STRUCTURED_DATA_BLOG;
 			
 			$bufferBlog = str_replace("%name%", getBlogTitle() . ' | ' . getAuthorName(), $bufferBlog);
-			$bufferBlog = str_replace("%alternateName%", getBlogTitle() . ' - ' . getBlogDescription(), $bufferBlog);
 			$bufferBlog = str_replace("%url%", getAbsoluteLink(getBlogLink()), $bufferBlog);
 			$bufferBlog = str_replace("%target%", getAbsoluteLink('search.php?' . getSearchQueryParam()), $bufferBlog);
 			
