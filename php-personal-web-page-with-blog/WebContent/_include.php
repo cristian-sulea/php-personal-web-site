@@ -604,34 +604,22 @@ function printBlogPostAuthorWebsite() {
 // - keywords
 
 function getBlogPostKeywords() {
-	return getBlogPostConfig('keywords', false);
-}
-
-function hasBlogPostKeywords() {
-	return getBlogPostResources() !== null;
+	return getBlogPostConfig('keywords');
 }
 
 function printBlogPostKeywords() {
-	if (hasBlogPostKeywords()) {
-		$isFirst = true;
-		foreach (getBlogPostKeywords() as $keyword) {
-			
-			if ($isFirst) {
-				$isFirst = false;
-			} else {
-				echo ', ';
-			}
-			
-			echo $keyword;
+	
+	$isFirst = true;
+	
+	foreach (getBlogPostKeywords() as $keyword) {
+		
+		if ($isFirst) {
+			$isFirst = false;
+		} else {
+			echo ', ';
 		}
-	}
-}
-
-function printBlogPostKeywordsOld($prefix = '', $sufix = '') {
-	if (hasBlogPostKeywords()) {
-		foreach (getBlogPostKeywords() as $keyword) {
-			echo $prefix . $keyword . $sufix;
-		}
+		
+		echo $keyword;
 	}
 }
 
@@ -1170,7 +1158,7 @@ function printGoogleStructuredData() {
 			$bufferBreadcrumbList = $GOOGLE_STRUCTURED_DATA_BREADCRUMB_LIST;
 			
 			$bufferBreadcrumbList = str_replace("%id1%", getAbsoluteLink(getBlogLink()), $bufferBreadcrumbList);
-			$bufferBreadcrumbList = str_replace("%name1%", getBlogTitle(), $bufferBreadcrumbList);
+			$bufferBreadcrumbList = str_replace("%name1%", getBlogHtmlTitle(), $bufferBreadcrumbList);
 			
 			$buffer .= $bufferBreadcrumbList;
 			
