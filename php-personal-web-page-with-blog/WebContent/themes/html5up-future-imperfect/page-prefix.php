@@ -87,5 +87,5 @@
 						<h2><a href="blog.php"><?php printBlogTitle(); ?></a></h2>
 						<p><?php printBlogDescription(); ?></p>
 					</header>
-				<?php } else { errorUnknownPageType(); } ?>
+				<?php } else { throwUnknownPageTypeException(); } ?>
 			</section>

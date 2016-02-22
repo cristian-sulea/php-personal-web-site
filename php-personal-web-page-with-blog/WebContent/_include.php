@@ -394,7 +394,22 @@ function getBlogLogo($size) {
 		return $logo;
 	}
 	
-	return 'config/content/blog/logo-696.png';
+	$logo = 'config/content/blog/logo-' . $size . '.jpg';
+	if (file_exists($logo)) {
+		return $logo;
+	}
+	
+	$logo = 'config/content/blog/logo-696.png';
+	if (file_exists($logo)) {
+		return $logo;
+	}
+	
+	$logo = 'config/content/blog/logo-696.jpg';
+	if (file_exists($logo)) {
+		return $logo;
+	}
+	
+	throwMissingImageException('blog logo');
 }
 
 function printBlogLogo($size) {
@@ -834,7 +849,7 @@ function printHtmlHeadTitle() {
 	}
 	
 	else {
-		errorUnknownPageType();
+		throwUnknownPageTypeException();
 	}
 }
 
@@ -877,7 +892,7 @@ function printHtmlHeadMetaDescription() {
 	}
 	
 	else {
-		errorUnknownPageType();
+		throwUnknownPageTypeException();
 	}
 }
 
@@ -900,7 +915,7 @@ function printHtmlHeadMetaKeywords() {
 	}
 	
 	else {
-		errorUnknownPageType();
+		throwUnknownPageTypeException();
 	}
 }
 
@@ -922,7 +937,7 @@ function printHtmlHeadMetaAuthor() {
 	}
 	
 	else {
-		errorUnknownPageType();
+		throwUnknownPageTypeException();
 	}
 }
 
@@ -937,7 +952,7 @@ function printHtmlHeadLinkIcon() {
 	}
 	
 	else {
-		errorUnknownPageType();
+		throwUnknownPageTypeException();
 	}
 }
 
@@ -987,8 +1002,11 @@ function endsWith($string, $test) {
 	return substr_compare($string, $test, $strlen - $testlen, $testlen) === 0;
 }
 
-function errorUnknownPageType() {
-	trigger_error("unknown page type", E_USER_ERROR);
+function throwUnknownPageTypeException() {
+	throw new LogicException('unknown page type');
+}
+function throwMissingImageException($image) {
+	throw new LogicException('missing image: ' . $image);
 }
 
 function checkIfIsSet($param, $index = null) {
