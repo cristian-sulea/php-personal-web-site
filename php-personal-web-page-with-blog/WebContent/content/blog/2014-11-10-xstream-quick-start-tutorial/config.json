@@ -1,5 +1,11 @@
 {
+
 	"title": "XStream - Quick start tutorial",
-	"date":  "Nov 10 2014",
-	"keywords": ["java", "xstream", "xml"]
+	"description": "Quick start tutorial on serializing an object to XML (and deserializing back from XML) using XStream, a simple java library.",
+
+	"date": "Nov 10 2014",
+	"date-modified": "Feb 22 2016",
+
+	"keywords": ["xstream", "xml", "java"]
+
 }

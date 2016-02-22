@@ -1,5 +1,11 @@
 {
+
 	"title": "XStream - Quick start JSON tutorial",
-	"date":  "Nov 11 2014",
-	"keywords": ["java", "xstream", "json"]
+	"description": "Quick start tutorial on serializing an object to JSON (and deserializing back from JSON) using XStream, a simple java library.",
+
+	"date": "Nov 11 2014",
+	"date-modified": "Feb 22 2016",
+
+	"keywords": ["xstream", "json", "java"]
+
 }

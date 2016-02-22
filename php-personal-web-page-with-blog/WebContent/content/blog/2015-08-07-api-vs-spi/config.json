@@ -4,7 +4,7 @@
 	"description": "API is a mean for accessing a provided service/function, SPI is way to inject, extend or alter the behavior.",
 
 	"date": "Aug 7 2015",
-	"date-modified": "Feb 18 2016",
+	"date-modified": "Feb 22 2016",
 
 	"keywords": ["api", "spi", "java"],
 

@@ -1,22 +1,35 @@
 <p>
-	What is happening is that <a href="http://hibernate.org">Hibernate</a> requires complete ownership of the children collection in the Parent object.
+	What is happening is that <a href="http://hibernate.org">Hibernate</a> requires complete ownership of the children collection in the parent object.
 	If you set it to a new object, Hibernate is unable to track changes to that collection and thus has no idea how to apply the cascading persistence to your objects.
 </p>
 
-So the code like:
+<p>
+	So the code like:
+</p>
+
 <pre>
 this.children = someNewSetOfChildren;
 </pre>
 
-or like:
+<p>
+	or like:
+</p>
+
 <pre>
 parent.setChildren(someNewSetOfChildren);
 </pre>
 
-results in a <a href="https://docs.jboss.org/hibernate/orm/4.3/javadocs/org/hibernate/HibernateException.html">HibernateException</a> with the message:
-<blockquote>A collection with cascade="all-delete-orphan" was no longer referenced by the owning entity instance</blockquote>
+<p>
+	results in a <a href="https://docs.jboss.org/hibernate/orm/4.3/javadocs/org/hibernate/HibernateException.html">HibernateException</a> with the message:
+<p>
 
-The full stack trace of the exception is:
+<blockquote>
+	A collection with cascade="all-delete-orphan" was no longer referenced by the owning entity instance
+</blockquote>
+
+<p>
+	The full stack trace of the exception is:
+<p>
 
 <pre>
 org.hibernate.HibernateException:
@@ -33,13 +46,19 @@ A collection with cascade=&quot;all-delete-orphan&quot; was no longer referenced
     ...
 </pre>
 
-To avoid this problem, any time we want to add or delete something to the list, we have to modify the contents of the collection instead of assigning a new one with code like:
+<p>
+	To avoid this problem, any time we want to add or delete something to the list, we have to modify the contents of the collection instead of assigning a new one with code like:
+</p>
+
 <pre>
 parent.getChildren().clear();
 parent.getChildren().addAll(someNewSetOfChildren);
 </pre>
 
-or like:
+<p>
+	or like:
+</p>
+
 <pre>
 public void setChildren(Set&lt;Child&gt; someNewSetOfChildren) {
  

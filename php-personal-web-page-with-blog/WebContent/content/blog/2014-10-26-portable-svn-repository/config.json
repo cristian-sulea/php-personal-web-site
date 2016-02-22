@@ -1,5 +1,11 @@
 {
+
 	"title": "Portable SVN Repository",
-	"date":  "Oct 26 2014",
-	"keywords": ["portable", "source", "code", "svn"]
+	"description": "An easy way to transfer the code when developing on different systems is to use a flash drive (or a file hosting service) as a subversion (SVN) repository.",
+
+	"date": "Oct 26 2014",
+	"date-modified": "Feb 22 2016",
+
+	"keywords": ["svn", "repository", "portable"]
+
 }

@@ -1,5 +1,11 @@
 {
+
 	"title": "Hibernate - One To Many (Annotation)",
-	"date":  "Jun 27 2014",
+	"description": "One-to-many associations are declared at the property level with the annotation @OneToMany.",
+
+	"date": "Jun 27 2014",
+	"date-modified": "Feb 22 2016",
+
 	"keywords": ["hibernate", "java"]
+
 }

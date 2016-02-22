@@ -1,5 +1,11 @@
 {
+
 	"title": "XStream - Object references",
-	"date":  "Nov 12 2014",
-	"keywords": ["java", "xstream"]
+	"description": "To deal with duplicate and circular references, XStream is using XPath to allow serialized objects to be treated as graphs instead of simple trees.",
+
+	"date": "Nov 12 2014",
+	"date-modified": "Feb 22 2016",
+
+	"keywords": ["xstream", "java"]
+
 }
