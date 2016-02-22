@@ -797,32 +797,39 @@ function printSearchResults() {
 }
 
 //
-// print HTML components
+// HTML components
+
+function getIndexHtmlTitle() {
+	return getAuthorName() . ' - ' . getAuthorTitle();
+}
+function getBlogHtmlTitle() {
+	return getBlogTitle() . ' | ' . getAuthorName();
+}
+function getBlogPostHtmlTitle() {
+	return getBlogPostTitle() . ' | ' . getAuthorName();
+}
+function getBlogSearchHtmlTitle() {
+	return 'Search: ' . getSearchQuery() . ' | ' . getBlogTitle();
+}
 
 function printHtmlHeadTitle() {
 	
 	if (isIndex()) {
-		echo getAuthorName() . ' - ' . getAuthorTitle();
+		echo getIndexHtmlTitle();
 	}
 	
 	else if (isBlog()) {
 		
 		if (isBlogPost()) {
-			printBlogPostTitle();
-			echo ' | ';
-			printAuthorName();
+			echo getBlogPostHtmlTitle();
 		}
 		
 		else if (isBlogSearch()) {
-			echo 'Search: ' . getSearchQuery();
-			echo ' | ';
-			printBlogTitle();
+			echo getBlogSearchHtmlTitle();
 		}
 		
 		else {
-			printBlogTitle();
-			echo ' | ';
-			printAuthorName();
+			echo getBlogHtmlTitle();
 		}
 	}
 	
@@ -831,32 +838,41 @@ function printHtmlHeadTitle() {
 	}
 }
 
+function getIndexHtmlDescription() {
+	return getAuthorDescription();
+}
+function getBlogHtmlDescription() {
+	return getBlogDescription();
+}
+function getBlogPostHtmlDescription() {
+	if (hasBlogPostDescription()) {
+		return getBlogPostDescription();
+	} else {
+		return getBlogPostTitle();
+	}
+}
+function getBlogSearchHtmlDescription() {
+	return 'Search: ' . getSearchQuery() . ' | ' . getBlogDescription();
+}
+
 function printHtmlHeadMetaDescription() {
 	
 	if (isIndex()) {
-		printAuthorDescription();
+		echo getIndexHtmlDescription();
 	}
 	
 	else if (isBlog()) {
 		
 		if (isBlogPost()) {
-			if (hasBlogPostDescription()) {
-				printBlogPostDescription();
-			} else {
-				printBlogPostTitle();
-			}
+			echo getBlogPostHtmlDescription();
 		}
 		
 		else if (isBlogSearch()) {
-			echo "Search: " . getSearchQuery();
-			echo ", ";
-			printBlogTitle();
-			echo ", ";
-			printBlogDescription();
+			echo getBlogSearchHtmlDescription();
 		}
 		
 		else {
-			printBlogDescription();
+			echo getBlogHtmlDescription();
 		}
 	}
 	
@@ -1119,7 +1135,7 @@ function printGoogleStructuredData() {
 		
 		$bufferWebSite = $GOOGLE_STRUCTURED_DATA_WEBSITE;
 		
-		$bufferWebSite = str_replace("%name%", getAuthorName() . ' - ' . getAuthorTitle(), $bufferWebSite);
+		$bufferWebSite = str_replace("%name%", getIndexHtmlTitle(), $bufferWebSite);
 		$bufferWebSite = str_replace("%url%", getAbsoluteLink(), $bufferWebSite);
 		$bufferWebSite = str_replace("%target%", getAbsoluteLink('search.php?' . getSearchQueryParam()), $bufferWebSite);
 		
@@ -1146,7 +1162,10 @@ function printGoogleStructuredData() {
 			$bufferBlogPosting = $GOOGLE_STRUCTURED_DATA_BLOG_POSTING;
 			
 			$bufferBlogPosting = str_replace('%mainEntityOfPage.id%', getAbsoluteLink(getBlogPostLink()), $bufferBlogPosting);
+			
 			$bufferBlogPosting = str_replace('%headline%', getBlogPostTitle(), $bufferBlogPosting);
+			$bufferBlogPosting = str_replace('%description%', getBlogPostDescription(), $bufferBlogPosting);
+			
 			$bufferBlogPosting = str_replace('%datePublished%', getBlogPostDate('c'), $bufferBlogPosting);
 			$bufferBlogPosting = str_replace('%dateModified%', getBlogPostDateModified('c'), $bufferBlogPosting);
 			
@@ -1165,8 +1184,6 @@ function printGoogleStructuredData() {
 			$bufferBlogPosting = str_replace('%publisher.logo.width%', '60', $bufferBlogPosting);
 			$bufferBlogPosting = str_replace('%publisher.logo.height%', '60', $bufferBlogPosting);
 			
-			$bufferBlogPosting = str_replace('%description%', getBlogPostDescription(), $bufferBlogPosting);
-			
 			$buffer .= $bufferBlogPosting;
 		}
 		
@@ -1174,7 +1191,7 @@ function printGoogleStructuredData() {
 			
 			$bufferBlog = $GOOGLE_STRUCTURED_DATA_BLOG;
 			
-			$bufferBlog = str_replace("%name%", getBlogTitle() . ' | ' . getAuthorName(), $bufferBlog);
+			$bufferBlog = str_replace("%name%", getBlogHtmlTitle(), $bufferBlog);
 			$bufferBlog = str_replace("%url%", getAbsoluteLink(getBlogLink()), $bufferBlog);
 			$bufferBlog = str_replace("%target%", getAbsoluteLink('search.php?' . getSearchQueryParam()), $bufferBlog);
 			
