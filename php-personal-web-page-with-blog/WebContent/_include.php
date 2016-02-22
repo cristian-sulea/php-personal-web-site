@@ -628,17 +628,11 @@ function printBlogPostKeywords() {
 // - description
 
 function getBlogPostDescription() {
-	return getBlogPostConfig('description', false);
-}
-
-function hasBlogPostDescription() {
-	return getBlogPostDescription() !== null;
+	return getBlogPostConfig('description');
 }
 
 function printBlogPostDescription() {
-	if (hasBlogPostDescription()) {
-		echo getBlogPostDescription();
-	}
+	echo getBlogPostDescription();
 }
 
 //
@@ -848,11 +842,7 @@ function getBlogHtmlDescription() {
 	return getBlogDescription();
 }
 function getBlogPostHtmlDescription() {
-	if (hasBlogPostDescription()) {
-		return getBlogPostDescription();
-	} else {
-		return getBlogPostTitle();
-	}
+	return getBlogPostDescription();
 }
 function getBlogSearchHtmlDescription() {
 	return 'Search: ' . getSearchQuery() . ' | ' . getBlogDescription();
