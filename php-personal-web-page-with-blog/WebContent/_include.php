@@ -856,8 +856,6 @@ function printHtmlHeadMetaDescription() {
 		}
 		
 		else {
-			printBlogTitle();
-			echo ' - ';
 			printBlogDescription();
 		}
 	}
