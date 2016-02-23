@@ -47,7 +47,7 @@ foreach (getBlogPostFolders() as $blogPostFolder) {
 	echo ']]></dc:creator>' . PHP_EOL;
 	
 	echo '	<description><![CDATA[';
-	echo '<img src="' . getAbsoluteLink(getBlogPostImage('128')) . '" style="float: left; margin-right: 1em;" />';
+	echo '<img src="' . getAbsoluteLink(getBlogPostImage('128')) . '" style="float: left; margin-right: 1em; max-width: 20%;" />';
 	printBlogPostDescription();
 	echo '<br><a href="' . $postLink . '">Continue Reading</a>]]></description>' . PHP_EOL;
 	
@@ -59,4 +59,3 @@ echo '</channel>' . PHP_EOL;
 echo '</rss>' . PHP_EOL;
 
 ?>
-<img style="float: left; margin-right: 1em;">
