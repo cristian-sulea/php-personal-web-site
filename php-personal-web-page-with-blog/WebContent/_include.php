@@ -717,6 +717,10 @@ function printBlogPostContent() {
 	
 	$blogPostContentBuffer = getBlogPostContent();
 	
+	if (!isset($blogPostContentBuffer)) {
+		throw new LogicException('blog post content is not read');
+	}
+	
 	$blogPostContentBuffer = str_replace('="images/', '="content/blog/' . getBlogPostId() . '/images/', $blogPostContentBuffer);
 	
 	$blogPostContentBuffer = str_replace(
@@ -734,12 +738,8 @@ function printBlogPostContent() {
 	echo $blogPostContentBuffer;
 }
 
-function readBlogPostContent($useExcerpt = false) {
-	if ($useExcerpt) {
-		setBlogPostContent(file_get_contents('content/blog/' . getBlogPostId() . '/excerpt.html'));
-	} else {
-		setBlogPostContent(file_get_contents('content/blog/' . getBlogPostId() . '/content.html'));
-	}
+function readBlogPostContent() {
+	setBlogPostContent(file_get_contents('content/blog/' . getBlogPostId() . '/content.html'));
 }
 
 function getBlogPostFolders() {
