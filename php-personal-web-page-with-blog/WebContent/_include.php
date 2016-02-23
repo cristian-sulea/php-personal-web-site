@@ -72,6 +72,19 @@ function printAuthorKeywords($prefix = '', $sufix = '') {
 	echo $prefix . $AUTHOR_KEYWORDS . $sufix;
 }
 
+function getAuthorProfiles() {
+	global $AUTHOR_PROFILES;
+	return $AUTHOR_PROFILES;
+}
+
+function getAuthorProfileLink($title) {
+	foreach (getAuthorProfiles() as $authorProfile) {
+		if ($authorProfile[0] == $title) {
+			return $authorProfile[1];
+		}
+	}
+}
+
 function printAuthorProfiles() {
 	global $AUTHOR_PROFILES;
 	foreach ($AUTHOR_PROFILES as $authorProfile) {
@@ -1026,6 +1039,11 @@ $GOOGLE_STRUCTURED_DATA_WEBSITE = <<<EOT
 		"@type": "SearchAction",
 		"target": "%target%={search_term_string}",
 		"query-input": "required name=search_term_string"
+	},
+	"author": {
+		"@type": "Person",
+		"name": "%author.name%",
+		"url": "%author.url%"
 	}
 }
 </script>
@@ -1044,6 +1062,11 @@ $GOOGLE_STRUCTURED_DATA_BLOG = <<<EOT
 		"@type": "SearchAction",
 		"target": "%target%={search_term_string}",
 		"query-input": "required name=search_term_string"
+	},
+	"author": {
+		"@type": "Person",
+		"name": "%author.name%",
+		"url": "%author.url%"
 	}
 }
 </script>
@@ -1118,12 +1141,31 @@ $GOOGLE_STRUCTURED_DATA_BLOG_POSTING = <<<EOT
 
 EOT;
 
+$GOOGLE_STRUCTURED_DATA_PERSON = <<<EOT
+
+<script type="application/ld+json">
+{
+	"@context" : "http://schema.org",
+	"@type" : "Person",
+	"name" : "%name%",
+	"url" : "%url%",
+	"sameAs" : [%sameas%
+	]
+}
+</script>
+
+EOT;
+
 function printGoogleStructuredData() {
 	
 	global $GOOGLE_STRUCTURED_DATA_WEBSITE;
+	
 	global $GOOGLE_STRUCTURED_DATA_BLOG;
+	
 	global $GOOGLE_STRUCTURED_DATA_BREADCRUMB_LIST;
 	global $GOOGLE_STRUCTURED_DATA_BLOG_POSTING;
+	
+	global $GOOGLE_STRUCTURED_DATA_PERSON;
 	
 	$buffer = '';
 	
@@ -1134,6 +1176,8 @@ function printGoogleStructuredData() {
 		$bufferWebSite = str_replace("%name%", getIndexHtmlTitle(), $bufferWebSite);
 		$bufferWebSite = str_replace("%url%", getAbsoluteLink(), $bufferWebSite);
 		$bufferWebSite = str_replace("%target%", getAbsoluteLink('search.php?' . getSearchQueryParam()), $bufferWebSite);
+		$bufferWebSite = str_replace("%author.name%", getAuthorName(), $bufferWebSite);
+		$bufferWebSite = str_replace("%author.url%", getAbsoluteLink(), $bufferWebSite);
 		
 		$buffer .= $bufferWebSite;
 	}
@@ -1190,10 +1234,26 @@ function printGoogleStructuredData() {
 			$bufferBlog = str_replace("%name%", getBlogHtmlTitle(), $bufferBlog);
 			$bufferBlog = str_replace("%url%", getAbsoluteLink(getBlogLink()), $bufferBlog);
 			$bufferBlog = str_replace("%target%", getAbsoluteLink('search.php?' . getSearchQueryParam()), $bufferBlog);
+			$bufferBlog = str_replace("%author.name%", getAuthorName(), $bufferBlog);
+			$bufferBlog = str_replace("%author.url%", getAbsoluteLink(), $bufferBlog);
 			
 			$buffer .= $bufferBlog;
 		}
 	}
+	
+	$bufferPerson = $GOOGLE_STRUCTURED_DATA_PERSON;
+	$bufferPerson = str_replace("%name%", getAuthorName(), $bufferPerson);
+	$bufferPerson = str_replace("%url%", getAbsoluteLink(), $bufferPerson);
+	
+	$bufferSameAs = '';
+	foreach (getAuthorProfiles() as $authorProfile) {
+		$bufferSameAs .= PHP_EOL . '		"' . $authorProfile[1] . '",';
+	}
+	$bufferSameAs = substr($bufferSameAs, 0, strlen($bufferSameAs) - 1);
+	
+	$bufferPerson = str_replace("%sameas%", $bufferSameAs, $bufferPerson);
+	
+	$buffer .= $bufferPerson;
 	
 	echo $buffer;
 }

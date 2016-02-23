@@ -12,15 +12,19 @@ $AUTHOR_KEYWORDS    = "cristian sulea, sulea cristian";
 $AUTHOR_PROFILES = array (
 		array (
 				"LinkedIn",
-				"https://www.linkedin.com/profile/view?id=173404791"
+				"http://www.linkedin.com/in/cristiansulea"
 		),
 		array (
 				"Google+",
-				"https://plus.google.com/+CristianSulea79/about"
+				"http://plus.google.com/+CristianSulea79"
+		),
+		array (
+				"Twitter",
+				"http://twitter.com/Cristian_Sulea"
 		),
 		array (
 				"GitHub",
-				"https://github.com/cristian-sulea"
+				"http://github.com/cristian-sulea"
 		),
 		array (
 				"SourceForge",

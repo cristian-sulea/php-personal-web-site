@@ -20,6 +20,9 @@ function theme_getAuthorProfileIconClass($title) {
 		case "Google+" :
 			return "fa-google-plus-square";
 		
+		case "Twitter" :
+			return "fa-twitter-square";
+		
 		case "GitHub" :
 			return "fa-github-square";
 		
