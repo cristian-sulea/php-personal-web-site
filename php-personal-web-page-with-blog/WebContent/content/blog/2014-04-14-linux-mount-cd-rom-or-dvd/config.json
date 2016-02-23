@@ -1,0 +1,11 @@
+{
+
+	"title": "Linux - Mount a CD-ROM or DVD",
+	"description": "How to create CD and DVD mount points in Linux (common CD mount points are /cdrom and /mnt/cdrom and common DVD mount points are /dvdrom and /mnt/dvdrom).",
+
+	"date": "Apr 14 2014",
+	"date-modified": "Feb 23 2016",
+
+	"keywords": ["mount", "linux"]
+
+}

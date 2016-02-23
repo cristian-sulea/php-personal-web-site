@@ -1,0 +1,65 @@
+<p>
+	Common CD mount points are <code>/cdrom</code> and <code>/mnt/cdrom</code> and common DVD mount points are <code>/dvdrom</code> and <code>/mnt/dvdrom</code>.
+</p>
+
+<p>
+	If the mount point does not exist, create it:
+</p>
+
+<pre>
+mkdir /mnt/cdrom
+</pre>
+
+<p>
+	Mount it:
+</p>
+
+<pre>
+mount -t iso9660 -o ro /dev/cdrom /mnt/cdrom
+</pre>
+
+<p>
+	If you cannot mount because
+</p>
+<blockquote>
+	the device is already mounted or directory busy
+</blockquote>
+<p>
+	perhaps the mount point <code>/mnt/cdrom</code> is your current directory. You have to change the directory to somewhere else in order to be able to mount to it.
+</p>
+
+<h3>Unmount and eject</h3>
+
+<p>
+	Exit the directory <code>/mnt/cdrom</code> and execute:
+</p>
+
+<pre>
+umount /mnt/cdrom
+eject
+</pre>
+
+<p>
+	Or simply run:
+</p>
+
+<pre>
+eject
+</pre>
+
+<p>
+	If you are unable to unmount your previously mounted CD-ROM, make sure that you are not in the directory where your CD-ROM is mounted or that some other application is not using it.
+</p>
+
+<p>
+	If you are still having problems to unmount your CD-ROM medium you can use <code>fuser</code> command to kill all related processes using your device.
+</p>
+
+<pre>
+fuser -mk /dev/hdc
+eject
+</pre>
+
+<p>
+	Never use the above command on devices mounted read/write unless you are sure what you are doing.
+</p>
