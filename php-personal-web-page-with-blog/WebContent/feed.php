@@ -47,7 +47,7 @@ foreach (getBlogPostFolders() as $blogPostFolder) {
 	echo ']]></dc:creator>' . PHP_EOL;
 	
 	echo '	<description><![CDATA[';
-	echo '<img src="' . getAbsoluteLink(getBlogPostImage('128')) . '" style="float: left; margin-right: 1em; max-width: 20%;" />';
+	echo '<img src="' . getAbsoluteLink(getBlogPostImage('064')) . '" style="float: left; margin-right: 1em;" />';
 	printBlogPostDescription();
 	echo '<br><a href="' . $postLink . '">Continue Reading</a>]]></description>' . PHP_EOL;
 	
