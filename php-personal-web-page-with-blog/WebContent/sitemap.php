@@ -28,9 +28,15 @@ foreach (getBlogPostFolders() as $blogPostFolder) {
 	
 	readBlogPostConfig();
 	
+// 	$lastmodConfig = filemtime('content/blog/' . getBlogPostId() . '/config.json');
+// 	$lastmodContent = filemtime('content/blog/' . getBlogPostId() . '/content.html');
+// 	$lastmod = $lastmodConfig > $lastmodContent ? $lastmodConfig : $lastmodContent;
+	
 	echo '	<url>' . PHP_EOL;
 	echo '		<loc>' . getAbsoluteLink(getBlogPostLink()) . '</loc>' . PHP_EOL;
-	echo '		<lastmod>' . getBlogPostDate('c') . '</lastmod>' . PHP_EOL;
+// 	echo '		<lastmod>' . getBlogPostDate('c') . '</lastmod>' . PHP_EOL;
+// 	echo '		<lastmod>' . date ('c', $lastmod) . '</lastmod>' . PHP_EOL;
+	echo '		<lastmod>' . getBlogPostDateModified('c') . '</lastmod>' . PHP_EOL;
 	echo '	</url>' . PHP_EOL;
 }
 
