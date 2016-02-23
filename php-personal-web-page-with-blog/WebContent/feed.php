@@ -16,7 +16,7 @@ echo PHP_EOL;
 
 echo '<title>' . getBlogHtmlTitle() . '</title>' . PHP_EOL;
 echo '<description>' . getBlogHtmlDescription() . '</description>' . PHP_EOL;
-echo '<link>' . getAbsoluteLink() . '</link>' . PHP_EOL;
+echo '<link>' . getAbsoluteLink(getBlogLink()) . '</link>' . PHP_EOL;
 echo '<atom:link href="' . getAbsoluteLink('feed.php') . '" rel="self" type="application/rss+xml" />' . PHP_EOL;
 
 echo PHP_EOL;
