@@ -1,0 +1,61 @@
+<p>
+	Add partner repository:
+</p>
+
+<pre>
+sudo apt-get purge openjdk*
+</pre>
+
+<p>
+	Update the source list:
+</p>
+
+<pre>
+sudo add-apt-repository "deb http://archive.canonical.com/ lucid partner"
+sudo apt-get update
+sudo apt-get install sun-java6-jre sun-java6-plugin
+</pre>
+
+<p>
+	Install Sun's Java packages:
+</p>
+
+<pre>
+sudo update-alternatives -config java
+</pre>
+
+<p>
+	Confirm that your system is configured properly for Sun's JRE (by checking the java version):
+</p>
+
+<pre>
+java -version
+</pre>
+
+<h3>JDK 8</h3>
+
+<p>
+	You can use <a href="https://launchpad.net/~webupd8team/+archive/ubuntu/java">WebUpd8 PPA</a> (this will download the required files from Oracle and install JDK 8):
+</p>
+
+<pre>
+sudo apt-add-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+</pre>
+
+<p>
+	Also ensure your JAVA_HOME variable has been set to:
+</p>
+
+<pre>
+/usr/lib/jvm/java-8-oracle
+</pre>
+
+<p>
+	For this you can use the following command (see step 3 of Manual Install to see how to make it permanent):
+</p>
+
+<pre>
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+</pre>

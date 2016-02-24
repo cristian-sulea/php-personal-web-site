@@ -1,0 +1,11 @@
+{
+
+	"title": "Java Cryptography",
+	"description": "Cryptography is looking at techniques for encoding and verifying things securely. It tends to focus on encryption, authentication and computer protocols.",
+
+	"date": "Mar 10 2015",
+	"date-modified": "Feb 24 2016",
+
+	"keywords": ["cryptography", "java"]
+
+}

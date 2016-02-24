@@ -1,0 +1,138 @@
+<p>
+	Cryptography is a field looking at techniques for <strong>encoding and verifying things securely</strong>.
+	It tends to focus on the following issues:
+<p>
+
+<ul>
+	<li><strong>encryption</strong> of data so that an unauthorized third party cannot read it without a key of some sort;</li>
+	<li><strong>authentication and validation</strong> (or <strong>certification</strong>);</li>
+	<li><strong>computer protocols</strong> for using the previous two techniques correctly and in a way that allows all parties to know how they're being used (e.g. the TLS protocol allows a client to connect to a server over the Internet without the two machines previously knowing things such as session key or even preferred encryption method, maximum key length, etc).</li>
+</ul>
+
+<h3>Symmetric-key encryption in Java</h3>
+
+<p>
+	This is the case where the <strong>same key</strong> is used to both encrypt and decrypt.
+	It sometimes called <strong>secret-key encryption</strong>, <strong>single-key encryption</strong> or simply <strong>symmetric encryption</strong>.
+	In Java, use an instance of <a href="http://docs.oracle.com/javase/7/docs/api/javax/crypto/Cipher.html">javax.crypto.Cipher</a>.
+</p>
+
+<p>
+	Encryption example:
+</p>
+
+<pre>
+String passPhrase = &quot;secret sequence of bytes&quot;;
+byte[] dataToEncrypt = &quot;data to encrypt&quot;.getBytes();
+
+MessageDigest digest = MessageDigest.getInstance(&quot;SHA&quot;);
+digest.update(passPhrase.getBytes());
+
+Key key = new SecretKeySpec(digest.digest(), 0, 16, &quot;AES&quot;);
+
+Cipher cipher = Cipher.getInstance(&quot;AES/ECB/PKCS5Padding&quot;);
+cipher.init(Cipher.ENCRYPT_MODE, key);
+
+byte[] encryptedData = cipher.doFinal(dataToEncrypt);
+
+System.out.println(Arrays.toString(encryptedData));
+</pre>
+
+<p>
+	Decryption example:
+</p>
+
+<pre>
+String passPhrase = &quot;secret sequence of bytes&quot;;
+byte[] dataToDecrypt = new byte[] { -84,-66,-113,54,125,48,-28,-60,36,52,-57,109,105,-17,111,-12 };
+
+MessageDigest digest = MessageDigest.getInstance(&quot;SHA&quot;);
+digest.update(passPhrase.getBytes());
+
+Key key = new SecretKeySpec(digest.digest(), 0, 16, &quot;AES&quot;);
+
+Cipher cipher = Cipher.getInstance(&quot;AES/ECB/PKCS5Padding&quot;);
+cipher.init(Cipher.DECRYPT_MODE, key);
+
+byte[] decryptedData = cipher.doFinal(dataToDecrypt);
+
+System.out.println(new String(decryptedData));
+</pre>
+
+<h3>Asymmetric (public key) encryption in Java</h3>
+
+<p>
+	Asymmetric encryption, also known as <strong>public key encryption</strong> or <strong>public key cryptography</strong>,
+	refers to a cryptographic algorithm which requires two separate keys, one of which is secret (or private) and one of which is public:
+</p>
+
+<ul>
+	<li>the public key is used to encrypt;</li>
+	<li>the private key is used to decrypt.</li>
+</ul>
+
+<p>
+	A common paradigm in a centralized client-server system is that a private key is held securely on the server, while the corresponding public key is distributed to all clients.
+<p>
+
+<p>
+	In Java, the keys will be instances of <a href="http://docs.oracle.com/javase/7/docs/api/java/security/PublicKey.html">java.security.PublicKey</a>
+	and <a href="http://docs.oracle.com/javase/7/docs/api/java/security/PrivateKey.html">java.security.PrivateKey</a>.
+	To generate a new pair:
+</p>
+
+<pre>
+KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(&quot;RSA&quot;);
+KeyPair keyPair = keyPairGenerator.generateKeyPair();
+PublicKey publicKey = keyPair.getPublic();
+PrivateKey privateKey = keyPair.getPrivate();
+</pre>
+
+<p>
+	The keys can also be transformed into byte arrays for storage and transmission:
+</p>
+
+<pre>
+KeyFactory keyFactory = KeyFactory.getInstance(&quot;RSA&quot;);
+byte[] publicKeyBytes = publicKey.getEncoded();
+KeySpec keySpec = new X509EncodedKeySpec(publicKeyBytes);
+PublicKey keyFromBytes = keyFactory.generatePublic(keySpec);
+</pre>
+
+<p>
+	Encryption example:
+</p>
+
+<pre>
+String passPhrase = &quot;secret sequence of bytes&quot;;
+byte[] dataToEncrypt = &quot;data to encrypt&quot;.getBytes();
+
+MessageDigest digest = MessageDigest.getInstance(&quot;SHA&quot;);
+digest.update(passPhrase.getBytes());
+
+Cipher cipher = Cipher.getInstance(&quot;RSA/ECB/PKCS1Padding&quot;);
+cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+
+byte[] encryptedData = cipher.doFinal(dataToEncrypt);
+
+System.out.println(new String(encryptedData));
+</pre>
+
+<p>
+	Decryption example:
+</p>
+
+<pre>
+String passPhrase = &quot;secret sequence of bytes&quot;;
+byte[] dataToDecrypt = /* read from stream/file/etc */;
+
+MessageDigest digest = MessageDigest.getInstance(&quot;SHA&quot;);
+digest.update(passPhrase.getBytes());
+
+Cipher cipher = Cipher.getInstance(&quot;RSA/ECB/PKCS1Padding&quot;);
+cipher.init(Cipher.DECRYPT_MODE, privateKey);
+
+byte[] decryptedData = cipher.doFinal(dataToDecrypt);
+
+System.out.println(new String(decryptedData));
+</pre>

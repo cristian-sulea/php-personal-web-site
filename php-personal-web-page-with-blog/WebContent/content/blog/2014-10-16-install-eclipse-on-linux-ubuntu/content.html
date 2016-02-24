@@ -1,0 +1,61 @@
+<p>
+	Extract the eclipse download and move to opt:
+</p>
+
+<pre>
+tar xvzf eclipse*.tar.gz
+sudo mv eclipse /opt/eclipse
+</pre>
+
+<p>
+	Then create an eclipse executable in your path:
+</p>
+
+<pre>
+sudo touch /usr/bin/eclipse
+sudo chmod 755 /usr/bin/eclipse
+sudo gedit /usr/bin/eclipse
+</pre>
+
+<p>
+	with this contents:
+</p>
+
+<pre>
+#!/bin/sh
+export ECLIPSE_HOME=&quot;/opt/eclipse&quot;
+$ECLIPSE_HOME/eclipse $*
+</pre>
+
+<p>
+	Then create a gnome menu item:
+</p>
+
+<pre>
+sudoedit /usr/share/applications/eclipse.desktop
+</pre>
+
+<p>
+	with this contents:
+</p>
+
+<pre>
+[Desktop Entry]
+Encoding=UTF-8
+Name=Eclipse
+Comment=Eclipse IDE
+Exec=eclipse
+Icon=/opt/eclipse/icon.xpm
+Terminal=false
+Type=Application
+Categories=GNOME;Application;Development;
+StartupNotify=true
+</pre>
+
+<p>
+	You now have a working eclipse, but run this command first to initialise the set up:
+</p>
+
+<pre>
+/opt/eclipse/eclipse -clean
+</pre>

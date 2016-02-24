@@ -1,0 +1,15 @@
+{
+
+	"title": "Install Java (Oracle) on Linux Ubuntu",
+	"description": "How to download and install Sun/Oracle's proprietary Java (Java Runtime Environment or Java Development Kit) in Ubuntu Linux distribution.",
+
+	"date": "Jul 10 2014",
+	"date-modified": "Feb 24 2016",
+
+	"keywords": ["java", "ubuntu", "linux"],
+
+	"resources": [
+		["Ask Ubuntu (for JDK8)", "http://askubuntu.com/questions/521145/how-to-install-oracle-java-on-ubuntu-14-04"]
+	]
+
+}
