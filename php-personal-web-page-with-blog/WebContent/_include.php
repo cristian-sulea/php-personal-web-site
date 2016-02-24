@@ -1158,6 +1158,10 @@ EOT;
 
 function printGoogleStructuredData() {
 	
+	if (isBlogSearch() || isBlogFeed()) {
+		return;
+	}
+	
 	global $GOOGLE_STRUCTURED_DATA_WEBSITE;
 	
 	global $GOOGLE_STRUCTURED_DATA_BLOG;
@@ -1225,6 +1229,14 @@ function printGoogleStructuredData() {
 			$bufferBlogPosting = str_replace('%publisher.logo.height%', '60', $bufferBlogPosting);
 			
 			$buffer .= $bufferBlogPosting;
+		}
+		
+		else if (isBlogSearch()) {
+			// do nothing (at the moment)
+		}
+		
+		else if (isBlogFeed()) {
+			// do nothing (at the moment)
 		}
 		
 		else {
