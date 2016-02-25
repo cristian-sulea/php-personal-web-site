@@ -1,0 +1,124 @@
+<p>
+	Repository based package management operations on the Debian system can be performed by many APT-based package management tools available on the Debian system.
+</p>
+
+Basic package management tools:
+<ul>
+	<li>apt-get / apt-cache</li>
+	<li>aptitude</li>
+</ul>
+
+<h3>apt-get / apt-cache</h3>
+
+<p>
+	The <code>apt-get</code> and <code>apt-cache</code> commands are the most basic APT-based package management tools.
+</p>
+
+<ul>
+	<li>offer only the <strong>command line user interface</strong>;</li>
+	<li>is most suitable for the <strong>major system upgrade</strong> between releases, etc;</li>
+	<li>offers a <strong>robust</strong> package dependency resolver;</li>
+	<li>is <strong>less demanding</strong> on hardware resources (it consumes less memory and runs faster);</li>
+	<li>offers a <strong>standard regex</strong> based search on the package name and description;</li>
+	<li>can manage multiple versions of packages using <code>/etc/apt/preferences</code> but it is quite cumbersome.</li>
+</ul>
+
+<h3>aptitude</h3>
+
+<p>
+	The <code>aptitude</code> command is the most versatile APT-based package management tool.
+</p>
+
+<ul>
+	<li>offers the full screen <strong>interactive text user interface</strong>;</li>
+	<li>offers the <strong>command line user interface</strong>, too;</li>
+	<li>is most suitable for the <strong>daily interactive package management</strong> such as inspecting installed packages and searching available packages;</li>
+	<li>is <strong>more demanding</strong> on hardware resources (it consumes more memory and runs slower);</li>
+	<li>offers an <strong>enhanced regex</strong> based search on all of the package metadata;</li>
+	<li>can manage multiple versions of packages without using <code>/etc/apt/preferences</code> and it is quite intuitive.</li>
+</ul>
+
+<h3>Operations with the command line using apt-get / apt-cache and aptitude</h3>
+
+update package archive metadata
+<ul>
+	<li><code>apt-get update</code></li>
+	<li><code>aptitude update</code></li>
+</ul>
+
+install candidate version of "foo" package with its dependencies
+<ul>
+	<li><code>apt-get install foo</code></li>
+	<li><code>aptitude install foo</code></li>
+</ul>
+
+install candidate version of installed packages without removing any other packages
+<ul>
+	<li><code>apt-get upgrade</code></li>
+	<li><code>aptitude safe-upgrade</code></li>
+</ul>
+
+install candidate version of installed packages while removing other packages if needed
+<ul>
+	<li><code>apt-get dist-upgrade</code></li>
+	<li><code>aptitude full-upgrade</code></li>
+</ul>
+
+remove "foo" package while leaving its configuration files
+<ul>
+	<li><code>apt-get remove foo</code></li>
+	<li><code>aptitude remove foo</code></li>
+</ul>
+
+remove auto-installed packages which are no longer required
+<ul>
+	<li><code>apt-get autoremove</code></li>
+</ul>
+
+purge "foo" package with its configuration files
+<ul>
+	<li><code>apt-get purge foo</code></li>
+	<li><code>aptitude purge foo</code></li>
+</ul>
+
+clear out the local repository of retrieved package files completely
+<ul>
+	<li><code>apt-get clean</code></li>
+	<li><code>aptitude clean</code></li>
+</ul>
+
+clear out the local repository of retrieved package files for outdated packages
+<ul>
+	<li><code>apt-get autoclean</code></li>
+	<li><code>aptitude autoclean</code></li>
+</ul>
+
+display detailed information about "foo" package
+<ul>
+	<li><code>apt-cache show foo</code></li>
+	<li><code>aptitude show foo</code></li>
+</ul>
+
+search packages which match
+<ul>
+	<li><code>apt-cache search &lt;regex&gt;</code></li>
+	<li><code>aptitude search &lt;regex&gt;</code></li>
+</ul>
+
+explain the reason why matching packages should be installed
+<ul>
+	<li><code>aptitude why &lt;regex&gt;</code></li>
+</ul>
+
+explain the reason why matching packages can not be installed
+<ul>
+	<li><code>aptitude why-not &lt;regex&gt;</code></li>
+</ul>
+
+<h3>Notable command options for aptitude</h3>
+
+<ul>
+	<li><code>-s</code> simulate the result of the command</li>
+	<li><code>-d</code> download only but no install/upgrade</li>
+	<li><code>-D</code> show brief explanations before the automatic installations and removals</li>
+</ul>
