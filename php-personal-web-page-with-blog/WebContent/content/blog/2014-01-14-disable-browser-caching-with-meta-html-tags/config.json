@@ -4,7 +4,7 @@
 	"description": "The minimum set of HTML headers to disable browser caching that works across the most important browsers: Cache-Control, Pragma, Expires.",
 
 	"date": "Jan 14 2014",
-	"date-modified": "Feb 22 2016",
+	"date-modified": "Feb 25 2016",
 
 	"keywords": ["cache", "browser", "html"],
 
