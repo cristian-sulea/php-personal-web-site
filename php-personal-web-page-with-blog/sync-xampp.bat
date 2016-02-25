@@ -1,1 +1,1 @@
-robocopy WebContent c:\Apps\xampp\htdocs\test /MIR
+robocopy WebContent c:\Apps\xampp\htdocs /MIR
