@@ -1,7 +1,7 @@
 {
 
 	"title": "Basic Package Management on Linux Debian",
-	"description": "Repository based package management operations on the Debian system can be performed by many APT-based package management tools (like apt-getand aptitude).",
+	"description": "Repository based package management operations on the Debian system can be performed by many APT-based package management tools (like apt-get and aptitude).",
 
 	"date": "Jul 10 2015",
 	"date-modified": "Feb 25 2016",
