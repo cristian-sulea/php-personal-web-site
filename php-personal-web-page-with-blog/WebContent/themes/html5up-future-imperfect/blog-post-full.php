@@ -16,7 +16,7 @@
 
 	</header>
 
-	<?php printBlogPostContent(); ?>
+<?php printBlogPostContent(); ?>
 
 	<?php if (hasBlogPostResources()) { ?>
 		<?php echo '<hr />'; ?>
