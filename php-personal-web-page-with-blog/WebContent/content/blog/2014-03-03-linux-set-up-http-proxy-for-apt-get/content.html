@@ -1,0 +1,17 @@
+Open <code>apt.conf</code> file with preferred editor:
+<pre>
+nano /etc/apt/apt.conf
+</pre>
+
+And add a new line with the proxy settings (or update if the line is already present):
+<pre>
+Acquire::http::Proxy &quot;http://user:password@server:port/&quot;;
+</pre>
+
+<h3>Protect the proxy settings</h3>
+
+By removing READ permissions for "all other users":
+<pre>
+stat /etc/apt/apt.conf
+chmod 640 /etc/apt/apt.conf
+</pre>
