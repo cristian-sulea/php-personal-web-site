@@ -1,0 +1,164 @@
+Singleton pattern is a design solution where you can:
+<ul>
+	<li>ensure that only one instance of a class is created;</li>
+	<li>provide a global point of access to the object;</li>
+	<li>allow multiple instances in the future without affecting a singleton class's clients.</li>
+</ul>
+
+<h3>Lazy initialization</h3>
+
+<p>
+	In computer programming, <a href="https://en.wikipedia.org/wiki/Lazy_initialization">lazy initialization</a> is the tactic of delaying the creation of an object,
+	the calculation of a value, or some other expensive process until the first time it is needed.
+</p>
+
+EagerSingleton.java
+<pre>
+public class EagerSingleton {
+
+  private static volatile EagerSingleton instance = null;
+
+  public static EagerSingleton getInstance() {
+
+    if (instance == null) {
+      synchronized (EagerSingleton.class) {
+        if (instance == null) {
+          instance = new EagerSingleton();
+        }
+      }
+    }
+
+    return instance;
+  }
+
+  // private constructor prevents instantiation from other classes
+  private EagerSingleton() {}
+}
+</pre>
+
+<p>
+	This method uses <a href="http://en.wikipedia.org/wiki/Double_checked_locking_pattern">double-checked locking</a>,
+	which should not be used prior to J2SE 5.0 as it is vulnerable to subtle bugs.
+</p>
+
+<h3>Eager initialization</h3>
+
+<p>
+	If the program will always need an instance, or if the cost of creating the instance is not too large in terms of time/resources,
+	the programmer can switch to eager initialization, which always creates an instance.
+</p>
+
+EagerSingleton.java
+<pre>
+public class EagerSingleton {
+
+  private static volatile EagerSingleton instance = new EagerSingleton();
+
+  public static EagerSingleton getInstance() {
+    return instance;
+  }
+
+  // private constructor prevents instantiation from other classes
+  private EagerSingleton() {}
+}
+</pre>
+
+This method has a number of advantages:
+<ul>
+	<li>the instance is not constructed until the class is used;</li>
+	<li>there is no need to synchronize the getInstance() method, meaning all threads will see the same instance and no (expensive) locking is required;</li>
+	<li>the <code>final</code> keyword means that the instance cannot be redefined, ensuring that one (and only one) instance ever exists.</li>
+</ul>
+
+<h3>Static block initialization</h3>
+
+<p>
+	The static blocks are executed during the loading of class and even before the constructor is called so the programmer can use this feature in the singleton pattern.
+</p>
+
+StaticBlockSingleton.java
+<pre>
+public class StaticBlockSingleton {
+
+  private static final StaticBlockSingleton INSTANCE;
+
+  static {
+    try {
+      INSTANCE = new StaticBlockSingleton();
+    } catch (Exception e) {
+      throw new RuntimeException(&quot;Unexpected exception!!!...&quot;, e);
+    }
+  }
+
+  public static StaticBlockSingleton getInstance() {
+    return INSTANCE;
+  }
+
+  // private constructor prevents instantiation from other classes
+  private StaticBlockSingleton() {}
+}
+</pre>
+
+<p>
+	This method has one drawback. Suppose there are 5 static fields in class and application code needs to access only 2 or 3,
+	for which instance creation is not required at all.
+	So, if we use this static initialization, we will have one instance created though we require it or not.
+</p>
+
+<h3>Bill Pugh solution</h3>
+
+<p>
+	Bill Pugh was main force behind <a href="http://en.wikipedia.org/wiki/Java_Memory_Model">java memory model</a> changes.
+	His principle (<a href="http://en.wikipedia.org/wiki/Initialization_on_demand_holder_idiom">initialization-on-demand holder idiom</a>) also uses static block
+	but in different way. It suggest to use static inner class.
+</p>
+
+BillPughSingleton.java
+<pre>
+public class BillPughSingleton {
+
+  private static class LazyHolder {
+    private static final BillPughSingleton INSTANCE = new BillPughSingleton();
+  }
+
+  public static BillPughSingleton getInstance() {
+    return LazyHolder.INSTANCE;
+  }
+
+  // private constructor prevents instantiation from other classes
+  private BillPughSingleton() {}
+}
+</pre>
+
+<p>
+	The <code>LazyHolder</code> is loaded on the first execution of <code>BillPughSingleton.getInstance()</code>
+	or the first access to <code>LazyHolder.INSTANCE</code>, not before.
+</p>
+
+<h3>Using Enum</h3>
+
+<p>
+	This type of implementation recommend the use of <code>enum</code>.
+	<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Enum.html">Enum</a>, as written in java docs,
+	provide implicit support for thread safety and only one instance is guaranteed. This is also a good way to have singleton with minimum effort.
+</p>
+
+EnumSingleton.java
+<pre>
+public enum EnumSingleton {
+  INSTANCE;
+  public void doSomething(String param) {
+    // perform operation here 
+  }
+}
+</pre>
+
+<p>
+	The public method can be written to take any desired types of arguments; a single <code>String</code> argument is used here as an example.
+</p>
+
+<p>
+	This approach implements the singleton by taking advantage of Java's guarantee that any <code>enum</code> value is instantiated only once in a Java program.
+	Since Java enum values are globally accessible, so is the singleton, initialized lazily by the classloader.
+	The drawback is that the <code>enum</code> type is somewhat inflexible.
+</p>

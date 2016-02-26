@@ -1,0 +1,19 @@
+{
+
+	"title": "The Singleton Pattern",
+	"description": "Singleton pattern is a design solution where only one instance of a class is created, and provide a global point of access to the object.",
+
+	"date": "Jul 16 2014",
+	"date-modified": "Feb 26 2016",
+
+	"keywords": ["singleton", "java"],
+
+	"resources": [
+		["Lazy initialization - Wikipedia", "http://en.wikipedia.org/wiki/Lazy_initialization"],
+		["Double-checked locking - Wikipedia", "http://en.wikipedia.org/wiki/Double_checked_locking_pattern"],
+		["Java Memory Model - Wikipedia", "http://en.wikipedia.org/wiki/Java_Memory_Model"],
+		["Initialization_on_demand_holder_idiom - Wikipedia", "http://en.wikipedia.org/wiki/Initialization_on_demand_holder_idiom"],
+		["http://docs.oracle.com/javase/7/docs/api/java/lang/Enum.html", "http://docs.oracle.com/javase/7/docs/api/java/lang/Enum.html"]
+	]
+
+}
