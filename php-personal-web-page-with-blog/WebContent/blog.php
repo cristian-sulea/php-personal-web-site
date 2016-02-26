@@ -9,7 +9,7 @@ if (isset($_GET[getBlogPostIdParam()])) {
 	setBlogPostId($_GET[getBlogPostIdParam()]);
 	
 	if (!existsBlogPost()) {
-		redirect('blog.php');
+		redirect(getBlogLink());
 	}
 	
 	setIsBlogPost();
