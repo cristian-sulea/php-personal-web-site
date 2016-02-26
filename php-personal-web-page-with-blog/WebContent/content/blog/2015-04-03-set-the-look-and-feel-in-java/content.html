@@ -1,0 +1,95 @@
+To programmatically specify a look and feel, use one of the methods:
+<ul>
+	<li><a href="http://docs.oracle.com/javase/7/docs/api/javax/swing/UIManager.html#setLookAndFeel(java.lang.String)">UIManager.setLookAndFeel(String className)</a></li>
+	<li><a href="http://docs.oracle.com/javase/7/docs/api/javax/swing/UIManager.html#setLookAndFeel(javax.swing.LookAndFeel)">UIManager.setLookAndFeel(LookAndFeel newLookAndFeel)</a></li>
+</ul>
+
+For example, the following snippet makes the program use the <strong>Java Look &amp; Feel</strong> for the current platform:
+<pre>
+public static void main(String[] args) {
+
+  //
+  // set the look and feel
+
+  try {
+    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+  } catch (Exception e) {
+    // ignore exception
+  }
+
+  //
+  // create and show the GUI
+
+  new SwingApplication();
+}
+</pre>
+
+<p>
+	To specify a particular UI, you can use the actual class name.
+	Here are some of the arguments you can use for <code>#setLookAndFeel(String className)</code> method:
+</p>
+
+<strong>UIManager.getCrossPlatformLookAndFeelClassName()</strong>
+<ul>
+	<li>Returns the string for the one look-and-feel guaranteed to work - the Java Look &amp; Feel.</li>
+</ul>
+
+<strong>UIManager.getSystemLookAndFeelClassName()</strong>
+<ul>
+	<li>Specifies the look and feel for the current platform. On Win32 platforms, this specifies the Windows Look &amp; Feel. On Mac OS platforms, this specifies the Mac OS Look &amp; Feel. On Sun platforms, it specifies the CDE/Motif Look &amp; Feel.</li>
+</ul>
+
+<strong>javax.swing.plaf.metal.MetalLookAndFeel</strong>
+<ul>
+	<li>Specifies the Java Look &amp; Feel (the codename for this look and feel was Metal). This string is the value returned by the getCrossPlatformLookAndFeelClassName method.</li>
+</ul>
+
+<strong>com.sun.java.swing.plaf.windows.WindowsLookAndFeel</strong>
+<ul>
+	<li>Specifies the Windows Look &amp; Feel. Currently, you can use this look and feel only on Win32 systems.</li>
+</ul>
+
+<strong>com.sun.java.swing.plaf.motif.MotifLookAndFeel</strong>
+<ul>
+	<li>Specifies the CDE/Motif Look &amp; Feel. This look and feel can be used on any platform.</li>
+</ul>
+
+<strong>javax.swing.plaf.mac.MacLookAndFeel</strong>
+<ul>
+	<li>Specifies the Mac OS Look &amp; Feel, which can be used only on Mac OS platforms.</li>
+</ul>
+
+<p>
+	You aren't limited to the preceding arguments. You can specify the name for any look and feel that is in your program's class path.
+</p>
+
+<h3>How the UI Manager Chooses the Look and Feel</h3>
+
+Steps that occur when the UI manager first initializes itself:
+<ol>
+	<li>If the program sets the look and feel before any components are created, the UI manager tries to create an instance of the specified look-and-feel class. If successful, all components use that look and feel.</li>
+	<li>If the program hasn't successfully specified a look and feel, then before the first component's UI is created, the UI manager tests whether the user specified a look and feel in a file named <code>swing.properties</code>. It looks for the file in the <code>lib</code> directory of the Java release. For example, if you're using the Java interpreter in <code>javaHomeDirectory\bin</code>, then the <code>swing.properties</code> file (if it exists) is in <code>javaHomeDirectory\lib</code>. If the user specified a look and feel, then again the UI manager tries to instantiate the specified class.</li>
+	<li>If neither the program nor the user successfully specifies a look and feel, then the program uses the Java Look &amp; Feel.</li>
+</ol>
+
+Example of a <code>swing.properties</code> file:
+<pre>
+# Swing properties
+
+swing.defaultlaf=com.sun.java.swing.plaf.motif.MotifLookAndFeel
+</pre>
+
+<h3>Change the Look and Feel After Startup</h3>
+
+<p>
+	You can change the look and feel with <code>#setLookAndFeel</code> methods even after the program's GUI is visible.
+	To make existing components reflect the new look and feel, invoke the <a href="http://docs.oracle.com/javase/7/docs/api/javax/swing/UIManager.html#setLookAndFeel(javax.swing.LookAndFeel)">SwingUtilities.updateComponentTreeUI(Component c)</a> method once per top-level container.
+	Then you might wish to resize each top-level container to reflect the new sizes of its contained components.
+</p>
+
+For example:
+<pre>
+UIManager.setLookAndFeel(lafName);
+SwingUtilities.updateComponentTreeUI(frame);
+frame.pack();
+</pre>
