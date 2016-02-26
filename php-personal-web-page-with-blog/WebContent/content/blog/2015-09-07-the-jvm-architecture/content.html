@@ -1,0 +1,102 @@
+<p>
+	The JRE is composed of the Java API and the JVM.
+	The role of the JVM is to read the Java application through the Class Loader and execute it along with the Java API.
+</p>
+
+<p>
+	A virtual machine (VM) is a software implementation of a machine (i.e. a computer) that executes programs like a physical machine.
+	Originally, Java was designed to run based on a virtual machine separated from a physical machine for implementing WORA (Write Once Run Anywhere),
+	although this goal has been mostly forgotten.
+	Therefore, the JVM runs on all kinds of hardware to execute the Java Bytecode without changing the Java execution code.
+</p>
+
+The JVM is responsible for the following:
+<ul>
+	<li>loading, verifying, and executing the byte code;</li>
+	<li>providing a runtime environment for execution of byte code;</li>
+	<li>memory management and garbage collection.</li>
+</ul>
+
+The major components of the JVM are as follows:
+<ul>
+	<li>Constant Pool</li>
+	<li>Class Loader</li>
+	<li>Heap Area</li>
+	<li>Stack Area</li>
+	<li>Register Area</li>
+	<li>Execution Engine</li>
+</ul>
+
+<h3>Constant Pool</h3>
+
+<p>
+	The constant pool is a pool of constants. In other words, it contains a list of all the constants contained in a class.
+	Note that each class has its own constant pool in memory. The constants are literals that don't change over time.
+</p>
+
+<h3>Class Loader</h3>
+
+<p>
+	This is responsible for loading the class files or byte code files.
+	The class loader is responsible for loading classes and interfaces residing in the byte code.
+</p>
+
+The three basic functions of the class loader include:
+<ul>
+	<li>loading byte code;</li>
+	<li>linking (verification, memory allocation for byte code, and resolution or transformation of symbolic references to direct references);</li>
+	<li>initialization of variables to their default values.</li>
+</ul>
+
+<h3>Heap Area</h3>
+
+<p>
+	This is the region of memory where objects are stored.
+	Note that if the size of an object cannot be determined at compilation time, such objects are stored in the heap; in other words, instances of classes.
+	On the contrary, if the compiler can determine the size of an object at compilation time, such objects are placed in the stack in memory.
+	An example would be variables belonging to fundamental data types.
+</p>
+
+<p>
+	The heap area also contains the Garbage Collected Heap.
+	The garbage collected heap is an area of the memory within the context of the JVM where objects are stored.
+	It de-allocates the memory occupied by these objects as and when they are no longer needed or referenced in the code.
+	The GC works on the basis of two principles: reference counting and mark and sweep.
+	Note that local object references reside in the stack whereas the actual objects are stored in the heap.
+	The GC works in the background and releases memory when objects are no longer in use.
+</p>
+
+<h3>Stack Area</h3>
+
+<p>
+	The JVM stores local variables and intermediate results of execution of methods in the stack.
+	Note that each thread inside the JVM contains its own private stack.
+	Also, each method contains its own method frame: The frame is created at the time the method is called and is deleted when the execution of the method is over.
+</p>
+
+<h3>Register Area</h3>
+
+<p>
+	This contains the registers used by the JVM.
+</p>
+
+The JVM contains four registers:
+<ul>
+	<li><strong>pc</strong> - this is the program counter or the register that points to the address of the currently executing instruction;</li>
+	<li><strong>optop</strong> - this is the register that contains the address of the top of the operand stack;</li>
+	<li><strong>frame</strong> - this register points to the execution environment of the currently executing method;</li>
+	<li><strong>vars</strong> - this register points to the first local variable in the currently executing method.</li>
+</ul>
+
+<h3>Execution Engine</h3>
+
+<p>
+	This is responsible for execution of the compiled code or byte code.
+</p>
+
+The execution engine comprises of the following:
+<ul>
+	<li><strong>Just in Time Compiler (JIT)</strong> - compiles the byte code to machine language instructions at run time;</li>
+	<li><strong>Virtual Processor</strong> - is responsible for processing the operation codes and executing them sequentially;</li>
+	<li><strong>Interpreter</strong> - is responsible for reading the stream of byte code, interpreting the instructions, and then executing them through the virtual processor.</li>
+</ul>
