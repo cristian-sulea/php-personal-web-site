@@ -1,0 +1,47 @@
+<p>
+	Best way to install is to add the Google Chrome PPA to repository and to install using the <a href="http://manpages.debian.org/cgi-bin/man.cgi?query=apt-get">apt-get</a> command.
+</p>
+
+<h3>1. Enable Google Apt-Get repository</h3>
+
+Add Linux repository public key from Google:
+<pre>
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+</pre>
+
+When added, run the command below:
+<pre>
+sudo gedit /etc/apt/sources.list.d/google.list
+</pre>
+
+Then copy and paste the line below into the file and save:
+<pre>
+deb http://dl.google.com/linux/chrome/deb/ stable main
+</pre>
+
+After saving the file, run the commands below to update your system:
+<pre>
+sudo apt-get update
+</pre>
+
+Or:
+<pre>
+sudo sh -c 'echo &quot;deb http://dl.google.com/linux/chrome/deb/ stable main&quot; &gt;&gt; /etc/apt/sources.list.d/google.list'
+</pre>
+
+<h3>2. Install Google Chrome with Apt-Get</h3>
+
+Install Google Chrome stable version:
+<pre>
+sudo apt-get install google-chrome-stable
+</pre>
+
+Install Google Chrome beta version:
+<pre>
+sudo apt-get install google-chrome-beta
+</pre>
+
+Install Google Chrome unstable version:
+<pre>
+sudo apt-get install google-chrome-unstable
+</pre>

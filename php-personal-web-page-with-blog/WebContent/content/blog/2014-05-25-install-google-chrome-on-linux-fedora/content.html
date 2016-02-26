@@ -1,0 +1,46 @@
+<p>
+	Best way to install and keep up-to-date with Google Chrome browser is to use Google's own YUM repository.
+</p>
+
+<h3>1. Enable Google YUM repository</h3>
+
+<p>
+	Add following to <code>/etc/yum.repos.d/google.repo</code> file:
+</p>
+
+32-bit systems
+<pre>
+[google-chrome]
+name=google-chrome - 32-bit
+baseurl=http://dl.google.com/linux/chrome/rpm/stable/i386
+enabled=1
+gpgcheck=1
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+</pre>
+
+64-bit systems
+<pre>
+[google-chrome]
+name=google-chrome - 64-bit
+baseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+</pre>
+
+<h3>2. Install Google Chrome with YUM</h3>
+
+Install Google Chrome stable version:
+<pre>
+yum install google-chrome-stable
+</pre>
+
+Install Google Chrome beta version:
+<pre>
+yum install google-chrome-beta
+</pre>
+
+Install Google Chrome unstable version:
+<pre>
+yum install google-chrome-unstable
+</pre>
