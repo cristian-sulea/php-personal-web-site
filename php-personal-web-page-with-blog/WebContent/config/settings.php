@@ -36,8 +36,6 @@ $BLOG_TITLE       = "Knowlegde Base";
 $BLOG_DESCRIPTION = "An archive of my personal knowledge base.";
 $BLOG_KEYWORDS    = "blog";
 
-// $MENU = array();
-
 $GOOGLE_ANALYTICS_TRACKING_CODE = <<<EOT
 
 <script>
