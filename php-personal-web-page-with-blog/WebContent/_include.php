@@ -23,12 +23,24 @@ $BLOG_POST_DATE_FORMAT = "F j, Y";
 $SEARCH_QUERY_PARAM = 'q';
 
 $MENU = array(
-		array("Blog", "blog.php"),
+		"blog.php" => "Blog"
 		// 	array("Photos", "photos.php")
 );
 
 $GOOGLE_ANALYTICS_TRACKING_CODE = <<<EOT
 EOT;
+
+//
+// include
+
+include 'config/settings.php';
+
+$MENU['blog.php'] = getBlogTitle();
+
+includeThemeFileIfExists('_include-theme.php');
+
+//
+// settings getters and setters
 
 function getAuthorName() {
 	global $AUTHOR_NAME;
@@ -135,8 +147,8 @@ function getMenu() {
 	return $MENU;
 }
 function printMenuItems() {
-	foreach (getMenu() as $menu) {
-		theme_printMenuItem($menu[0], $menu[1]);
+	foreach (getMenu() as $link => $title ) {
+		theme_printMenuItem($title, $link);
 	}
 }
 
@@ -147,13 +159,6 @@ function getGoogleAnalyticsTrackingCode() {
 function printGoogleAnalyticsTrackingCode() {
 	echo getGoogleAnalyticsTrackingCode();
 }
-
-//
-// include
-
-include 'config/settings.php';
-
-includeThemeFileIfExists('_include-theme.php');
 
 //
 // page type
