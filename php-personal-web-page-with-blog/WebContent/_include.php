@@ -1222,7 +1222,7 @@ function printGoogleStructuredData() {
 			$bufferBlogPosting = str_replace('%author.name%', getBlogPostAuthor(), $bufferBlogPosting);
 			$bufferBlogPosting = str_replace('%author.url%', getBlogPostAuthorWebsite(), $bufferBlogPosting);
 			
-			$bufferBlogPosting = str_replace('%publisher.name%', getBlogTitle(), $bufferBlogPosting);
+			$bufferBlogPosting = str_replace('%publisher.name%', getBlogHtmlTitle(), $bufferBlogPosting);
 			$bufferBlogPosting = str_replace('%publisher.url%', getAbsoluteLink(getBlogLink()), $bufferBlogPosting);
 			$bufferBlogPosting = str_replace('%publisher.logo.url%', getAbsoluteLink(getBlogLogo('060')), $bufferBlogPosting);
 			$bufferBlogPosting = str_replace('%publisher.logo.width%', '60', $bufferBlogPosting);
