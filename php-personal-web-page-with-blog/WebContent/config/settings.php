@@ -20,7 +20,7 @@ $AUTHOR_PROFILES = array (
 		),
 		array (
 				"Twitter",
-				"http://twitter.com/Cristian_Sulea"
+				"http://twitter.com/cristian_sulea"
 		),
 		array (
 				"GitHub",
