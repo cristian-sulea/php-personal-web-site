@@ -765,6 +765,19 @@ function getBlogPostFolders() {
 }
 
 //
+// blog post share
+// - on Twiter
+
+function printBlogPostShareOnTwiterLink() {
+	
+	$link = 'https://twitter.com/intent/tweet';
+	$link .= '?text=' . urlencode(getBlogPostTitle());
+	$link .= '&url='  . urlencode(getAbsoluteLink(getBlogPostLink()));
+	
+	echo $link;
+}
+
+//
 // search
 // - query
 

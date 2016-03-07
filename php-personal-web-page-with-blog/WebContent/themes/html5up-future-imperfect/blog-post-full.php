@@ -19,8 +19,11 @@
 <?php printBlogPostContent(); ?>
 
 	<?php if (hasBlogPostResources()) { ?>
-		<?php echo '<hr />'; ?>
+		<?php echo '<hr>'; ?>
 		<?php printBlogPostResources(); ?>
 	<?php } ?>
+
+<hr>
+<a class="button icon fa-twitter" href="<?php printBlogPostShareOnTwiterLink(); ?>">Share on Twitter</a>
 
 </article>
