@@ -24,6 +24,8 @@
 	<?php } ?>
 
 <hr>
-<a class="button icon fa-twitter" target="_blank" href="<?php printBlogPostShareOnTwiterLink(); ?>">Share on Twitter</a>
+<p>
+	<a class="button icon fa-twitter" target="_blank" href="<?php printBlogPostShareOnTwiterLink(); ?>">Share on Twitter</a>
+</p>
 
 </article>
