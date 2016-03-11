@@ -3477,10 +3477,6 @@
 
 		}
 
-#blog-post-resources {
-	word-wrap: break-word;
-}
-
 .blog-post-bookmark {
 	display: block;
 	position: relative;
@@ -3503,4 +3499,8 @@ table.reset tbody tr td
 	font: inherit;
 	vertical-align: baseline;
 	background-color: transparent;
+}
+
+a {
+	word-wrap: break-word;
 }

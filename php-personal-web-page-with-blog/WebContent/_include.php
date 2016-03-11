@@ -669,7 +669,7 @@ function printBlogPostResources() {
 	global $postConfig;
 	echo  PHP_EOL;
 	echo '<b>Resources</b>' . PHP_EOL;
-	echo '<ul id="blog-post-resources">' . PHP_EOL;
+	echo '<ul>' . PHP_EOL;
 	foreach (getBlogPostResources() as $resource) {
 		echo '<li>';
 		if (is_array($resource)) {
