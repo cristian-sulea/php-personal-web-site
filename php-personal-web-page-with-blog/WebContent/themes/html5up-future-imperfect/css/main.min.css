@@ -761,4 +761,5 @@ body.is-menu-visible #menu{-moz-transform:translateX(0);-webkit-transform:transl
 @media screen and (max-width:736px){#menu > *{padding:1.5em;}
 }
 #blog-post-resources{word-wrap:break-word;}
+.blog-post-bookmark {display: block;position: relative;visibility: hidden;top: -5.4em;}
 table.reset, table.reset thead, table.reset thead tr, table.reset thead tr td, table.reset tbody, table.reset tbody tr, table.reset tbody tr td{padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;background-color: transparent;}
