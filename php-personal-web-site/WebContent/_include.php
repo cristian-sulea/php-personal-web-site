@@ -254,6 +254,13 @@ function includeThemeFileIfExists($file) {
 
 //
 // index
+
+function getIndexLink() {
+	return 'index.php';
+}
+
+//
+// index
 // - logo
 
 function printIndexLogo() {
