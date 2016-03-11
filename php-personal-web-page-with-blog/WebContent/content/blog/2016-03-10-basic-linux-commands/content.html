@@ -9,6 +9,7 @@
 	<li><a href="#openssh-server">Install SSH Server</a></li>
 	<li><a href="#maven">Install Maven</a></li>
 	<li><a href="#jenkins">Install Jenkins</a></li>
+	<li><a href="#dpkg">Package manager for Debian (dpkg command)</a></li>
 </ul>
 
 <a class="blog-post-bookmark" id="passwd"></a>
@@ -101,3 +102,19 @@ Resources
 <ul>
 	<li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu">https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu</a></li>
 </ul>
+
+<a class="blog-post-bookmark" id="dpkg"></a>
+<h3>Package manager for Debian (dpkg command)</h3>
+
+<pre>
+dpkg --get-selections [package-name-pattern...]
+</pre>
+
+<pre>
+dpkg -L package-name
+</pre>
+
+Get list of package selections, and write it to stdout.
+<p>
+	Without a pattern, non-installed packages (i.e. those which have been previously purged) will not be shown.
+</p>
