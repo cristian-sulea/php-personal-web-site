@@ -10,7 +10,7 @@ $THEME = "html5up-future-imperfect";
 // $AUTHOR_KEYWORDS    = "cristian sulea, sulea cristian";
 
 setAuthorProfileLinkedIn('cristiansulea');
-setAuthorProfileGooglePlus('CristianSulea79');
+setAuthorProfileGooglePlus('+CristianSulea79');
 setAuthorProfileTwitter('cristian_sulea');
 setAuthorProfileGitHub('cristian-sulea');
 setAuthorProfileSourceForge('cristian-sulea');
