@@ -26,17 +26,7 @@
 			<arguments>
 				<dictionary>
 					<key>LaunchConfigHandle</key>
-					<value>&lt;project&gt;/.externalToolBuilders/sync-xampp.launch</value>
-				</dictionary>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
-			<triggers>auto,full,incremental,</triggers>
-			<arguments>
-				<dictionary>
-					<key>LaunchConfigHandle</key>
-					<value>&lt;project&gt;/.externalToolBuilders/sync-xampp-cristian-sulea-net.launch</value>
+					<value>&lt;project&gt;/.externalToolBuilders/sync-xampp-php-personal-web-site.launch</value>
 				</dictionary>
 			</arguments>
 		</buildCommand>
