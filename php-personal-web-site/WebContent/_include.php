@@ -5,30 +5,37 @@
 
 $THEME = "_default";
 
-$AUTHOR_NAME        = "";
-$AUTHOR_TITLE       = "";
-$AUTHOR_DESCRIPTION = "";
-$AUTHOR_BIRTHDAY    = "";
-$AUTHOR_ADDRESS     = "";
-$AUTHOR_KEYWORDS    = "";
-$AUTHOR_PROFILES = array ();
+$AUTHOR_NAME        = "Author Name";
 
-$BLOG_TITLE       = "";
-$BLOG_DESCRIPTION = "";
-$BLOG_KEYWORDS    = "";
+$AUTHOR_TITLE       = "Author Title";
+$AUTHOR_DESCRIPTION = "Author Description";
+$AUTHOR_KEYWORDS    = "author keywords";
+
+$BLOG_TITLE       = "Blog Title";
+$BLOG_DESCRIPTION = "Blog Description";
+$BLOG_KEYWORDS    = "blog keywords";
 
 $BLOG_POST_ID_PARAM = 'p';
 $BLOG_POST_DATE_FORMAT = "F j, Y";
 
 $SEARCH_QUERY_PARAM = 'q';
 
-$MENU = array(
-		"blog.php" => "Blog"
-		// 	array("Photos", "photos.php")
-);
+// $MENU = array(
+// 		"blog.php" => "Blog"
+// 		// 	array("Photos", "photos.php")
+// );
 
 $GOOGLE_ANALYTICS_TRACKING_CODE = <<<EOT
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', '%{TRACKING_ID}', 'auto');
+  ga('send', 'pageview');
+</script>
 EOT;
+$GOOGLE_ANALYTICS_TRACKING_ID = null;
 
 //
 // include
@@ -89,18 +96,38 @@ function getAuthorProfiles() {
 	return $AUTHOR_PROFILES;
 }
 
-function getAuthorProfileLink($title) {
-	foreach (getAuthorProfiles() as $authorProfile) {
-		if ($authorProfile[0] == $title) {
-			return $authorProfile[1];
-		}
-	}
+function setAuthorProfileLinkedIn($user) {
+	global $AUTHOR_PROFILES;
+	$AUTHOR_PROFILES['LinkedIn'] = 'http://www.linkedin.com/in/' . $user;
+}
+function setAuthorProfileGooglePlus($user) {
+	global $AUTHOR_PROFILES;
+	$AUTHOR_PROFILES['Google+'] = 'http://plus.google.com/' . $user;
+}
+function setAuthorProfileTwitter($user) {
+	global $AUTHOR_PROFILES;
+	$AUTHOR_PROFILES['Twitter'] = 'http://twitter.com/' . $user;
+}
+function setAuthorProfileGitHub($user) {
+	global $AUTHOR_PROFILES;
+	$AUTHOR_PROFILES['GitHub'] = 'http://github.com/' . $user;
+}
+function setAuthorProfileSourceForge($user) {
+	global $AUTHOR_PROFILES;
+	$AUTHOR_PROFILES['SourceForge'] = 'http://sourceforge.net/u/' . $user . '/profile/';
+}
+
+function hasAuthorProfiles() {
+	return count(getAuthorProfiles()) > 0;
 }
 
 function printAuthorProfiles() {
-	global $AUTHOR_PROFILES;
-	foreach ($AUTHOR_PROFILES as $authorProfile) {
-		theme_printAuthorProfile($authorProfile[0], $authorProfile[1]);
+	if (hasAuthorProfiles()) {
+		foreach (getAuthorProfiles() as  $title => $link ) {
+			if (isset($link)) {
+				theme_printAuthorProfile($title, $link);
+			}
+		}
 	}
 }
 
@@ -152,12 +179,13 @@ function printMenuItems() {
 	}
 }
 
-function getGoogleAnalyticsTrackingCode() {
-	global $GOOGLE_ANALYTICS_TRACKING_CODE;
-	echo $GOOGLE_ANALYTICS_TRACKING_CODE;
-}
 function printGoogleAnalyticsTrackingCode() {
-	echo getGoogleAnalyticsTrackingCode();
+	global $GOOGLE_ANALYTICS_TRACKING_CODE;
+	global $GOOGLE_ANALYTICS_TRACKING_ID;
+	if (isset($GOOGLE_ANALYTICS_TRACKING_ID)) {
+		$buffer = $GOOGLE_ANALYTICS_TRACKING_CODE;
+		echo str_replace('%{TRACKING_ID}', $GOOGLE_ANALYTICS_TRACKING_ID, $GOOGLE_ANALYTICS_TRACKING_CODE);
+	}
 }
 
 //
@@ -1283,8 +1311,10 @@ function printGoogleStructuredData() {
 	$bufferPerson = str_replace("%url%", getAbsoluteLink(), $bufferPerson);
 	
 	$bufferSameAs = '';
-	foreach (getAuthorProfiles() as $authorProfile) {
-		$bufferSameAs .= PHP_EOL . '		"' . $authorProfile[1] . '",';
+	if (hasAuthorProfiles()) {
+		foreach (getAuthorProfiles() as  $title => $link ) {
+			$bufferSameAs .= PHP_EOL . '		"' . $link . '",';
+		}
 	}
 	$bufferSameAs = substr($bufferSameAs, 0, strlen($bufferSameAs) - 1);
 	
