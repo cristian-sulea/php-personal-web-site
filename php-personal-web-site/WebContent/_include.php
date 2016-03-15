@@ -5,25 +5,10 @@
 
 $THEME = "_default";
 
-$AUTHOR_NAME        = "Author Name";
-
-$AUTHOR_TITLE       = "Author Title";
-$AUTHOR_DESCRIPTION = "Author Description";
-$AUTHOR_KEYWORDS    = "author keywords";
-
-$BLOG_TITLE       = "Blog Title";
-$BLOG_DESCRIPTION = "Blog Description";
-$BLOG_KEYWORDS    = "blog keywords";
-
 $BLOG_POST_ID_PARAM = 'p';
 $BLOG_POST_DATE_FORMAT = "F j, Y";
 
 $SEARCH_QUERY_PARAM = 'q';
-
-// $MENU = array(
-// 		"blog.php" => "Blog"
-// 		// 	array("Photos", "photos.php")
-// );
 
 $GOOGLE_ANALYTICS_TRACKING_CODE = <<<EOT
 <script>
@@ -42,9 +27,12 @@ $GOOGLE_ANALYTICS_TRACKING_ID = null;
 
 include 'config/settings.php';
 
-setMenuBlog(getBlogTitle());
-
 includeThemeFileIfExists('_include-theme.php');
+
+//
+// some updates after include
+
+setMenuBlog(getBlogTitle());
 
 //
 // settings getters and setters
