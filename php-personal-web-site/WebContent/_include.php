@@ -91,11 +91,6 @@ function printAuthorKeywords($prefix = '', $sufix = '') {
 	echo $prefix . $AUTHOR_KEYWORDS . $sufix;
 }
 
-function getAuthorProfiles() {
-	global $AUTHOR_PROFILES;
-	return $AUTHOR_PROFILES;
-}
-
 function setAuthorProfileLinkedIn($user) {
 	global $AUTHOR_PROFILES;
 	$AUTHOR_PROFILES['LinkedIn'] = 'http://www.linkedin.com/in/' . $user;
@@ -117,16 +112,29 @@ function setAuthorProfileSourceForge($user) {
 	$AUTHOR_PROFILES['SourceForge'] = 'http://sourceforge.net/u/' . $user . '/profile/';
 }
 
+function getAuthorProfiles() {
+	global $AUTHOR_PROFILES;
+	return $AUTHOR_PROFILES;
+}
+
 function hasAuthorProfiles() {
 	return count(getAuthorProfiles()) > 0;
 }
 
 function printAuthorProfiles() {
+	
 	if (hasAuthorProfiles()) {
-		foreach (getAuthorProfiles() as  $title => $link ) {
-			if (isset($link)) {
-				theme_printAuthorProfile($title, $link);
+		
+		if (function_exists('theme_printAuthorProfiles')) {
+			theme_printAuthorProfiles();
+		}
+		
+		else {
+			echo '<ul>' . PHP_EOL;
+			foreach (getAuthorProfiles() as  $title => $link ) {
+				echo '	<li><a href="' . $link . '">' . $title . '</a></li>' . PHP_EOL;
 			}
+			echo '</ul>';
 		}
 	}
 }

@@ -77,11 +77,7 @@
 					<header>
 						<h2><a href="index.php"><?php printAuthorName(); ?></a></h2>
 						<p><?php printAuthorTitle(); ?></p>
-						<?php if (hasAuthorProfiles()) { ?>
-							<ul class="icons">
-								<?php printAuthorProfiles(); ?>
-							</ul>
-						<?php } ?>
+						<?php printAuthorProfiles(); ?>
 					</header>
 				<?php } else if (isBlog()) { ?>
 					<a class="logo"><img src="<?php printBlogLogo('128'); ?>" alt="" /></a>

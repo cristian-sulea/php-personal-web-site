@@ -5,9 +5,12 @@ function theme_printMenuItem($title, $link) {
 	echo '<li><a href="' . $link . '">' . $title . '</a></li>';
 }
 
-function theme_printAuthorProfile($title, $link) {
-	echo PHP_EOL;
-	echo '<li><a href="' . $link . '" class="' . theme_getAuthorProfileIconClass($title) .  '">&nbsp;' . $title . '</a></li>';
+function theme_printAuthorProfiles() {
+	echo '<ul class="icons">' . PHP_EOL;
+	foreach (getAuthorProfiles() as  $title => $link ) {
+		echo '	<li><a href="' . $link . '" class="' . theme_getAuthorProfileIconClass($title) .  '">&nbsp;' . $title . '</a></li>' . PHP_EOL;
+	}
+	echo '</ul>';
 }
 
 function theme_getAuthorProfileIconClass($title) {
