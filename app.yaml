@@ -2,5 +2,7 @@ runtime: php55
 api_version: 1
 
 handlers:
-- url: /.*
+- url: /
   script: php-personal-web-site/WebContent/blog.php
+- url: /(.+\.php)$
+  script: \1
