@@ -42,36 +42,45 @@ $GOOGLE_ANALYTICS_TRACKING_ID = null;
 
 include 'config/settings.php';
 
-$MENU['blog.php'] = getBlogTitle();
+setMenuBlog(getBlogTitle());
 
 includeThemeFileIfExists('_include-theme.php');
 
 //
 // settings getters and setters
 
+function setAuthorName($name) {
+	global $AUTHOR_NAME;
+	$AUTHOR_NAME = htmlspecialchars($name);
+}
 function getAuthorName() {
 	global $AUTHOR_NAME;
 	return $AUTHOR_NAME;
 }
-
 function printAuthorName() {
 	echo getAuthorName();
 }
 
+function setAuthorTitle($title) {
+	global $AUTHOR_TITLE;
+	$AUTHOR_TITLE = htmlspecialchars($title);
+}
 function getAuthorTitle() {
 	global $AUTHOR_TITLE;
 	return $AUTHOR_TITLE;
 }
-
 function printAuthorTitle() {
 	echo getAuthorTitle();
 }
 
+function setAuthorDescription($description) {
+	global $AUTHOR_DESCRIPTION;
+	$AUTHOR_DESCRIPTION = htmlspecialchars($description);
+}
 function getAuthorDescription() {
 	global $AUTHOR_DESCRIPTION;
 	return $AUTHOR_DESCRIPTION;
 }
-
 function printAuthorDescription() {
 	echo getAuthorDescription();
 }
@@ -86,6 +95,10 @@ function printAuthorAddress() {
 	echo $AUTHOR_ADDRESS;
 }
 
+function setAuthorKeywords($keywords) {
+	global $AUTHOR_KEYWORDS;
+	$AUTHOR_KEYWORDS = htmlspecialchars($keywords);
+}
 function printAuthorKeywords($prefix = '', $sufix = '') {
 	global $AUTHOR_KEYWORDS;
 	echo $prefix . $AUTHOR_KEYWORDS . $sufix;
@@ -139,6 +152,10 @@ function printAuthorProfiles() {
 	}
 }
 
+function setBlogTitle($title) {
+	global $BLOG_TITLE;
+	$BLOG_TITLE = htmlspecialchars($title);
+}
 function getBlogTitle() {
 	global $BLOG_TITLE;
 	return $BLOG_TITLE;
@@ -147,6 +164,10 @@ function printBlogTitle() {
 	echo getBlogTitle();
 }
 
+function setBlogDescription($description) {
+	global $BLOG_DESCRIPTION;
+	$BLOG_DESCRIPTION = htmlspecialchars($description);
+}
 function getBlogDescription() {
 	global $BLOG_DESCRIPTION;
 	return $BLOG_DESCRIPTION;
@@ -155,6 +176,10 @@ function printBlogDescription() {
 	echo getBlogDescription();
 }
 
+function setBlogKeywords($keywords) {
+	global $BLOG_KEYWORDS;
+	$BLOG_KEYWORDS = htmlspecialchars($keywords);
+}
 function getBlogKeywords() {
 	global $BLOG_KEYWORDS;
 	return $BLOG_KEYWORDS;
@@ -177,6 +202,11 @@ function getSearchQueryParam() {
 	return $SEARCH_QUERY_PARAM;
 }
 
+function setMenuBlog($title) {
+	global $MENU;
+	$MENU['blog.php'] = $title;
+}
+
 function getMenu() {
 	global $MENU;
 	return $MENU;
@@ -187,6 +217,10 @@ function printMenuItems() {
 	}
 }
 
+function setGoogleAnalyticsTrackingId($id) {
+	global $GOOGLE_ANALYTICS_TRACKING_ID;
+	$GOOGLE_ANALYTICS_TRACKING_ID = $id;
+}
 function printGoogleAnalyticsTrackingCode() {
 	global $GOOGLE_ANALYTICS_TRACKING_CODE;
 	global $GOOGLE_ANALYTICS_TRACKING_ID;
@@ -268,19 +302,20 @@ function setContentTypeXML() {
 //
 // themes files
 
+function setTheme($theme) {
+	global $THEME;
+	$THEME = $theme;
+}
 function getThemeFile($file) {
 	global $THEME;
 	return "themes/" . $THEME . "/" . $file;
 }
-
 function printThemeFile($file) {
 	echo getThemeFile($file);
 }
-
 function includeThemeFile($file) {
 	include getThemeFile($file);
 }
-
 function includeThemeFileIfExists($file) {
 	$file = getThemeFile($file);
 	if (file_exists($file)) {
