@@ -658,7 +658,13 @@ function getBlogPostAuthorImage() {
 	$author = getBlogPostConfig('author', false);
 	
 	if ($author === null) {
-		return 'config/blog/author.jpg';
+		if (file_exists('config/blog/author.png')) {
+			return 'config/blog/author.png';
+		} else if (file_exists('config/blog/author.jpg')) {
+			return 'config/blog/author.jpg';
+		} else {
+			throwMissingImageException('author image');
+		}
 	}
 	
 	$email = getBlogPostConfig('author-email', false);
