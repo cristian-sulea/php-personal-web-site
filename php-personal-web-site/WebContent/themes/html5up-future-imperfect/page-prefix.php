@@ -73,7 +73,7 @@
 
 			<section id="intro">
 				<?php if (isIndex()) { ?>
-					<a class="logo"><img src="<?php printIndexLogo(); ?>" alt="" /></a>
+					<a class="logo"><img src="<?php printIndexLogo('128'); ?>" alt="" /></a>
 					<header>
 						<h2><a href="index.php"><?php printAuthorName(); ?></a></h2>
 						<p><?php printAuthorTitle(); ?></p>

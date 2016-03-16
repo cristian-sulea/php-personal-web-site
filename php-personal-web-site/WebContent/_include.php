@@ -23,7 +23,7 @@ EOT;
 $GOOGLE_ANALYTICS_TRACKING_ID = null;
 
 //
-// include
+// config|settings include
 
 include 'config/settings.php';
 
@@ -35,7 +35,7 @@ includeThemeFileIfExists('_include-theme.php');
 setMenuBlog(getBlogTitle());
 
 //
-// settings getters and setters
+// config|settings getters and setters
 
 function setAuthorName($name) {
 	global $AUTHOR_NAME;
@@ -218,6 +218,31 @@ function printGoogleAnalyticsTrackingCode() {
 	}
 }
 
+function getLogo($folder, $size) {
+
+	$logo = 'config/' . $folder . '/logo-' . $size . '.png';
+	if (file_exists($logo)) {
+		return $logo;
+	}
+
+	$logo = 'config/' . $folder . '/logo-' . $size . '.jpg';
+	if (file_exists($logo)) {
+		return $logo;
+	}
+
+	$logo = 'config/' . $folder . '/logo-696.png';
+	if (file_exists($logo)) {
+		return $logo;
+	}
+
+	$logo = 'config/' . $folder . '/logo-696.jpg';
+	if (file_exists($logo)) {
+		return $logo;
+	}
+
+	throwMissingImageException($folder . ' logo');
+}
+
 //
 // page type
 
@@ -320,10 +345,22 @@ function getIndexLink() {
 
 //
 // index
+// - icon
+
+function getIndexIcon() {
+	return 'config/index/icon.png';
+}
+
+//
+// index
 // - logo
 
-function printIndexLogo() {
-	echo 'config/index-logo.jpg';
+function getIndexLogo($size) {
+	return getLogo('index', $size);
+}
+
+function printIndexLogo($size) {
+	echo getIndexLogo($size);
 }
 
 //
@@ -464,7 +501,7 @@ function getBlogLink() {
 // - icon
 
 function getBlogIcon() {
-	return 'config/content/blog/icon.png';
+	return 'config/blog/icon.png';
 }
 
 //
@@ -472,28 +509,7 @@ function getBlogIcon() {
 // - logo
 
 function getBlogLogo($size) {
-	
-	$logo = 'config/content/blog/logo-' . $size . '.png';
-	if (file_exists($logo)) {
-		return $logo;
-	}
-	
-	$logo = 'config/content/blog/logo-' . $size . '.jpg';
-	if (file_exists($logo)) {
-		return $logo;
-	}
-	
-	$logo = 'config/content/blog/logo-696.png';
-	if (file_exists($logo)) {
-		return $logo;
-	}
-	
-	$logo = 'config/content/blog/logo-696.jpg';
-	if (file_exists($logo)) {
-		return $logo;
-	}
-	
-	throwMissingImageException('blog logo');
+	return getLogo('blog', $size);
 }
 
 function printBlogLogo($size) {
@@ -642,7 +658,7 @@ function getBlogPostAuthorImage() {
 	$author = getBlogPostConfig('author', false);
 	
 	if ($author === null) {
-		return 'config/blog-author.jpg';
+		return 'config/blog/author.jpg';
 	}
 	
 	$email = getBlogPostConfig('author-email', false);
@@ -1019,7 +1035,7 @@ function printHtmlHeadMetaAuthor() {
 function printHtmlHeadLinkIcon() {
 	
 	if (isIndex()) {
-		echo "config/index-icon.png";
+		echo getIndexIcon();
 	}
 	
 	else if (isBlog()) {
