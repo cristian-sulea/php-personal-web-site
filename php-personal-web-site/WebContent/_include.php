@@ -653,31 +653,48 @@ function printBlogPostAuthor() {
 // blog post config
 // - author-image
 
-function getBlogPostAuthorImage() {
+function getBlogPostAuthorImage($size) {
+	
+	$size = sprintf("%03d", $size);
 	
 	$author = getBlogPostConfig('author', false);
 	
 	if ($author === null) {
-		if (file_exists('config/blog/author.png')) {
-			return 'config/blog/author.png';
-		} else if (file_exists('config/blog/author.jpg')) {
-			return 'config/blog/author.jpg';
-		} else {
-			throwMissingImageException('author image');
+		
+		$image = 'config/blog/author-' . $size . '.png';
+		if (file_exists($image)) {
+			return $image;
 		}
+		
+		$image = 'config/blog/author-' . $size . '.jpg';
+		if (file_exists($image)) {
+			return $image;
+		}
+		
+		$image = 'config/blog/author.png';
+		if (file_exists($image)) {
+			return $image;
+		}
+		
+		$image = 'config/blog/author.jpg';
+		if (file_exists($image)) {
+			return $image;
+		}
+		
+		throwMissingImageException('author image');
 	}
 	
 	$email = getBlogPostConfig('author-email', false);
 	
 	if ($email === null) {
-		return getGravatarImg('');
+		return getGravatarImg(null, $size);
 	}
 	
-	return getGravatarImg($email);
+	return getGravatarImg($email, $size);
 }
 
-function printBlogPostAuthorImage() {
-	echo getBlogPostAuthorImage();
+function printBlogPostAuthorImage($size) {
+	echo getBlogPostAuthorImage($size);
 }
 
 //
@@ -1123,10 +1140,13 @@ function redirect($url) {
 	exit();
 }
 
-function getGravatarImg( $email ) {
+function getGravatarImg($email, $size) {
 	$url = 'http://www.gravatar.com/avatar/';
-	$url .= md5( strtolower( trim( $email ) ) );
-	$url .= "?d=mm";
+	if ($email != null) {
+		$url .= md5(strtolower(trim($email)));
+	}
+	$url .= '?d=mm';
+	$url .= '&size=' . $size;
 	return $url;
 }
 
