@@ -11,6 +11,9 @@
 	"resources" : [
 		["http://spring.io", "http://spring.io"],
 		["http://en.wikipedia.org/wiki/Spring_Framework", "http://en.wikipedia.org/wiki/Spring_Framework"]
-	]
+	],
+	
+	"author": "CSU",
+	"author-email": "cristian.sulea.79@gmail.com"
 
 }
