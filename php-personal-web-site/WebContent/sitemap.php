@@ -25,7 +25,6 @@ echo '	</url>' . PHP_EOL;
 foreach (getBlogPostFolders() as $blogPostFolder) {
 	
 	setBlogPostId(basename($blogPostFolder));
-	
 	readBlogPostConfig();
 	
 // 	$lastmodConfig = filemtime('content/blog/' . getBlogPostId() . '/config.json');

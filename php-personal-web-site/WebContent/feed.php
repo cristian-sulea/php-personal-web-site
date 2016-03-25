@@ -24,7 +24,6 @@ echo PHP_EOL;
 foreach (getBlogPostFolders() as $blogPostFolder) {
 	
 	setBlogPostId(basename($blogPostFolder));
-	
 	readBlogPostConfig();
 	
 	$postLink = getAbsoluteLink(getBlogPostLink());
