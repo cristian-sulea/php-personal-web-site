@@ -5,10 +5,10 @@
 
 $THEME = "_default";
 
+$BLOG_SEARCH_PARAM = 's';
+
 $BLOG_POST_ID_PARAM = 'p';
 $BLOG_POST_DATE_FORMAT = "F j, Y";
-
-$SEARCH_QUERY_PARAM = 'q';
 
 $GOOGLE_ANALYTICS_TRACKING_CODE = <<<EOT
 <script>
@@ -174,20 +174,6 @@ function getBlogKeywords() {
 }
 function printBlogKeywords($prefix = '', $sufix = '') {
 	echo $prefix . getBlogKeywords() . $sufix;
-}
-
-function getBlogPostIdParam() {
-	global $BLOG_POST_ID_PARAM;
-	return $BLOG_POST_ID_PARAM;
-}
-function getBlogPostDateFormat() {
-	global $BLOG_POST_DATE_FORMAT;
-	return $BLOG_POST_DATE_FORMAT;
-}
-
-function getSearchQueryParam() {
-	global $SEARCH_QUERY_PARAM;
-	return $SEARCH_QUERY_PARAM;
 }
 
 function setMenuBlog($title) {
@@ -495,6 +481,9 @@ function printIndexLanguages() {
 function getBlogLink() {
 	return 'blog.php';
 }
+function printBlogLink() {
+	echo getBlogLink();
+}
 
 //
 // blog
@@ -517,7 +506,54 @@ function printBlogLogo($size) {
 }
 
 //
+// blog
+// - search
+
+function getBlogSearchParam() {
+	global $BLOG_SEARCH_PARAM;
+	return $BLOG_SEARCH_PARAM;
+}
+function printBlogSearchParam() {
+	echo getBlogSearchParam();
+}
+
+global $blogSearchQuery;
+
+function setBlogSearchQuery($blogSearchQueryNew) {
+	global $blogSearchQuery;
+	$blogSearchQuery = $blogSearchQueryNew;
+}
+function getBlogSearchQuery() {
+	global $blogSearchQuery;
+	checkIfIsSet($blogSearchQuery);
+	return $blogSearchQuery;
+}
+function printBlogSearchQuery() {
+	echo getBlogSearchQuery();
+}
+
+global $blogSearchResult;
+
+function setBlogSearchResult($blogSearchResultNew) {
+	global $blogSearchResult;
+	$blogSearchResult = $blogSearchResultNew;
+}
+function getBlogSearchResult() {
+	global $blogSearchResult;
+	checkIfIsSet($blogSearchResult);
+	return $blogSearchResult;
+}
+function printBlogSearchResult() {
+	echo getBlogSearchResult();
+}
+
+//
 // blog post ID
+
+function getBlogPostIdParam() {
+	global $BLOG_POST_ID_PARAM;
+	return $BLOG_POST_ID_PARAM;
+}
 
 global $blogPostId;
 
@@ -592,6 +628,11 @@ function printBlogPostTitle() {
 //
 // blog post config
 // - date
+
+function getBlogPostDateFormat() {
+	global $BLOG_POST_DATE_FORMAT;
+	return $BLOG_POST_DATE_FORMAT;
+}
 
 function getBlogPostDate($format = null) {
 	if (isset($format)) {
@@ -883,53 +924,6 @@ function printBlogPostShareOnTwiterLink() {
 }
 
 //
-// search
-// - query
-
-global $searchQuery;
-
-function setSearchQuery($searchQueryNew) {
-	global $searchQuery;
-	$searchQuery = $searchQueryNew;
-}
-
-function getSearchQuery() {
-	global $searchQuery;
-	return $searchQuery;
-}
-
-function printSearchQuery() {
-	echo getSearchQuery();
-}
-
-//
-// search
-// - results
-
-global $searchResults;
-
-function setSearchResults($searchResultsNew) {
-	global $searchResults;
-	$searchResults = $searchResultsNew;
-}
-
-function getSearchResults() {
-	global $searchResults;
-	return $searchResults;
-}
-
-function printSearchResults() {
-	
-	$searchResultsBuffer = getSearchResults();
-	
-	if (function_exists('updateSearchResults')) {
-		$searchResultsBuffer = updateSearchResults($searchResultsBuffer);
-	}
-	
-	echo $searchResultsBuffer;
-}
-
-//
 // HTML components
 
 function getIndexHtmlTitle() {
@@ -942,7 +936,7 @@ function getBlogPostHtmlTitle() {
 	return getBlogPostTitle() . ' | ' . getAuthorName();
 }
 function getBlogSearchHtmlTitle() {
-	return 'Search: ' . getSearchQuery() . ' | ' . getBlogTitle();
+	return 'Search: ' . getBlogSearchQuery() . ' | ' . getBlogTitle();
 }
 
 function printHtmlHeadTitle() {
@@ -975,13 +969,13 @@ function getIndexHtmlDescription() {
 	return getAuthorDescription();
 }
 function getBlogHtmlDescription() {
-	return getBlogDescription();
+	return getBlogTitle() . ' - ' . getBlogDescription();
 }
 function getBlogPostHtmlDescription() {
 	return getBlogPostDescription();
 }
 function getBlogSearchHtmlDescription() {
-	return 'Search: ' . getSearchQuery() . ' | ' . getBlogDescription();
+	return 'Search: ' . getBlogSearchQuery() . ' | ' . getBlogHtmlDescription();
 }
 
 function printHtmlHeadMetaDescription() {
@@ -1020,6 +1014,11 @@ function printHtmlHeadMetaKeywords() {
 	
 		if (isBlogPost()) {
 			printBlogPostKeywords();
+		}
+		
+		else if (isBlogSearch()) {
+			printBlogKeywords('', ', ');
+			printBlogSearchQuery();
 		}
 	
 		else {
@@ -1305,7 +1304,7 @@ function printGoogleStructuredData() {
 		
 		$bufferWebSite = str_replace("%name%", getIndexHtmlTitle(), $bufferWebSite);
 		$bufferWebSite = str_replace("%url%", getAbsoluteLink(), $bufferWebSite);
-		$bufferWebSite = str_replace("%target%", getAbsoluteLink('search.php?' . getSearchQueryParam()), $bufferWebSite);
+		$bufferWebSite = str_replace("%target%", getAbsoluteLink(getBlogLink() . '?' . getBlogSearchParam()), $bufferWebSite);
 		$bufferWebSite = str_replace("%author.name%", getAuthorName(), $bufferWebSite);
 		$bufferWebSite = str_replace("%author.url%", getAbsoluteLink(), $bufferWebSite);
 		
@@ -1371,7 +1370,7 @@ function printGoogleStructuredData() {
 			
 			$bufferBlog = str_replace("%name%", getBlogHtmlTitle(), $bufferBlog);
 			$bufferBlog = str_replace("%url%", getAbsoluteLink(getBlogLink()), $bufferBlog);
-			$bufferBlog = str_replace("%target%", getAbsoluteLink('search.php?' . getSearchQueryParam()), $bufferBlog);
+			$bufferBlog = str_replace("%target%", getAbsoluteLink(getBlogLink(). '?' . getBlogSearchParam()), $bufferBlog);
 			$bufferBlog = str_replace("%author.name%", getAuthorName(), $bufferBlog);
 			$bufferBlog = str_replace("%author.url%", getAbsoluteLink(), $bufferBlog);
 			

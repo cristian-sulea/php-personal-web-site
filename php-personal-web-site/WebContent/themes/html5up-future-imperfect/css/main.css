@@ -3504,3 +3504,7 @@ table.reset tbody tr td
 a {
 	word-wrap: break-word;
 }
+
+.blog-search-result-word {
+	font-weight: bold;
+}
