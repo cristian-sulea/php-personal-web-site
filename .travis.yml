@@ -5,7 +5,7 @@ script: >
  cd php-personal-web-site/WebContent
  && php -f index.php
  && php -f blog.php
- && php -f blog.php?p=2013-05-27-spring-quick-start-tutorial
- && php -f blog.php?s=java
+ && php -f blog.php p 2013-05-27-spring-quick-start-tutorial
+ && php -f blog.php s java
  && php -f feed.php
  && php -f sitemap.php

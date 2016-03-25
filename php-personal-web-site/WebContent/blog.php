@@ -4,6 +4,10 @@ include '_include.php';
 setContentTypeHTML();
 setIsBlog();
 
+if (defined('STDIN')) {
+	$_GET[$argv[1]] = $argv[2];
+}
+
 if (isset($_GET[getBlogPostIdParam()])) {
 	
 	setBlogPostId($_GET[getBlogPostIdParam()]);
