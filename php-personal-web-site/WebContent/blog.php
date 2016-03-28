@@ -28,10 +28,14 @@ if (isset($_GET[getBlogPostIdParam()])) {
 
 else if (isset($_GET[getBlogSearchParam()])) {
 	
-	setBlogSearchQuery($_GET[getBlogSearchParam()]);
+	setBlogSearchQuery(trim($_GET[getBlogSearchParam()]));
 	setIsBlogSearch();
 	
-	$words = preg_split('/\s+/', trim(getBlogSearchQuery()));
+	if (strlen(getBlogSearchQuery()) == 0) {
+		redirect(getBlogLink());
+	}
+	
+	$words = preg_split('/\s+/', getBlogSearchQuery());
 	
 	includeThemeFile('page-prefix.php');
 	includeThemeFile('blog-search-prefix.php');
@@ -108,8 +112,16 @@ else if (isset($_GET[getBlogSearchParam()])) {
 			
 			$blogSearchResult .= substr($blogPostContentStripTags, 0, 100);
 			$blogSearchResult .= ' ... ';
-			$blogSearchResult .= substr($blogPostContentStripTags, max(0, $wordPos - 200), 400);
-			$blogSearchResult .= ' ... ';
+			
+			$wordBlockLength = 400 / count($words);
+			
+			foreach ($words as $word) {
+				
+				$wordPos = strpos($blogPostContentStripTags, $word);
+				
+				$blogSearchResult .= substr($blogPostContentStripTags, max(0, $wordPos - ($wordBlockLength / 2)), $wordBlockLength);
+				$blogSearchResult .= ' ... ';
+			}
 			
 			foreach ($words as $word) {
 				$blogSearchResult = str_ireplace($word, '<span class="blog-search-result-word">' . $word . '</span>', $blogSearchResult);
