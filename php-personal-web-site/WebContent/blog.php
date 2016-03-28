@@ -41,10 +41,14 @@ else if (isset($_GET[getBlogSearchParam()])) {
 		readBlogPostConfig();
 		readBlogPostContent();
 		
+		$blogPostContentStripTags = strip_tags(getBlogPostContent());
+		$blogPostContentStripTags = preg_replace('/\s+/', ' ',$blogPostContentStripTags);
+		
+		$blogPostContainsAllWords = true;
+		
 		foreach ($words as $word) {
 			
 			$isFound = false;
-			$blogPostContentStripTags = null;
 			
 			//
 			// first check in title
@@ -72,9 +76,6 @@ else if (isset($_GET[getBlogSearchParam()])) {
 			
 			else {
 				
-				$blogPostContentStripTags = strip_tags(getBlogPostContent());
-				$blogPostContentStripTags = preg_replace('/\s+/', ' ',$blogPostContentStripTags);
-				
 				$wordPos = strpos($blogPostContentStripTags, $word);
 				
 				if ($wordPos !== false) {
@@ -83,35 +84,40 @@ else if (isset($_GET[getBlogSearchParam()])) {
 			}
 			
 			//
-			// if found
-			// - create the search result
-			// - include the theme file
+			// if word not found
+			// - reset the "contains all words" flag
 			// - and break the cycle through search words
 			
-			if ($isFound) {
-				
-				if (is_null($blogPostContentStripTags)) {
-					$blogPostContentStripTags = strip_tags(getBlogPostContent());
-					$blogPostContentStripTags = preg_replace('/\s+/', ' ',$blogPostContentStripTags);
-				}
-				
-				$blogPostContentStripTags = trim($blogPostContentStripTags);
-				$blogPostContentStripTags = strtolower($blogPostContentStripTags);
-				
-				$blogSearchResult = 'Keywords: ' . implode(', ', getBlogPostKeywords()) . '<br>Content: ';
-				
-				$blogSearchResult .= substr($blogPostContentStripTags, 0, 100);
-				$blogSearchResult .= ' ... ';
-				$blogSearchResult .= substr($blogPostContentStripTags, max(0, $wordPos - 200), 400);
-				$blogSearchResult .= ' ... ';
-				
-				$blogSearchResult = str_ireplace($word, '<span class="blog-search-result-word">' . $word . '</span>', $blogSearchResult);
-				
-				setBlogSearchResult($blogSearchResult);
-				
-				includeThemeFile('blog-search-result.php');
+			if (!$isFound) {
+				$blogPostContainsAllWords = false;
 				break;
 			}
+		}
+		
+		//
+		// if blog post contains all words
+		// - create the search result
+		// - include the theme file
+		
+		if ($blogPostContainsAllWords) {
+			
+			$blogPostContentStripTags = trim($blogPostContentStripTags);
+			$blogPostContentStripTags = strtolower($blogPostContentStripTags);
+			
+			$blogSearchResult = 'Keywords: ' . implode(', ', getBlogPostKeywords()) . '<br>Content: ';
+			
+			$blogSearchResult .= substr($blogPostContentStripTags, 0, 100);
+			$blogSearchResult .= ' ... ';
+			$blogSearchResult .= substr($blogPostContentStripTags, max(0, $wordPos - 200), 400);
+			$blogSearchResult .= ' ... ';
+			
+			foreach ($words as $word) {
+				$blogSearchResult = str_ireplace($word, '<span class="blog-search-result-word">' . $word . '</span>', $blogSearchResult);
+			}
+			
+			setBlogSearchResult($blogSearchResult);
+			
+			includeThemeFile('blog-search-result.php');
 		}
 	}
 	
