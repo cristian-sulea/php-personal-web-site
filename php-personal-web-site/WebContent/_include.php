@@ -525,7 +525,7 @@ function setBlogSearchQuery($blogSearchQueryNew) {
 }
 function getBlogSearchQuery() {
 	global $blogSearchQuery;
-	checkIfIsSet($blogSearchQuery);
+	//checkIfIsSet($blogSearchQuery);
 	return $blogSearchQuery;
 }
 function printBlogSearchQuery() {
