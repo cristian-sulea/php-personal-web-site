@@ -43,7 +43,7 @@
 				<ul>
 					<li class="search">
 						<form id="search" method="get" action="<?php printBlogLink(); ?>">
-							<input type="text" name="<?php printBlogSearchParam(); ?>" placeholder="Search" />
+							<input type="text" name="<?php printBlogSearchParam(); ?>" value="<?php printBlogSearchQuery(); ?>" placeholder="Search" />
 						</form>
 					</li>
 					<li class="menu"><a href="" class="fa-bars" onclick="document.getElementsByTagName('body')[0].className = 'is-menu-visible'; return false;">Menu</a></li>
@@ -54,7 +54,7 @@
 		<div id="menu">
 			<div>
 				<form class="search" method="get" action="<?php printBlogLink(); ?>">
-					<input type="text" name="<?php printBlogSearchParam(); ?>" placeholder="Search" />
+					<input type="text" name="<?php printBlogSearchParam(); ?>" value="<?php printBlogSearchQuery(); ?>" placeholder="Search" />
 				</form>
 			</div>
 			<div>
