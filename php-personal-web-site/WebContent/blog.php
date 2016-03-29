@@ -21,9 +21,9 @@ if (isset($_GET[getBlogPostIdParam()])) {
 	readBlogPostConfig();
 	readBlogPostContent();
 	
-	includeThemeFile('page-prefix.php');
+	includeThemeHtmlPrefix();
 	includeThemeFile('blog-post-full.php');
-	includeThemeFile('page-suffix.php');
+	includeThemeHtmlSuffix();
 }
 
 else if (isset($_GET[getBlogSearchParam()])) {
@@ -37,7 +37,7 @@ else if (isset($_GET[getBlogSearchParam()])) {
 	
 	$words = preg_split('/\s+/', getBlogSearchQuery());
 	
-	includeThemeFile('page-prefix.php');
+	includeThemeHtmlPrefix();
 	includeThemeFile('blog-search-prefix.php');
 	
 	foreach (getBlogPostFolders() as $blogPostFolder) {
@@ -134,12 +134,12 @@ else if (isset($_GET[getBlogSearchParam()])) {
 	}
 	
 	includeThemeFile('blog-search-suffix.php');
-	includeThemeFile('page-suffix.php');
+	includeThemeHtmlSuffix();
 }
 
 else {
 	
-	includeThemeFile('page-prefix.php');
+	includeThemeHtmlPrefix();
 	
 	foreach (getBlogPostFolders() as $blogPostFolder) {
 		setBlogPostId(basename($blogPostFolder));
@@ -148,7 +148,7 @@ else {
 		includeThemeFile('blog-post-description.php');
 	}
 	
-	includeThemeFile('page-suffix.php');
+	includeThemeHtmlSuffix();
 }
 
 ?>

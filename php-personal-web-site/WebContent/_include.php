@@ -322,6 +322,13 @@ function includeThemeFileIfExists($file) {
 	}
 }
 
+function includeThemeHtmlPrefix() {
+	include '_theme-html-prefix.php';
+}
+function includeThemeHtmlSuffix() {
+	include '_theme-html-suffix.php';
+}
+
 //
 // index
 

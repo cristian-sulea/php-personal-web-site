@@ -8,10 +8,10 @@ readIndexExperience();
 readIndexSkills();
 readIndexLanguages();
 
-includeThemeFile('page-prefix.php');
+includeThemeHtmlPrefix();
 includeThemeFile('index-experience.php');
 includeThemeFile('index-skills.php');
 includeThemeFile('index-languages.php');
-includeThemeFile('page-suffix.php');
+includeThemeHtmlSuffix();
 
 ?>
