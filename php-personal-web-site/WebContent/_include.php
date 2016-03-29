@@ -185,9 +185,25 @@ function getMenu() {
 	global $MENU;
 	return $MENU;
 }
-function printMenuItems() {
-	foreach (getMenu() as $link => $title ) {
-		theme_printMenuItem($title, $link);
+function printMenuItems($ulClass=null) {
+	
+	if (function_exists('theme_printMenuItems')) {
+		theme_printMenuItems($ulClass);
+	}
+	
+	else {
+		if (empty($ulClass)) {
+			echo '<ul>';
+		} else {
+			echo '<ul class="' . $ulClass . '">';
+		}
+		echo PHP_EOL;
+		
+		foreach (getMenu() as $link => $title ) {
+			echo '	<li><a href="' . $link . '">' . $title . '</a></li>' . PHP_EOL;
+		}
+		
+		echo '</ul>';
 	}
 }
 
@@ -303,7 +319,11 @@ function setContentTypeXML() {
 
 function setTheme($theme) {
 	global $THEME;
-	$THEME = $theme;
+	if (isset($theme)) {
+		$THEME = $theme;
+	} else {
+		$THEME = '_default';
+	}
 }
 function getThemeFile($file) {
 	global $THEME;

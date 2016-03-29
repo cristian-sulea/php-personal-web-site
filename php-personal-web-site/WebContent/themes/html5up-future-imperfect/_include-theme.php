@@ -1,10 +1,5 @@
 <?php
 
-function theme_printMenuItem($title, $link) {
-	echo PHP_EOL;
-	echo '<li><a href="' . $link . '">' . $title . '</a></li>';
-}
-
 function theme_printAuthorProfiles() {
 	echo '<ul class="icons">' . PHP_EOL;
 	foreach (getAuthorProfiles() as  $title => $link ) {

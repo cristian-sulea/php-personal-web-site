@@ -3,9 +3,7 @@
 	<header id="header">
 		<h1><a href="index.php"><?php printAuthorName(); ?></a></h1>
 		<nav class="links">
-			<ul>
-				<?php printMenuItems(); ?>
-			</ul>
+			<?php printMenuItems(); ?>
 		</nav>
 		<nav class="main">
 			<ul>
@@ -26,9 +24,7 @@
 			</form>
 		</div>
 		<div>
-			<ul class="links">
-				<?php printMenuItems(); ?>
-			</ul>
+			<?php printMenuItems('links'); ?>
 		</div>
 		<div>
 			<ul class="actions vertical">
