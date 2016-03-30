@@ -356,6 +356,10 @@ function getIndexLink() {
 	return 'index.php';
 }
 
+function printIndexLink() {
+	echo getIndexLink();
+}
+
 //
 // index
 // - icon
