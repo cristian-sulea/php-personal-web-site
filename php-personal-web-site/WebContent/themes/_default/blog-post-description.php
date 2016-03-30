@@ -1,5 +1,5 @@
 
-<article class="post">
+<article>
 
 	<header>
 		<h2><a href="<?php printBlogPostLink(); ?>"><?php printBlogPostTitle(); ?></a></h2>
@@ -9,16 +9,10 @@
 		<time datetime="<?php printBlogPostDateForHtmlTimeTag(); ?>"><?php printBlogPostDate(); ?></time>
 	</header>
 
-<?php printBlogPostContent(); ?>
+	<p><?php printBlogPostDescription(); ?></p>
 
-	<?php if (hasBlogPostResources()) { ?>
-		<?php echo '<hr>'; ?>
-		<?php printBlogPostResources(); ?>
-	<?php } ?>
-
-	<hr>
-	<p>
-		<a target="_blank" href="<?php printBlogPostShareOnTwiterLink(); ?>">Share on Twitter</a>
-	</p>
+	<footer>
+		<a href="<?php printBlogPostLink(); ?>">Continue Reading</a>
+	</footer>
 
 </article>

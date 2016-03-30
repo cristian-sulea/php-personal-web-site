@@ -1,0 +1,4 @@
+body > header > p > img {
+	border: thin;
+	border-style: solid;
+}
