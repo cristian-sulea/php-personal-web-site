@@ -11,10 +11,10 @@ echo '		<loc>' . getAbsoluteLink() . '</loc>' . PHP_EOL;
 echo '		<lastmod>' . date('c', strtotime("now")) . '</lastmod>' . PHP_EOL;
 echo '	</url>' . PHP_EOL;
 
-echo '	<url>' . PHP_EOL;
-echo '		<loc>' . getAbsoluteLink('index.php') . '</loc>' . PHP_EOL;
-echo '		<lastmod>' . date('c', strtotime("now")) . '</lastmod>' . PHP_EOL;
-echo '	</url>' . PHP_EOL;
+// echo '	<url>' . PHP_EOL;
+// echo '		<loc>' . getAbsoluteLink('index.php') . '</loc>' . PHP_EOL;
+// echo '		<lastmod>' . date('c', strtotime("now")) . '</lastmod>' . PHP_EOL;
+// echo '	</url>' . PHP_EOL;
 
 echo '	<url>' . PHP_EOL;
 echo '		<loc>' . getAbsoluteLink('blog.php') . '</loc>' . PHP_EOL;
