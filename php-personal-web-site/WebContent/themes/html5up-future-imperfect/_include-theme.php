@@ -1,37 +1,5 @@
 <?php
 
-function theme_printAuthorProfiles() {
-	echo '<ul class="icons">' . PHP_EOL;
-	foreach (getAuthorProfiles() as  $title => $link ) {
-		echo '	<li><a href="' . $link . '" class="' . theme_getAuthorProfileIconClass($title) .  '">&nbsp;' . $title . '</a></li>' . PHP_EOL;
-	}
-	echo '</ul>';
-}
-
-function theme_getAuthorProfileIconClass($title) {
-	
-	switch ($title) {
-		
-		case "LinkedIn" :
-			return "fa-linkedin-square";
-		
-		case "Google+" :
-			return "fa-google-plus-square";
-		
-		case "Twitter" :
-			return "fa-twitter-square";
-		
-		case "GitHub" :
-			return "fa-github-square";
-		
-		case "SourceForge" :
-			return "fa-pencil-square";
-		
-		default :
-			return "";
-	}
-}
-
 function updateBlogPostContent($blogPostContentBuffer) {
 	
 	//

@@ -3,7 +3,7 @@
 //
 // default settings
 
-$THEME = "_default";
+$DEFAULT_THEME = "_default";
 
 $BLOG_SEARCH_PARAM = 's';
 
@@ -123,19 +123,9 @@ function hasAuthorProfiles() {
 }
 
 function printAuthorProfiles() {
-	
 	if (hasAuthorProfiles()) {
-		
-		if (function_exists('theme_printAuthorProfiles')) {
-			theme_printAuthorProfiles();
-		}
-		
-		else {
-			echo '<ul>' . PHP_EOL;
-			foreach (getAuthorProfiles() as  $title => $link ) {
-				echo '	<li><a href="' . $link . '">' . $title . '</a></li>' . PHP_EOL;
-			}
-			echo '</ul>';
+		if (!includeThemeFileIfExists('author-profiles.php')) {
+			includeDefaultThemeFileIfExists('author-profiles.php');
 		}
 	}
 }
@@ -319,10 +309,11 @@ function setContentTypeXML() {
 
 function setTheme($theme) {
 	global $THEME;
+	global $DEFAULT_THEME;
 	if (isset($theme)) {
 		$THEME = $theme;
 	} else {
-		$THEME = '_default';
+		$THEME = $DEFAULT_THEME;
 	}
 }
 function getThemeFile($file) {
@@ -339,9 +330,31 @@ function includeThemeFileIfExists($file) {
 	$file = getThemeFile($file);
 	if (file_exists($file)) {
 		include $file;
+		return true;
+	} else {
+		return false;
 	}
 }
 
+function getDefaultThemeFile($file) {
+	global $DEFAULT_THEME;
+	return "themes/" . $DEFAULT_THEME . "/" . $file;
+}
+function printDefaultThemeFile($file) {
+	echo getDefaultThemeFile($file);
+}
+function includeDefaultThemeFile($file) {
+	include getDefaultThemeFile($file);
+}
+function includeDefaultThemeFileIfExists($file) {
+	$file = getDefaultThemeFile($file);
+	if (file_exists($file)) {
+		include $file;
+		return true;
+	} else {
+		return false;
+	}
+}
 function includeThemeHtmlPrefix() {
 	include '_theme-html-prefix.php';
 }
