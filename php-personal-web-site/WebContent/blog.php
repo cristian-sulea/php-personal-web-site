@@ -40,6 +40,8 @@ else if (isset($_GET[getBlogSearchParam()])) {
 	includeThemeHtmlPrefix();
 	includeThemeFile('blog-search-prefix.php');
 	
+	$noResults = true;
+	
 	foreach (getBlogPostFolders() as $blogPostFolder) {
 		setBlogPostId(basename($blogPostFolder));
 		readBlogPostConfig();
@@ -130,7 +132,14 @@ else if (isset($_GET[getBlogSearchParam()])) {
 			setBlogSearchResult($blogSearchResult);
 			
 			includeThemeFile('blog-search-result.php');
+			
+			$noResults = false;
 		}
+	}
+	
+	if ($noResults) {
+		setBlogSearchResult('No results found for "' . getBlogSearchQuery() . '".');
+		includeThemeFile('blog-search-result0.php');
 	}
 	
 	includeThemeFile('blog-search-suffix.php');
