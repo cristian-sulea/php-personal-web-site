@@ -301,7 +301,7 @@ function setContentTypeRSS() {
 	setContentType('application/rss+xml');
 }
 function setContentTypeXML() {
-	setContentType('application/rss+xml');
+	setContentType('application/xml');
 }
 
 //
