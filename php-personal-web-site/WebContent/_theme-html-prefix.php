@@ -16,7 +16,8 @@
 <link rel="canonical" href="<?php printHtmlHeadLinkCanonical(); ?>">
 <link rel="shortlink" href="<?php printHtmlHeadLinkShortlink(); ?>">
 
-<link rel="alternate" type="application/rss+xml" title="<?php printBlogTitle(); ?> &raquo; Feed" href="feed.php" />
+<link rel="alternate" type="application/rss+xml"                   href="feed.php"       title="<?php printBlogTitle(); ?> &raquo; Feed" />
+<link rel="search"    type="application/opensearchdescription+xml" href="opensearch.php" title="<?php printBlogTitle(); ?> &raquo; Search" />
 
 <?php includeThemeFile('html-head.php'); ?>
 
