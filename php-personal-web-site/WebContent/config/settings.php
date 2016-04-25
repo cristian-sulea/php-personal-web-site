@@ -1,7 +1,7 @@
 <?php
 
 setTheme(null);
-// setTheme('html5up-future-imperfect');
+setTheme('html5up-future-imperfect');
 
 setGoogleAnalyticsTrackingId(null);
 
